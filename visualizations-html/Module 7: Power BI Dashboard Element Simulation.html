@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 7: Power BI Dashboard Element Simulation</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; align-items: center; margin: 20px; background-color: #f0f4f8; color: #333; }
+        .container { display: flex; flex-direction: column; width: 95%; max-width: 1000px; background-color: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        h2 { color: #005a9e; text-align: center; margin-bottom: 20px;}
+        .powerbi-sim { display: flex; flex-direction: row; justify-content: space-between; width: 100%; gap: 20px; }
+        .pane { background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; min-height: 300px; }
+        .fields-pane { width: 25%; }
+        .visuals-pane { width: 15%; }
+        .report-canvas { width: 60%; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #e9ecef; border-radius: 8px; padding: 20px;}
+        .pane h3 { font-size: 16px; color: #003366; margin-top: 0; margin-bottom: 10px; border-bottom: 1px solid #ccc; padding-bottom: 5px;}
+        .draggable-field, .visual-icon {
+            background-color: #fff; border: 1px solid #ccc; border-radius: 4px; padding: 8px 10px; margin-bottom: 8px;
+            font-size: 14px; cursor: grab; user-select: none; display: flex; align-items: center;
+        }
+        .draggable-field:active { cursor: grabbing; background-color: #e0e0e0; }
+        .visual-icon { cursor: pointer; flex-direction: column; align-items: center; text-align: center; width: 80px; height: 60px; justify-content: center;}
+        .visual-icon img { width: 24px; height: 24px; margin-bottom: 5px;}
+        .visual-icon.selected { border: 2px solid #0078d4; background-color: #e7f3fe;}
+
+        .drop-zone {
+            border: 2px dashed #adb5bd; border-radius: 4px; padding: 10px; margin-top: 15px;
+            min-height: 50px; text-align: center; color: #6c757d; font-size: 13px;
+        }
+        .drop-zone.over { background-color: #e9ecef; border-color: #0078d4; }
+        .drop-zone-title { font-weight: bold; margin-bottom: 5px; font-size: 12px;}
+        .dropped-item { background-color: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; padding: 5px; font-size:12px; border-radius:3px; margin:3px 0; }
+
+        #visual-placeholder { width: 100%; height: 250px; background-color: #fff; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; text-align: center; color: #999; font-size:15px;}
+        #visual-placeholder img {max-width:100%; max-height:100%;}
+        .action-button {
+            padding: 10px 20px; font-size: 16px; color: white; background-color: #0078d4;
+            border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;
+        }
+        .action-button:hover { background-color: #005a9e; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Module 7: Power BI Dashboard Simulation</h2>
+        <p style="text-align:center; margin-bottom:20px;">Task: Create a visual showing "Average ED Wait Time (Door-to-Doctor) by Hour of Day".</p>
+
+        <div class="powerbi-sim">
+            <div class="pane fields-pane">
+                <h3>Data Fields (ED_Performance Table)</h3>
+                <div id="fieldEncounterID" class="draggable-field" draggable="true" data-field="EncounterID">EncounterID (Text)</div>
+                <div id="fieldEncounterDateTime" class="draggable-field" draggable="true" data-field="EncounterDateTime">EncounterDateTime (DateTime)</div>
+                <div id="fieldDoorToDoctorMinutes" class="draggable-field" draggable="true" data-field="DoorToDoctorMinutes">DoorToDoctorMinutes (Number)</div>
+                <div id="fieldTriageAcuity" class="draggable-field" draggable="true" data-field="TriageAcuity">TriageAcuity (Number 1-5)</div>
+                <div id="fieldDischargeReason" class="draggable-field" draggable="true" data-field="DischargeReason">DischargeReason (Text)</div>
+                 <div id="fieldHourOfDay" class="draggable-field" draggable="true" data-field="HourOfDay">HourOfDay (Calculated)</div>
+            </div>
+
+            <div class="pane visuals-pane">
+                <h3>Visualizations</h3>
+                <div class="visual-icon" id="visLineChart" data-type="Line Chart"><img src="https://img.icons8.com/fluency/48/line-chart.png" alt="Line Chart">Line Chart</div>
+                <div class="visual-icon" id="visBarChart" data-type="Bar Chart"><img src="https://img.icons8.com/fluency/48/bar-chart.png" alt="Bar Chart">Bar Chart</div>
+                <div class="visual-icon" id="visKpi" data-type="KPI"><img src="https://img.icons8.com/fluency/48/kpi.png" alt="KPI">KPI</div>
+                <div class="visual-icon" id="visTable" data-type="Table"><img src="https://img.icons8.com/fluency/48/table.png" alt="Table">Table</div>
+                
+                <div id="axisDropZone" class="drop-zone" data-well="Axis"><span class="drop-zone-title">Axis / X-Axis</span></div>
+                <div id="valuesDropZone" class="drop-zone" data-well="Values / Y-Axis"><span class="drop-zone-title">Values / Y-Axis</span></div>
+                <div id="legendDropZone" class="drop-zone" data-well="Legend"><span class="drop-zone-title">Legend</span></div>
+            </div>
+
+            <div class="pane report-canvas">
+                <h3>Report Canvas</h3>
+                <div id="visual-placeholder">Select a visual type and drag fields to wells.</div>
+                <button id="renderVisualBtn" class="action-button">Render Visual</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const draggables = document.querySelectorAll('.draggable-field');
+        const dropZones = document.querySelectorAll('.drop-zone');
+        const visualIcons = document.querySelectorAll('.visual-icon');
+        const visualPlaceholder = document.getElementById('visual-placeholder');
+        const renderVisualBtn = document.getElementById('renderVisualBtn');
+
+        let selectedVisualType = null;
+        let draggedItem = null;
+        const droppedFields = { Axis: null, Values: null, Legend: null };
+
+        visualIcons.forEach(icon => {
+            icon.addEventListener('click', () => {
+                visualIcons.forEach(i => i.classList.remove('selected'));
+                icon.classList.add('selected');
+                selectedVisualType = icon.getAttribute('data-type');
+                visualPlaceholder.textContent = `${selectedVisualType} selected. Drag fields here.`;
+                // Clear fields if visual type changes
+                Object.keys(droppedFields).forEach(well => {
+                    const zone = document.getElementById(`${well.toLowerCase()}DropZone`);
+                    zone.innerHTML = `<span class="drop-zone-title">${well} / ${well==='Axis'?'X-Axis':'Y-Axis'}</span>`; // Reset text
+                    droppedFields[well] = null;
+                });
+                visualPlaceholder.innerHTML = `Select a visual type and drag fields to wells. Current: ${selectedVisualType || 'None'}`;
+
+            });
+        });
+
+        draggables.forEach(draggable => {
+            draggable.addEventListener('dragstart', (e) => {
+                draggedItem = e.target;
+                setTimeout(() => e.target.style.opacity = '0.5', 0);
+            });
+            draggable.addEventListener('dragend', (e) => {
+                draggedItem = null;
+                setTimeout(() => e.target.style.opacity = '1', 0);
+            });
+        });
+
+        dropZones.forEach(zone => {
+            zone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                zone.classList.add('over');
+            });
+            zone.addEventListener('dragleave', () => {
+                zone.classList.remove('over');
+            });
+            zone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                zone.classList.remove('over');
+                if (draggedItem && selectedVisualType) {
+                    const fieldName = draggedItem.getAttribute('data-field');
+                    const wellName = zone.getAttribute('data-well');
+                    
+                    // Remove from other wells if it exists
+                    Object.keys(droppedFields).forEach(key => {
+                        if (droppedFields[key] === fieldName && key !== wellName) {
+                            const otherZone = document.getElementById(`${key.toLowerCase()}DropZone`);
+                            const itemToRemove = otherZone.querySelector(`[data-field-name="${fieldName}"]`);
+                            if(itemToRemove) itemToRemove.remove();
+                            droppedFields[key] = null;
+                        }
+                    });
+
+                    // Add to current well (allow only one field per well for simplicity)
+                    zone.innerHTML = `<span class="drop-zone-title">${wellName} / ${wellName==='Axis'?'X-Axis':'Y-Axis'}</span>`; // Clear previous before adding new
+                    const droppedItemDiv = document.createElement('div');
+                    droppedItemDiv.classList.add('dropped-item');
+                    droppedItemDiv.textContent = fieldName;
+                    droppedItemDiv.dataset.fieldName = fieldName;
+                    zone.appendChild(droppedItemDiv);
+                    droppedFields[wellName] = fieldName;
+                } else if (!selectedVisualType) {
+                    visualPlaceholder.textContent = "Please select a visual type first!";
+                }
+            });
+        });
+
+        renderVisualBtn.addEventListener('click', () => {
+            if (!selectedVisualType) {
+                visualPlaceholder.textContent = "Error: No visual type selected.";
+                return;
+            }
+            if (!droppedFields.Axis || !droppedFields.Values) {
+                visualPlaceholder.textContent = "Error: Axis and Values fields are required.";
+                return;
+            }
+
+            visualPlaceholder.innerHTML = ""; // Clear previous content
+
+            if (selectedVisualType === "Line Chart" || selectedVisualType === "Bar Chart") {
+                if (droppedFields.Axis === "HourOfDay" && droppedFields.Values === "DoorToDoctorMinutes") {
+                    const img = document.createElement('img');
+                    // Use a generic placeholder or a pre-made image of a chart
+                    img.src = (selectedVisualType === "Line Chart") ? 
+                        "https://i.imgur.com/6XzqyL9.png" : // Replace with actual placeholder line chart
+                        "https://i.imgur.com/A8x702j.png";  // Replace with actual placeholder bar chart
+                    img.alt = selectedVisualType + " showing Average Wait Time by Hour";
+                    img.style.width = "100%"; img.style.height = "auto";
+                    visualPlaceholder.appendChild(img);
+                    visualPlaceholder.innerHTML += `<p style="font-size:12px; text-align:center;">Mock ${selectedVisualType} of Avg DoorToDoctorMinutes by HourOfDay. <br>Insight: Peaks might be visible during midday and evening, suggesting higher load or lower staffing efficiency at those times.</p>`;
+                } else {
+                    visualPlaceholder.textContent = `Mock ${selectedVisualType} with ${droppedFields.Values} by ${droppedFields.Axis}. Add specific logic for other fields.`;
+                }
+            } else {
+                 visualPlaceholder.textContent = `Rendering for ${selectedVisualType} is not implemented in this simulation. Please select Line or Bar chart.`;
+            }
+        });
+    </script>
+</body>
+</html>

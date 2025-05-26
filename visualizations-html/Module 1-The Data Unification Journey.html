@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1: Data Unification Journey</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; margin: 20px; background-color: #f4f4f9; color: #333; }
+        .container { display: flex; flex-direction: column; align-items: center; justify-content: space-around; width: 90%; max-width: 1000px; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+        .stage { width: 100%; padding: 20px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; text-align: center; }
+        .data-silo, .fabric-component, .insight-node {
+            background-color: #e9ecef; border: 2px solid #adb5bd; color: #495057;
+            padding: 10px 15px; margin: 10px; border-radius: 25px; display: inline-block;
+            cursor: pointer; transition: transform 0.3s ease, background-color 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            min-width: 120px; text-align: center;
+        }
+        .data-silo:hover, .fabric-component:hover, .insight-node:hover { transform: translateY(-5px); background-color: #ced4da; }
+        .silo-ehr { background-color: #f8d7da; border-color: #f5c6cb; color: #721c24; } /* Reddish */
+        .silo-pharmacy { background-color: #fff3cd; border-color: #ffeeba; color: #856404; } /* Yellowish */
+        .silo-outpatient { background-color: #d1ecf1; border-color: #bee5eb; color: #0c5460; } /* Bluish */
+        .silo-labs { background-color: #d4edda; border-color: #c3e6cb; color: #155724; } /* Greenish */
+
+        .fabric-hub { background-color: #cce5ff; border-color: #b8daff; color: #004085; font-weight: bold; padding: 15px 25px; }
+        .insight-node-good { background-color: #a9dfbf; border-color: #7fbf7f; color: #1e4620; font-weight: bold;}
+        .insight-node-bad { background-color: lightgrey; border-color: grey; color: #333; text-decoration: line-through;}
+
+        .lines-container { position: relative; width: 100%; height: 150px; /* Adjust as needed */ margin-top: 10px; margin-bottom: 10px;}
+        .line {
+            position: absolute;
+            background-color: #adb5bd;
+            transform-origin: 0 50%;
+            height: 3px;
+            z-index: -1;
+        }
+        .line-broken { border-top: 3px dashed #dc3545; background-color: transparent !important; }
+        .line-good { background-color: #28a745; }
+
+        #unifyButton {
+            padding: 12px 25px; font-size: 16px; color: white; background-color: #007bff;
+            border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; transition: background-color 0.3s ease;
+        }
+        #unifyButton:hover { background-color: #0056b3; }
+        #unifyButton:disabled { background-color: #cccccc; cursor: not-allowed; }
+        .hidden { display: none !important; }
+        .popup {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background-color: white; padding: 20px; border: 1px solid #ccc; box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            z-index: 100; border-radius: 5px; text-align: left;
+        }
+        .popup-content { max-width: 300px; }
+        .close-popup { position: absolute; top: 5px; right: 10px; cursor: pointer; font-size: 20px; }
+
+        /* Simple animations for transition */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes moveTowardsCenter {
+            from { transform: translate(var(--tx-start, 0), var(--ty-start, 0)); }
+            to { transform: translate(var(--tx-end, 0), var(--ty-end, 0)); }
+        }
+        .anim-move { animation-duration: 1s; animation-fill-mode: forwards; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Module 1: The Data Unification Journey</h2>
+
+        <div id="fragmentedStage" class="stage">
+            <h3>Stage 1: The Fragmented Data Maze</h3>
+            <p>Data is scattered and disconnected, making holistic insights difficult.</p>
+            <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; margin-bottom: 20px;">
+                <div id="siloEHR" class="data-silo silo-ehr" data-info="EHR Data: Vital signs, diagnoses, medical history. Often trapped in its own system.">EHR System</div>
+                <div id="siloPharmacy" class="data-silo silo-pharmacy" data-info="Pharmacy Data: Medications prescribed and dispensed. Rarely linked proactively with EHR.">Pharmacy Data</div>
+            </div>
+            <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;">
+                <div id="siloOutpatient" class="data-silo silo-outpatient" data-info="Outpatient Data: Clinic visits, specialist notes. May not be visible to hospital.">Outpatient Clinic</div>
+                <div id="siloLabs" class="data-silo silo-labs" data-info="Lab Results: Blood tests, pathology reports. Often a separate system.">Lab Results</div>
+            </div>
+            <div id="fragmentedInsights" class="insight-node insight-node-bad" style="margin-top: 30px;" data-info="With fragmented data, getting a complete patient picture is challenging, impacting care and operational efficiency.">Patient Insights?</div>
+            <!-- Lines will be drawn by JS -->
+            <div class="lines-container" id="fragmentedLinesContainer"></div>
+        </div>
+
+        <button id="unifyButton">Unify with Fabric</button>
+
+        <div id="unifiedStage" class="stage hidden">
+            <h3>Stage 2: The Unified Fabric Highway</h3>
+            <p>Microsoft Fabric integrates data, enabling powerful analytics and AI.</p>
+            <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; margin-bottom: 20px;">
+                <div id="siloEHRUnified" class="data-silo silo-ehr anim-move">EHR System</div>
+                <div id="siloPharmacyUnified" class="data-silo silo-pharmacy anim-move">Pharmacy Data</div>
+            </div>
+            <div id="fabricHub" class="fabric-component" style="margin: 20px auto;" data-info="Microsoft Fabric: A unified analytics platform. OneLake for data storage, Data Factory for integration, Synapse for AI/Analytics, Power BI for visualization.">Microsoft Fabric</div>
+            <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; margin-top: 20px;">
+                <div id="siloOutpatientUnified" class="data-silo silo-outpatient anim-move">Outpatient Clinic</div>
+                <div id="siloLabsUnified" class="data-silo silo-labs anim-move">Lab Results</div>
+            </div>
+            <div id="unifiedInsights" class="insight-node insight-node-good" style="margin-top: 30px;" data-info="Unified data allows for comprehensive patient views, predictive analytics (like readmission risk), and improved operational efficiency.">Clear Patient Insights!</div>
+            <div id="outcomeReadmission" class="insight-node insight-node-good" data-info="Example Outcome: AI models can predict and help reduce patient readmissions.">Reduced Readmissions</div>
+             <!-- Lines will be drawn by JS -->
+            <div class="lines-container" id="unifiedLinesContainer"></div>
+        </div>
+    </div>
+
+    <div id="popup" class="popup hidden">
+        <span class="close-popup" onclick="closePopup()">×</span>
+        <div id="popupContent" class="popup-content"></div>
+    </div>
+
+    <script>
+        const fragmentedStage = document.getElementById('fragmentedStage');
+        const unifiedStage = document.getElementById('unifiedStage');
+        const unifyButton = document.getElementById('unifyButton');
+        const popup = document.getElementById('popup');
+        const popupContent = document.getElementById('popupContent');
+
+        const silosFragmented = {
+            siloEHR: document.getElementById('siloEHR'),
+            siloPharmacy: document.getElementById('siloPharmacy'),
+            siloOutpatient: document.getElementById('siloOutpatient'),
+            siloLabs: document.getElementById('siloLabs')
+        };
+        const insightsFragmented = document.getElementById('fragmentedInsights');
+        const fabricHub = document.getElementById('fabricHub');
+        const insightsUnified = document.getElementById('unifiedInsights');
+        const outcomeReadmission = document.getElementById('outcomeReadmission');
+
+        const silosUnified = {
+            siloEHRUnified: document.getElementById('siloEHRUnified'),
+            siloPharmacyUnified: document.getElementById('siloPharmacyUnified'),
+            siloOutpatientUnified: document.getElementById('siloOutpatientUnified'),
+            siloLabsUnified: document.getElementById('siloLabsUnified')
+        };
+
+        function showPopup(element) {
+            const info = element.getAttribute('data-info');
+            if (info) {
+                popupContent.textContent = info;
+                popup.classList.remove('hidden');
+            }
+        }
+
+        function closePopup() {
+            popup.classList.add('hidden');
+        }
+
+        document.querySelectorAll('.data-silo, .fabric-component, .insight-node').forEach(el => {
+            el.addEventListener('click', () => showPopup(el));
+        });
+
+        // Simple line drawing function
+        function drawLine(containerId, el1, el2, isBroken = false, isGood = false) {
+            const container = document.getElementById(containerId);
+            if (!container || !el1 || !el2) return;
+
+            const rect1 = el1.getBoundingClientRect();
+            const rect2 = el2.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+
+            // Calculate center points relative to the container
+            const x1 = rect1.left + rect1.width / 2 - containerRect.left;
+            const y1 = rect1.top + rect1.height / 2 - containerRect.top;
+            const x2 = rect2.left + rect2.width / 2 - containerRect.left;
+            const y2 = rect2.top + rect2.height / 2 - containerRect.top;
+
+            const length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+            const angle = Math.atan2(y2 - y1, x2 - x1) * (180 / Math.PI);
+
+            const line = document.createElement('div');
+            line.classList.add('line');
+            if (isBroken) line.classList.add('line-broken');
+            if (isGood) line.classList.add('line-good');
+            line.style.width = `${length}px`;
+            line.style.transform = `rotate(${angle}deg)`;
+            line.style.left = `${x1}px`;
+            line.style.top = `${y1}px`;
+            container.appendChild(line);
+        }
+        
+        function drawFragmentedLines() {
+            const containerId = 'fragmentedLinesContainer';
+            document.getElementById(containerId).innerHTML = ''; // Clear existing lines
+            if (!insightsFragmented) return;
+            Object.values(silosFragmented).forEach(silo => {
+                 if (silo && insightsFragmented) drawLine(containerId, silo, insightsFragmented, true);
+            });
+        }
+
+        function drawUnifiedLines() {
+            const containerId = 'unifiedLinesContainer';
+            document.getElementById(containerId).innerHTML = ''; // Clear existing lines
+            if (!fabricHub || !insightsUnified || !outcomeReadmission) return;
+
+            Object.values(silosUnified).forEach(silo => {
+                if (silo && fabricHub) drawLine(containerId, silo, fabricHub, false, true);
+            });
+            if (fabricHub && insightsUnified) drawLine(containerId, fabricHub, insightsUnified, false, true);
+            if (insightsUnified && outcomeReadmission) drawLine(containerId, insightsUnified, outcomeReadmission, false, true);
+        }
+
+
+        unifyButton.addEventListener('click', () => {
+            fragmentedStage.classList.add('hidden');
+            unifiedStage.classList.remove('hidden');
+            unifiedStage.style.animation = 'fadeIn 1s forwards';
+            unifyButton.disabled = true;
+            unifyButton.textContent = "Unified!";
+
+            // Position elements for animation (conceptual)
+            // More complex animation would require calculating exact positions relative to Fabric hub
+            Object.values(silosUnified).forEach(el => {
+                el.style.setProperty('--tx-start', '0px'); // Simplified: assume they are already roughly positioned
+                el.style.setProperty('--ty-start', '0px');
+                el.style.setProperty('--tx-end', '0px'); // End position is their CSS defined position
+                el.style.setProperty('--ty-end', '0px');
+                el.classList.add('anim-move');
+                el.style.animationName = 'moveTowardsCenter'; // This needs more work for real effect
+            });
+            setTimeout(drawUnifiedLines, 50); // Draw lines after elements are visible
+        });
+        
+        // Initial line drawing for fragmented view
+        // Use a timeout to ensure elements are rendered and positions are calculable
+        setTimeout(() => {
+            drawFragmentedLines();
+            // Adjust for unified stage in case of reload/cached state, though hidden
+            Object.values(silosUnified).forEach(el => {
+                const correspondingFragmentedId = el.id.replace('Unified', '');
+                const fragmentedEl = document.getElementById(correspondingFragmentedId);
+                if (fragmentedEl) {
+                    el.textContent = fragmentedEl.textContent; // Ensure text matches
+                }
+            });
+        }, 100);
+
+        // Redraw lines on window resize
+        window.addEventListener('resize', () => {
+            if (!fragmentedStage.classList.contains('hidden')) {
+                drawFragmentedLines();
+            }
+            if (!unifiedStage.classList.contains('hidden')) {
+                drawUnifiedLines();
+            }
+        });
+
+    </script>
+</body>
+</html>

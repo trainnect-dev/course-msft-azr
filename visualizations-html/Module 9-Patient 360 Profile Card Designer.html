@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 9: Patient 360 Profile Card Designer</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; align-items: center; margin: 20px; background-color: #f0f4f8; color: #333; }
+        .container { display: flex; flex-direction: column; width: 95%; max-width: 1000px; background-color: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        h2 { color: #005a9e; text-align: center; margin-bottom: 20px;}
+        .designer-area { display: flex; flex-direction: row; justify-content: space-between; width: 100%; gap: 20px; }
+        .data-categories-pane, .profile-card-canvas {
+            background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px;
+            min-height: 400px;
+        }
+        .data-categories-pane { width: 40%; }
+        .profile-card-canvas { width: 60%; display: flex; flex-direction: column; align-items: center; }
+        .pane-title { font-size: 18px; color: #003366; margin-top: 0; margin-bottom: 15px; border-bottom: 1px solid #ccc; padding-bottom: 10px; text-align: center;}
+        .data-category-item {
+            background-color: #fff; border: 1px solid #ccc; border-radius: 4px; padding: 10px 12px; margin-bottom: 10px;
+            font-size: 15px; cursor: pointer; user-select: none; transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+        .data-category-item:hover { background-color: #e9ecef; }
+        .data-category-item.selected { background-color: #cce5ff; border-color: #0078d4; font-weight: bold; }
+        .profile-card-header { text-align: center; margin-bottom: 15px; }
+        .profile-card-header img { width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px; border: 2px solid #0078d4;}
+        .profile-card-content { width: 90%; }
+        .profile-card-item {
+            background-color: #e7f3fe; border: 1px solid #b0c4de; color: #003366;
+            padding: 8px 12px; border-radius: 4px; margin-bottom: 8px; font-size: 14px;
+        }
+        .profile-card-item strong { display: block; font-size: 12px; color: #005a9e; margin-bottom: 3px; text-transform: uppercase;}
+        #instructionText {text-align:center; color: #555; margin-bottom:15px;}
+        #resetSelectionBtn {
+            padding: 8px 15px; font-size: 14px; color: white; background-color: #6c757d;
+            border: none; border-radius: 5px; cursor: pointer; margin-top: 15px; display: block; margin-left:auto; margin-right:auto;
+        }
+        #resetSelectionBtn:hover { background-color: #5a6268; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Module 9: Patient 360 Profile Card Designer</h2>
+        <p id="instructionText">Select 5-7 critical data categories for Patient Jane Doe's summary card.</p>
+
+        <div class="designer-area">
+            <div class="data-categories-pane">
+                <h3 class="pane-title">Available Data Categories</h3>
+                <div class="data-category-item" data-category="Demographics" data-example="Age, Gender, Contact">Demographics</div>
+                <div class="data-category-item" data-category="Active Allergies" data-example="Penicillin, Peanuts">Active Allergies</div>
+                <div class="data-category-item" data-category="Active Conditions (Top 3)" data-example="Type 2 Diabetes, Hypertension, CKD Stage 2">Active Conditions (Top 3)</div>
+                <div class="data-category-item" data-category="Recent Key Medications (Top 5)" data-example="Metformin, Lisinopril, Atorvastatin">Recent Key Medications (Top 5)</div>
+                <div class="data-category-item" data-category="Key Lab Trends (Last 3 Months)" data-example="HbA1c: 7.2 -> 7.5; eGFR: 65 -> 60">Key Lab Trends (Last 3 Months)</div>
+                <div class="data-category-item" data-category="Recent Hospital Encounters (Last Year)" data-example="ED Visit (02/2024), Inpatient (08/2023)">Recent Hospital Encounters (Last Year)</div>
+                <div class="data-category-item" data-category="Recent Wearable Activity (Avg Steps/Day)" data-example="Avg. 3500 steps/day (last 7 days)">Recent Wearable Activity</div>
+                <div class="data-category-item" data-category="Patient-Reported Mood (Last Check-in)" data-example="Feeling 'Anxious' (reported yesterday)">Patient-Reported Mood</div>
+                <div class="data-category-item" data-category="Social Determinants (Key Factors)" data-example="Lives alone, Food Insecurity Risk: Moderate">Social Determinants (Key Factors)</div>
+                <div class="data-category-item" data-category="Upcoming Appointments (Next 2)" data-example="Cardiology (05/15), Primary Care (05/28)">Upcoming Appointments (Next 2)</div>
+                <div class="data-category-item" data-category="Care Team Contact (Primary)" data-example="Dr. Smith (PCP), Nurse Navigator">Care Team Contact (Primary)</div>
+                <div class="data-category-item" data-category="Advance Directives Status" data-example="DNR on file">Advance Directives Status</div>
+            </div>
+
+            <div class="profile-card-canvas">
+                <h3 class="pane-title">Patient Profile Card: Jane Doe</h3>
+                <div class="profile-card-header">
+                    <img src="https://img.icons8.com/fluency/96/user-female-circle.png" alt="Patient Jane Doe">
+                    <p style="font-weight:bold; font-size:18px;">Jane Doe</p>
+                </div>
+                <div id="profileCardContent" class="profile-card-content">
+                    <!-- Selected items will appear here -->
+                    <p id="profileCardPlaceholder" style="text-align:center; color:#777;"><i>Select categories from the left to add them here.</i></p>
+                </div>
+            </div>
+        </div>
+        <button id="resetSelectionBtn">Reset Selection</button>
+    </div>
+
+    <script>
+        const dataCategoryItems = document.querySelectorAll('.data-category-item');
+        const profileCardContent = document.getElementById('profileCardContent');
+        const profileCardPlaceholder = document.getElementById('profileCardPlaceholder');
+        const instructionText = document.getElementById('instructionText');
+        const resetSelectionBtn = document.getElementById('resetSelectionBtn');
+        
+        const MAX_SELECTIONS = 7;
+        let selectedCategories = new Set();
+
+        dataCategoryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const category = item.getAttribute('data-category');
+                const example = item.getAttribute('data-example');
+
+                if (selectedCategories.has(category)) {
+                    // Deselect
+                    selectedCategories.delete(category);
+                    item.classList.remove('selected');
+                } else {
+                    // Select, if not exceeding max
+                    if (selectedCategories.size < MAX_SELECTIONS) {
+                        selectedCategories.add(category);
+                        item.classList.add('selected');
+                    } else {
+                        alert(`You can select a maximum of ${MAX_SELECTIONS} categories.`);
+                        return;
+                    }
+                }
+                renderProfileCard();
+                updateInstructionText();
+            });
+        });
+
+        function renderProfileCard() {
+            profileCardContent.innerHTML = ''; // Clear previous items
+            if (selectedCategories.size === 0) {
+                profileCardContent.appendChild(profileCardPlaceholder);
+                profileCardPlaceholder.style.display = 'block';
+                return;
+            }
+            profileCardPlaceholder.style.display = 'none';
+
+            selectedCategories.forEach(category => {
+                const itemElement = document.querySelector(`.data-category-item[data-category="${category}"]`);
+                const example = itemElement.getAttribute('data-example');
+
+                const cardItemDiv = document.createElement('div');
+                cardItemDiv.classList.add('profile-card-item');
+                
+                const strongTitle = document.createElement('strong');
+                strongTitle.textContent = category;
+                cardItemDiv.appendChild(strongTitle);
+                
+                const spanContent = document.createElement('span');
+                spanContent.textContent = example; // Displaying the example content
+                cardItemDiv.appendChild(spanContent);
+
+                profileCardContent.appendChild(cardItemDiv);
+            });
+        }
+        
+        function updateInstructionText() {
+            const remaining = MAX_SELECTIONS - selectedCategories.size;
+            if (remaining > 0) {
+                instructionText.textContent = `Select up to ${remaining} more critical data categories.`;
+            } else {
+                instructionText.textContent = `Maximum ${MAX_SELECTIONS} categories selected. Review your choices.`;
+            }
+        }
+        
+        resetSelectionBtn.addEventListener('click', () => {
+            selectedCategories.clear();
+            dataCategoryItems.forEach(item => item.classList.remove('selected'));
+            renderProfileCard();
+            updateInstructionText();
+        });
+
+        // Initial render state
+        renderProfileCard();
+        updateInstructionText();
+    </script>
+</body>
+</html>

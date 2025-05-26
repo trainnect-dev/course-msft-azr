@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 5: HIPAA Compliance Check</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; align-items: center; margin: 20px; background-color: #f0f4f8; color: #333; }
+        .container { width: 90%; max-width: 700px; background-color: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        h2, h3 { color: #005a9e; text-align: center; }
+        .scenario, .question-block { background-color: #e7eff6; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #b0c4de; }
+        .question-text { font-weight: 600; margin-bottom: 10px; color: #003366; }
+        .options label { display: block; margin: 8px 0; padding: 10px; background-color: #fff; border: 1px solid #ccc; border-radius: 5px; cursor: pointer; transition: background-color 0.2s ease; }
+        .options label:hover { background-color: #f0f0f0; }
+        .options input[type="radio"] { margin-right: 10px; vertical-align: middle; }
+        .feedback { margin-top: 10px; padding: 10px; border-radius: 5px; font-size: 0.95em; }
+        .feedback.correct { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .feedback.incorrect { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .submit-btn {
+            padding: 10px 20px; font-size: 16px; color: white; background-color: #0078d4;
+            border: none; border-radius: 5px; cursor: pointer; display: block; margin: 20px auto 0 auto;
+            transition: background-color 0.3s ease;
+        }
+        .submit-btn:hover { background-color: #005a9e; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Module 5: Interactive HIPAA Compliance Check</h2>
+
+        <div class="scenario">
+            <h3>Scenario:</h3>
+            <p>A hospital uses Microsoft Fabric for analytics. A new project requires analyzing patient readmission rates for patients with diabetes.
+                The project team includes:
+                <ul>
+                    <li><b>Dr. Emily Carter (Clinician Researcher):</b> Needs to see trends but not individual identifiable patient details for her initial exploration.</li>
+                    <li><b>Raj Singh (Data Engineer):</b> Responsible for ingesting raw patient data (including PHI) and preparing datasets.</li>
+                    <li><b>Sarah Miller (Data Analyst):</b> Will build Power BI dashboards on an aggregated, de-identified dataset.</li>
+                </ul>
+            </p>
+        </div>
+
+        <div id="quizContainer">
+            <!-- Questions will be loaded here by JavaScript -->
+        </div>
+        <button id="submitQuizBtn" class="submit-btn">Submit Answers</button>
+        <div id="overallFeedback" class="feedback hidden" style="margin-top: 20px; text-align:center;"></div>
+
+    </div>
+
+    <script>
+        const quizContainer = document.getElementById('quizContainer');
+        const submitQuizBtn = document.getElementById('submitQuizBtn');
+        const overallFeedbackDiv = document.getElementById('overallFeedback');
+
+        const questions = [
+            {
+                id: "q1",
+                text: "Q1: Raj Singh, the Data Engineer, needs to access raw patient records containing PHI from the EHR system to load into the 'Bronze' layer of a Fabric Lakehouse. What is a primary HIPAA consideration for his access?",
+                options: [
+                    { text: "He should have unrestricted access to all data in Fabric to make his job easier.", value: "a", correct: false, feedback: "Incorrect. HIPAA's Minimum Necessary principle applies. Access should be limited to what's needed for his role, even for a Data Engineer." },
+                    { text: "His access must be strictly limited to only the specific data elements required for the diabetes readmission project, and his activities should be logged.", value: "b", correct: true, feedback: "Correct! The Minimum Necessary principle dictates that access to PHI should be limited to what is essential for the task. Auditing his access is also a key technical safeguard." },
+                    { text: "As long as the data is encrypted at rest in OneLake, his access level within Fabric doesn't matter much.", value: "c", correct: false, feedback: "Incorrect. Encryption is vital, but it doesn't negate the need for proper access controls (RBAC) and adhering to the Minimum Necessary principle." }
+                ]
+            },
+            {
+                id: "q2",
+                text: "Q2: Dr. Emily Carter, for her initial exploration of readmission trends, requests access. Which dataset is most appropriate for her according to HIPAA's Minimum Necessary principle?",
+                options: [
+                    { text: "Direct access to the 'Bronze' layer Lakehouse table containing all raw PHI.", value: "a", correct: false, feedback: "Incorrect. This provides more PHI than needed for initial trend exploration and violates the Minimum Necessary principle." },
+                    { text: "A de-identified or limited dataset in the 'Gold' layer specifically created for analytics, showing trends and statistics without direct patient identifiers.", value: "b", correct: true, feedback: "Correct! This respects the Minimum Necessary principle by providing only the data needed for her task, ideally de-identified or as a limited data set." },
+                    { text: "A dataset that includes patient names and addresses so she can mentally map trends to geographic areas.", value: "c", correct: false, feedback: "Incorrect. Including direct identifiers like names and addresses for initial trend exploration is usually excessive and a privacy risk. Aggregated geographic data might be acceptable if properly de-identified." }
+                ]
+            },
+            {
+                id: "q3",
+                text: "Q3: Sarah Miller, the Data Analyst, is building Power BI dashboards. Where should her Power BI dataset primarily source its data from to ensure HIPAA compliance and good governance?",
+                options: [
+                    { text: "Directly from the 'Bronze' layer tables containing raw PHI to allow maximum flexibility in her report building.", value: "a", correct: false, feedback: "Incorrect. Analysts should typically work with curated, and often de-identified or aggregated, data from the Gold layer to minimize PHI exposure." },
+                    { text: "A well-defined, potentially de-identified or aggregated 'Gold' layer Warehouse or Lakehouse table that has been prepared for analytics.", value: "b", correct: true, feedback: "Correct! The Gold layer is designed for BI and analytics, often containing de-identified or aggregated data, which is appropriate for analysts and minimizes PHI exposure." },
+                    { text: "A shared Excel file emailed to her by Raj containing an export of the necessary data.", value: "c", correct: false, feedback: "Incorrect. Emailing PHI in Excel files is a significant security risk and makes auditing and access control very difficult, potentially violating HIPAA." }
+                ]
+            },
+            {
+                id: "q4",
+                text: "Q4: If a new Fabric workspace is created for this project, what is a key security step regarding user access?",
+                options: [
+                    { text: "Add 'Everyone' in the organization as a Viewer to promote transparency.", value: "a", correct: false, feedback: "Incorrect. This would grant broad access, likely violating the Minimum Necessary principle and increasing risk of unauthorized PHI exposure." },
+                    { text: "Implement Role-Based Access Control (RBAC) by assigning specific Fabric workspace roles (Admin, Member, Contributor, Viewer) to Azure AD groups representing the project team roles (e.g., 'DiabetesProject_Engineers', 'DiabetesProject_Analysts').", value: "b", correct: true, feedback: "Correct! RBAC using Azure AD groups and Fabric workspace roles is essential for enforcing least privilege access to the workspace and its contents." },
+                    { text: "Disable all auditing for the workspace to improve performance.", value: "c", correct: false, feedback: "Incorrect. Auditing is a critical HIPAA technical safeguard and should always be enabled for workspaces handling PHI." }
+                ]
+            }
+        ];
+
+        function loadQuestions() {
+            questions.forEach(q => {
+                const questionBlock = document.createElement('div');
+                questionBlock.classList.add('question-block');
+                questionBlock.id = q.id;
+
+                const questionText = document.createElement('p');
+                questionText.classList.add('question-text');
+                questionText.textContent = q.text;
+                questionBlock.appendChild(questionText);
+
+                const optionsDiv = document.createElement('div');
+                optionsDiv.classList.add('options');
+                q.options.forEach(opt => {
+                    const label = document.createElement('label');
+                    const radio = document.createElement('input');
+                    radio.type = 'radio';
+                    radio.name = q.id;
+                    radio.value = opt.value;
+                    label.appendChild(radio);
+                    label.appendChild(document.createTextNode(opt.text));
+                    optionsDiv.appendChild(label);
+                });
+                questionBlock.appendChild(optionsDiv);
+                const feedbackDiv = document.createElement('div');
+                feedbackDiv.classList.add('feedback', 'hidden');
+                questionBlock.appendChild(feedbackDiv);
+                quizContainer.appendChild(questionBlock);
+            });
+        }
+
+        submitQuizBtn.addEventListener('click', () => {
+            let score = 0;
+            questions.forEach(q => {
+                const questionBlock = document.getElementById(q.id);
+                const feedbackDiv = questionBlock.querySelector('.feedback');
+                const selectedOption = questionBlock.querySelector(`input[name="${q.id}"]:checked`);
+
+                if (selectedOption) {
+                    const userAnswer = selectedOption.value;
+                    const correctOption = q.options.find(opt => opt.correct);
+                    const selectedOptionDetails = q.options.find(opt => opt.value === userAnswer);
+
+                    feedbackDiv.innerHTML = `<b>Your Answer:</b> ${selectedOptionDetails.text}<br/><b>Feedback:</b> ${selectedOptionDetails.feedback}`;
+                    if (selectedOptionDetails.correct) {
+                        feedbackDiv.classList.remove('incorrect');
+                        feedbackDiv.classList.add('correct');
+                        score++;
+                    } else {
+                        feedbackDiv.classList.remove('correct');
+                        feedbackDiv.classList.add('incorrect');
+                    }
+                    feedbackDiv.classList.remove('hidden');
+                } else {
+                    feedbackDiv.textContent = "You didn't select an answer for this question.";
+                    feedbackDiv.classList.remove('correct', 'hidden');
+                    feedbackDiv.classList.add('incorrect');
+                }
+            });
+            overallFeedbackDiv.textContent = `You got ${score} out of ${questions.length} questions correct. Review the feedback for each question.`;
+            overallFeedbackDiv.classList.remove('hidden');
+            overallFeedbackDiv.scrollIntoView({behavior: "smooth"});
+            submitQuizBtn.disabled = true;
+        });
+
+        window.onload = loadQuestions;
+    </script>
+</body>
+</html>

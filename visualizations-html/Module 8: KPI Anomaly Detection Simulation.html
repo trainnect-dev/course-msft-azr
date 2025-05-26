@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 8: KPI Anomaly Detection Simulation</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; align-items: center; margin: 20px; background-color: #f0f4f8; color: #333; }
+        .container { width: 90%; max-width: 800px; background-color: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        h2 { color: #005a9e; text-align: center; margin-bottom: 20px;}
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; width: 100%; margin-bottom: 20px;}
+        .kpi-card {
+            background-color: #e7eff6; border: 1px solid #b0c4de; border-radius: 8px;
+            padding: 15px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: background-color 0.5s ease, border-color 0.5s ease;
+        }
+        .kpi-card h3 { font-size: 16px; color: #003366; margin-top: 0; margin-bottom: 5px; }
+        .kpi-value { font-size: 28px; font-weight: bold; color: #0078d4; margin-bottom: 5px; }
+        .kpi-target { font-size: 13px; color: #555; }
+        .kpi-status-good { background-color: #d4edda !important; border-left: 5px solid #28a745 !important; } /* Green */
+        .kpi-status-warning { background-color: #fff3cd !important; border-left: 5px solid #ffc107 !important; } /* Yellow */
+        .kpi-status-bad { background-color: #f8d7da !important; border-left: 5px solid #dc3545 !important; } /* Red */
+        .kpi-status-bad .kpi-value { color: #dc3545 !important; }
+
+        .action-button {
+            padding: 10px 20px; font-size: 16px; color: white; background-color: #0078d4;
+            border: none; border-radius: 5px; cursor: pointer; display: block; margin: 20px auto;
+        }
+        .action-button:hover { background-color: #005a9e; }
+        .interpretation-area { margin-top: 15px; padding: 10px; background-color: #f9f9f9; border-radius: 5px; text-align:center;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Module 8: ED Performance Dashboard - Anomaly Detection</h2>
+
+        <div class="dashboard-grid">
+            <div class="kpi-card" id="kpiWaitTime">
+                <h3>Avg Wait Time (Door-to-Dr)</h3>
+                <div class="kpi-value" data-current="35">35 min</div>
+                <div class="kpi-target" data-target="45">Target: &lt; 45 min</div>
+            </div>
+            <div class="kpi-card" id="kpiLWBS">
+                <h3>LWBS Rate</h3>
+                <div class="kpi-value" data-current="2.1">2.1%</div>
+                <div class="kpi-target" data-target="2.0">Target: &lt; 2.0%</div>
+            </div>
+            <div class="kpi-card" id="kpiBeds">
+                <h3>ED Beds Occupied</h3>
+                <div class="kpi-value" data-current="18">18 / 20</div>
+                <div class="kpi-target" data-target="16">Optimal: &le; 16 (80%)</div>
+            </div>
+        </div>
+
+        <button id="refreshDataBtn" class="action-button">Refresh Data (Simulate)</button>
+        <div id="interpretation" class="interpretation-area" style="display:none;"></div>
+    </div>
+
+    <script>
+        const kpiData = {
+            waitTime: { element: document.getElementById('kpiWaitTime'), valueEl: document.querySelector('#kpiWaitTime .kpi-value'), target: 45, unit: ' min', higherIsBad: true, normalValue: 35 },
+            lwbs: { element: document.getElementById('kpiLWBS'), valueEl: document.querySelector('#kpiLWBS .kpi-value'), target: 2.0, unit: '%', higherIsBad: true, normalValue: 2.1 },
+            beds: { element: document.getElementById('kpiBeds'), valueEl: document.querySelector('#kpiBeds .kpi-value'), target: 16, capacity: 20, unit: '', higherIsBad: true, normalValue: 18 }
+        };
+        const refreshDataBtn = document.getElementById('refreshDataBtn');
+        const interpretationDiv = document.getElementById('interpretation');
+        let refreshCount = 0;
+
+        function updateKpiStatus(kpi) {
+            const currentValue = parseFloat(kpi.valueEl.getAttribute('data-current'));
+            kpi.element.classList.remove('kpi-status-good', 'kpi-status-warning', 'kpi-status-bad');
+
+            let status = 'good';
+            if (kpi.higherIsBad) {
+                if (currentValue > kpi.target * 1.1) status = 'bad'; // More than 10% over target is bad
+                else if (currentValue > kpi.target) status = 'warning';
+            } else { // Lower is bad (not used in these examples, but for completeness)
+                if (currentValue < kpi.target * 0.9) status = 'bad';
+                else if (currentValue < kpi.target) status = 'warning';
+            }
+            kpi.element.classList.add(`kpi-status-${status}`);
+            return status;
+        }
+        
+        function setInitialKPIs() {
+            Object.values(kpiData).forEach(kpi => {
+                if (kpi.element.id === 'kpiBeds') {
+                     kpi.valueEl.textContent = `${kpi.normalValue} / ${kpi.capacity}${kpi.unit}`;
+                } else {
+                    kpi.valueEl.textContent = `${kpi.normalValue}${kpi.unit}`;
+                }
+                kpi.valueEl.setAttribute('data-current', kpi.normalValue);
+                updateKpiStatus(kpi);
+            });
+        }
+
+
+        refreshDataBtn.addEventListener('click', () => {
+            refreshCount++;
+            interpretationDiv.style.display = 'none';
+            interpretationDiv.textContent = '';
+
+            // Simulate data changes - making one KPI an anomaly
+            setInitialKPIs(); // Reset to normal first
+
+            let anomalyKPI = null;
+            let anomalyDescription = "";
+
+            if (refreshCount % 3 === 1) { // Wait time becomes bad
+                const newWaitTime = 65;
+                kpiData.waitTime.valueEl.textContent = `${newWaitTime}${kpiData.waitTime.unit}`;
+                kpiData.waitTime.valueEl.setAttribute('data-current', newWaitTime);
+                anomalyKPI = kpiData.waitTime;
+                anomalyDescription = `Average Wait Time has spiked to ${newWaitTime} min! This needs immediate investigation. Possible causes: staffing shortage, high patient influx, or downstream bottlenecks (e.g., lab/rad delays, inpatient bed block).`;
+            } else if (refreshCount % 3 === 2) { // LWBS rate becomes bad
+                const newLWBS = 4.5;
+                kpiData.lwbs.valueEl.textContent = `${newLWBS}${kpiData.lwbs.unit}`;
+                kpiData.lwbs.valueEl.setAttribute('data-current', newLWBS);
+                anomalyKPI = kpiData.lwbs;
+                anomalyDescription = `LWBS Rate has increased to ${newLWBS}%! This suggests patients are leaving due to long waits. Correlate with current wait times and ED occupancy.`;
+            } else { // Beds occupied becomes bad (over capacity)
+                const newBeds = kpiData.beds.capacity + 2; // Simulate ED boarding
+                kpiData.beds.valueEl.textContent = `${newBeds} / ${kpiData.beds.capacity}${kpiData.beds.unit}`;
+                kpiData.beds.valueEl.setAttribute('data-current', newBeds); // Use actual number for logic
+                // Custom logic for bed target: target is optimal capacity, not a hard limit
+                 kpiData.beds.target = kpiData.beds.capacity; // For bad status trigger
+                anomalyKPI = kpiData.beds;
+                anomalyDescription = `ED Beds Occupied is at ${newBeds} (capacity ${kpiData.beds.capacity})! ED is overcrowded and likely boarding patients. Urgent action needed to improve patient flow out of ED.`;
+            }
+            
+            // Update status for all, highlighting the anomaly
+            Object.values(kpiData).forEach(kpi => {
+                updateKpiStatus(kpi);
+            });
+            
+             if (anomalyKPI) {
+                anomalyKPI.element.classList.remove('kpi-status-good', 'kpi-status-warning');
+                anomalyKPI.element.classList.add('kpi-status-bad'); // Ensure the anomaly is visually distinct
+                interpretationDiv.textContent = anomalyDescription;
+                interpretationDiv.style.display = 'block';
+            }
+             // Reset beds target for next normal calculation if it was the anomaly
+            kpiData.beds.target = 16;
+
+        });
+        
+        // Initialize
+        setInitialKPIs();
+    </script>
+</body>
+</html>

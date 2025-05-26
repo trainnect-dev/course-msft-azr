@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section 13: Student Assessment Test - Trainers Version</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #5b6cff 0%, #8f5fff 40%, #c471ed 100%);
+      color: #222;
+      margin: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: rgba(255,255,255,0.97);
+      border-radius: 16px;
+      box-shadow: 0 6px 24px rgba(80,40,180,0.13);
+      padding: 36px 24px;
+      border: 2.5px solid #b19fff33;
+    }
+    h1 { font-size: 2.1rem; margin-bottom: 0.5em; }
+    .intro { font-size: 1.1rem; margin-bottom: 2em; }
+    .question-block { margin-bottom: 2em; }
+    .question {
+      font-weight: 500;
+      font-size: 1.1rem;
+      margin-bottom: 1em;
+    }
+    .options { list-style: none; padding: 0; margin: 0 0 1em 0; }
+    .options li { margin-bottom: 0.75em; }
+    .option-btn {
+      background: linear-gradient(90deg, #f3e7fa 0%, #e3f0ff 100%);
+      border: 1.5px solid #b19fff88;
+      border-radius: 7px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.22s, border 0.22s, color 0.18s;
+      width: 100%;
+      text-align: left;
+      font-weight: 500;
+      box-shadow: 0 1px 4px #b19fff11;
+    }
+    .option-btn.correct-answer {
+      background: linear-gradient(90deg, #b19fff 0%, #c471ed 100%);
+      border-color: #198754;
+      color: #fff;
+      font-weight: 700;
+    }
+    .feedback { font-size: 1.05rem; margin-top: 0.5em; font-weight: 500; }
+    .correct { color: #198754; }
+    .nav-btn {
+      margin: 1.5em 0.5em 0 0;
+      background: linear-gradient(90deg,#7b61ff,#c471ed);
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      border-radius: 7px;
+      padding: 10px 22px;
+      box-shadow: 0 2px 8px #b19fff22;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.18s;
+    }
+    .nav-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .score-summary {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #4b277a;
+      margin-top: 2em;
+      background: linear-gradient(90deg, #e0c3fc 0%, #8ec5fc 100%);
+      padding: 18px 16px;
+      border-radius: 10px;
+      border: 1.5px solid #b19fff88;
+      box-shadow: 0 2px 8px #b19fff11;
+    }
+    @media (max-width: 600px) { .container { padding: 12px 4vw; } }
+      @media print {
+      body, .container {
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: none !important;
+      }
+      .container {
+        border: none !important;
+        padding: 0.5in 0.25in !important;
+        max-width: 100% !important;
+      }
+      .option-btn, .option-btn.selected, .option-btn.correct-answer {
+        background: #fff !important;
+        color: #000 !important;
+        border: 1px solid #888 !important;
+        box-shadow: none !important;
+      }
+      .score-summary, .feedback, .intro {
+        background: none !important;
+        color: #000 !important;
+        box-shadow: none !important;
+      }
+      .nav-btn, button, [onclick] {
+        display: none !important;
+      }
+      h1, .question, .options li {
+        color: #000 !important;
+      }
+      .question-block {
+        page-break-inside: avoid;
+      }
+    }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Section 13: Student Assessment Test<br><span style='font-size:1.1rem;font-weight:400;'>Trainer's Version</span></h1>
+    <div class="intro">
+      This version highlights the correct answers for trainers. All questions and answers are visible on a single page for quick review.
+    </div>
+    <div id="quizArea"></div>
+  </div>
+  <script>
+    const questions = [
+      {
+        question: "What format does OneLake use to store data?",
+        options: ["JSON", "Delta Parquet", "XML", "Avro"],
+        answer: 1
+      },
+      {
+        question: "Which Fabric tool is used to create pipelines?",
+        options: ["Notebooks", "Dataflows Gen2", "Azure Monitor", "Data Factory"],
+        answer: 3
+      },
+      {
+        question: "What is the primary purpose of the Gold layer in the Medallion architecture?",
+        options: ["Raw ingestion", "Curated analytics and ML", "Data cleansing", "Schema evolution"],
+        answer: 1
+      },
+      {
+        question: "Which tool provides end-to-end data lineage and classification in Fabric?",
+        options: ["Audit Logs", "Microsoft Purview", "Power BI", "Lakehouse"],
+        answer: 1
+      },
+      {
+        question: "What is a HIPAA-safe practice for sharing Power BI reports?",
+        options: ["Export PHI to PDF", "Share public report links", "Apply sensitivity labels and enable DLP", "Remove all Row-Level Security"],
+        answer: 2
+      },
+      {
+        question: "Which API would you use to automate report deployment in Fabric?",
+        options: ["Power BI REST API", "Azure ML SDK", "OneLake File API", "Event Grid API"],
+        answer: 0
+      },
+      {
+        question: "What is the recommended approach for role assignments in Fabric workspaces?",
+        options: ["Assign all users as Admin", "Quarterly access review and least privilege", "Allow viewers to edit", "No role assignments needed"],
+        answer: 1
+      },
+      {
+        question: "Which command starts a new MLflow run in a Fabric notebook?",
+        options: ["mlflow.start_run()", "mlflow.log_param()", "mlflow.log_metric()", "mlflow.end_run()"],
+        answer: 0
+      },
+      {
+        question: "What is the main benefit of OneLake shortcuts?",
+        options: ["Data duplication", "Instant access to external storage", "Data encryption", "Pipeline scheduling"],
+        answer: 1
+      },
+      {
+        question: "Which Fabric feature enables secure, role-based collaboration?",
+        options: ["Sensitivity Labels", "Workspaces with RBAC", "Dataflows Gen2", "Notebooks only"],
+        answer: 1
+      }
+    ];
+    function renderTrainerQuiz() {
+      let html = '';
+      questions.forEach((q, idx) => {
+        html += `<div class='question-block'><div class='question'>${idx+1}. ${q.question}</div><ul class='options'>`;
+        q.options.forEach((opt, i) => {
+          let correct = i === q.answer ? 'correct-answer' : '';
+          html += `<li><button class='option-btn ${correct}' disabled>${opt}${correct ? ' ✔️' : ''}</button></li>`;
+        });
+        html += `</ul></div>`;
+      });
+      document.getElementById('quizArea').innerHTML = html;
+    }
+    renderTrainerQuiz();
+  </script>
+</body>
+</html>

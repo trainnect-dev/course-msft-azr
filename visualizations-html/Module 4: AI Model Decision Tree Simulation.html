@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 4: AI Decision Tree Simulation</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; align-items: center; margin: 20px; background-color: #f0f4f8; color: #333; }
+        .container { display: flex; flex-direction: column; align-items: center; width: 90%; max-width: 900px; background-color: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        h2, h3 { color: #005a9e; text-align: center; }
+        .patient-profile { background-color: #e7eff6; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #b0c4de; width: 100%; max-width: 500px; }
+        .patient-profile p { margin: 8px 0; font-size: 16px; }
+        .patient-profile strong { color: #003366; }
+        .action-button {
+            padding: 10px 20px; font-size: 16px; color: white; background-color: #0078d4;
+            border: none; border-radius: 5px; cursor: pointer; margin: 15px 0;
+            transition: background-color 0.3s ease;
+        }
+        .action-button:hover { background-color: #005a9e; }
+
+        .decision-tree-container {
+            position: relative; width: 100%; /* Adjusted for responsiveness */
+            padding: 20px 0;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .node {
+            background-color: #fff; border: 2px solid #0078d4; border-radius: 8px;
+            padding: 10px 15px; text-align: center; min-width: 150px;
+            margin: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative; /* For pseudo-elements if needed for lines */
+            transition: background-color 0.5s ease, border-color 0.5s ease;
+        }
+        .node.active-path { background-color: #a9dfbf; border-color: #27ae60; font-weight: bold;}
+        .node.leaf-node { background-color: #ffeeba; border-color: #ffd700; }
+        .node.leaf-node.high-risk { background-color: #f5c6cb; border-color: #dc3545; color: #721c24; }
+        .node.leaf-node.moderate-risk { background-color: #fff3cd; border-color: #ffeeba; color: #856404; }
+        .node.leaf-node.low-risk { background-color: #d4edda; border-color: #c3e6cb; color: #155724; }
+
+        .tree-level { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; width: 100%; margin-bottom: 10px; }
+        .decision-path-info { margin-top: 15px; font-style: italic; color: #555; text-align: center; }
+        
+        /* Basic line drawing with pseudo-elements or JS canvas for more complex trees */
+        /* This example will imply lines through structure and highlighting */
+        .node-connector { /* Placeholder for visual connectors if using JS/SVG */
+            width: 2px; background-color: #0078d4; margin: 0 auto;
+            height: 20px; /* Adjust as needed */
+        }
+        .node-connector.active-path { background-color: #27ae60;}
+
+         /* Popup for information */
+         .popup {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background-color: #ffffff; padding: 25px; border: 1px solid #ccc;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000; border-radius: 8px;
+            width: 90%; max-width: 400px; text-align: left;
+        }
+        .popup-content { font-size: 15px; line-height: 1.6; }
+        .close-popup {
+            position: absolute; top: 10px; right: 15px; cursor: pointer;
+            font-size: 24px; color: #777; font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Module 4: AI Decision Tree Simulation (Chronic Disease Risk)</h2>
+
+        <div class="patient-profile">
+            <h3>Patient Profile:</h3>
+            <p><strong>Patient ID:</strong> P00123</p>
+            <p><strong>Age:</strong> <span id="patientAge">55</span> years</p>
+            <p><strong>A1c Level:</strong> <span id="patientA1c">7.8</span> %</p>
+            <p><strong>BMI:</strong> <span id="patientBMI">31</span> kg/m²</p>
+            <p><strong>Has Hypertension:</strong> <span id="patientHTN">Yes</span></p>
+        </div>
+        <div style="text-align: center; margin-bottom:15px;">
+            <label for="a1cSlider">Adjust A1c: </label>
+            <input type="range" id="a1cSlider" min="4.0" max="12.0" value="7.8" step="0.1">
+            <span id="a1cValue">7.8</span>%
+        </div>
+
+
+        <button id="startAssessmentBtn" class="action-button">Start Risk Assessment</button>
+
+        <div class="decision-tree-container">
+            <h3>Simplified Decision Tree:</h3>
+            <!-- Level 1: A1c -->
+            <div class="tree-level">
+                <div class="node" id="nodeA1c" data-info="Initial Check: HbA1c Level. A key indicator of blood sugar control over the past 2-3 months.">A1c Level?</div>
+            </div>
+            <div class="node-connector" id="connA1c"></div>
+
+            <!-- Level 2: Age (split based on A1c) -->
+            <div class="tree-level">
+                <div class="node" id="nodeA1cLow_Age" data-info="If A1c is low to moderate, age becomes a significant factor for long-term risk.">A1c < 7.5: Age?</div>
+                <div class="node" id="nodeA1cHigh_BMI" data-info="If A1c is high, BMI is checked as it often correlates with insulin resistance and complications.">A1c ≥ 7.5: BMI?</div>
+            </div>
+            <div style="display:flex; justify-content:space-around; width:100%;">
+                 <div class="node-connector" id="connA1cLow_Age"></div>
+                 <div class="node-connector" id="connA1cHigh_BMI"></div>
+            </div>
+
+
+            <!-- Level 3: BMI or Hypertension (split based on Age/BMI) -->
+            <div class="tree-level">
+                <div class="node" id="nodeAgeYoung_HTN" data-info="For younger individuals with controlled A1c, presence of hypertension significantly elevates risk.">Age < 60: Hypertension?</div>
+                <div class="node leaf-node" id="nodeAgeOld_Risk" data-info="Older individuals, even with moderately controlled A1c, are generally at higher baseline risk for complications.">Age ≥ 60: Moderate Risk</div>
+                <div class="node" id="nodeBMILow_HTN" data-info="Even with high A1c, if BMI is lower, hypertension status is critical.">BMI < 30: Hypertension?</div>
+                <div class="node leaf-node high-risk" id="nodeBMIHigh_Risk" data-info="High A1c combined with high BMI often indicates significant metabolic stress and high complication risk.">BMI ≥ 30: High Risk</div>
+            </div>
+             <div style="display:flex; justify-content:space-around; width:100%;">
+                 <div class="node-connector" id="connAgeYoung_HTN"></div>
+                 <div style="width:150px;"></div> <!-- Spacer -->
+                 <div class="node-connector" id="connBMILow_HTN"></div>
+                 <div style="width:150px;"></div> <!-- Spacer -->
+            </div>
+
+            <!-- Level 4: Leaf Nodes (Final Risk) -->
+            <div class="tree-level">
+                <div class="node leaf-node low-risk" id="nodeHTNNo_LowRisk" data-info="Younger, A1c controlled, no hypertension: Lower risk profile. Focus on maintenance.">HTN No: Low Risk</div>
+                <div class="node leaf-node moderate-risk" id="nodeHTNYes_ModRiskYoung" data-info="Younger, A1c controlled, but with hypertension: Moderate risk. Needs BP management.">HTN Yes: Moderate Risk</div>
+                <div style="width:174px;"></div> <!-- Spacer to align with nodeAgeOld_Risk -->
+                <div class="node leaf-node moderate-risk" id="nodeHTNNo_ModRiskBMI" data-info="High A1c, lower BMI, no hypertension: Still moderate risk due to A1c.">HTN No: Moderate Risk</div>
+                 <div class="node leaf-node high-risk" id="nodeHTNYes_HighRiskBMI" data-info="High A1c, lower BMI, but with hypertension: High risk. Multiple risk factors.">HTN Yes: High Risk</div>
+            </div>
+        </div>
+        <div id="decisionPathInfo" class="decision-path-info">Path will be highlighted here.</div>
+        <div id="finalRiskOutcome" class="node" style="margin-top: 20px; display:none;"></div>
+    </div>
+    
+    <div id="infoPopup" class="popup" style="display:none;">
+        <span class="close-popup" onclick="document.getElementById('infoPopup').style.display='none'">×</span>
+        <div id="popupText" class="popup-content"></div>
+    </div>
+
+
+    <script>
+        const patient = {
+            age: 55,
+            a1c: 7.8,
+            bmi: 31,
+            hasHTN: true // true for Yes, false for No
+        };
+
+        const startAssessmentBtn = document.getElementById('startAssessmentBtn');
+        const decisionPathInfo = document.getElementById('decisionPathInfo');
+        const finalRiskOutcomeEl = document.getElementById('finalRiskOutcome');
+        const allNodes = document.querySelectorAll('.node');
+        const allConnectors = document.querySelectorAll('.node-connector');
+        
+        const a1cSlider = document.getElementById('a1cSlider');
+        const a1cValueSpan = document.getElementById('a1cValue');
+        const patientA1cEl = document.getElementById('patientA1c');
+
+        a1cSlider.addEventListener('input', (event) => {
+            const newA1c = parseFloat(event.target.value);
+            patient.a1c = newA1c;
+            a1cValueSpan.textContent = newA1c.toFixed(1);
+            patientA1cEl.textContent = newA1c.toFixed(1);
+             // Reset highlights if user changes data after assessment
+            allNodes.forEach(n => {
+                n.classList.remove('active-path');
+                // Keep leaf node risk styling
+                if (!n.classList.contains('leaf-node')) {
+                    n.style.backgroundColor = ''; n.style.borderColor = '';
+                }
+            });
+            allConnectors.forEach(c => c.classList.remove('active-path'));
+            decisionPathInfo.textContent = "Adjust A1c and click 'Start Risk Assessment'.";
+            finalRiskOutcomeEl.style.display = 'none';
+        });
+
+
+        function assessRisk() {
+            allNodes.forEach(n => {
+                n.classList.remove('active-path');
+                 if (!n.classList.contains('leaf-node')) { // Don't reset leaf node specific styles
+                    n.style.backgroundColor = ''; n.style.borderColor = '';
+                }
+            });
+             allConnectors.forEach(c => c.classList.remove('active-path'));
+            finalRiskOutcomeEl.style.display = 'none';
+
+
+            let path = "Path: ";
+            let finalRisk = "Undefined";
+            let finalRiskNodeId = "";
+
+            const nodeA1c = document.getElementById('nodeA1c');
+            const connA1c = document.getElementById('connA1c');
+            nodeA1c.classList.add('active-path');
+            path += "A1c Level -> ";
+
+            if (patient.a1c < 7.5) {
+                const nodeA1cLow_Age = document.getElementById('nodeA1cLow_Age');
+                const connA1cLow_Age = document.getElementById('connA1cLow_Age');
+                nodeA1cLow_Age.classList.add('active-path');
+                connA1c.classList.add('active-path'); // Connector from A1c to this path
+                connA1cLow_Age.classList.add('active-path');
+                path += "A1c < 7.5 -> Age -> ";
+
+                if (patient.age < 60) {
+                    const nodeAgeYoung_HTN = document.getElementById('nodeAgeYoung_HTN');
+                    const connAgeYoung_HTN = document.getElementById('connAgeYoung_HTN');
+                    nodeAgeYoung_HTN.classList.add('active-path');
+                    connAgeYoung_HTN.classList.add('active-path');
+                    path += "Age < 60 -> Hypertension -> ";
+                    if (patient.hasHTN) {
+                        finalRisk = "Moderate Risk";
+                        finalRiskNodeId = 'nodeHTNYes_ModRiskYoung';
+                        path += "HTN Yes";
+                    } else {
+                        finalRisk = "Low Risk";
+                        finalRiskNodeId = 'nodeHTNNo_LowRisk';
+                        path += "HTN No";
+                    }
+                } else { // Age >= 60
+                    finalRisk = "Moderate Risk";
+                    finalRiskNodeId = 'nodeAgeOld_Risk';
+                    path += "Age >= 60";
+                }
+            } else { // A1c >= 7.5
+                const nodeA1cHigh_BMI = document.getElementById('nodeA1cHigh_BMI');
+                const connA1cHigh_BMI = document.getElementById('connA1cHigh_BMI');
+                nodeA1cHigh_BMI.classList.add('active-path');
+                connA1c.classList.add('active-path'); // Connector from A1c to this path
+                connA1cHigh_BMI.classList.add('active-path');
+                path += "A1c >= 7.5 -> BMI -> ";
+
+                if (patient.bmi < 30) {
+                    const nodeBMILow_HTN = document.getElementById('nodeBMILow_HTN');
+                    const connBMILow_HTN = document.getElementById('connBMILow_HTN');
+                    nodeBMILow_HTN.classList.add('active-path');
+                    connBMILow_HTN.classList.add('active-path');
+                    path += "BMI < 30 -> Hypertension -> ";
+                    if (patient.hasHTN) {
+                        finalRisk = "High Risk";
+                        finalRiskNodeId = 'nodeHTNYes_HighRiskBMI';
+                        path += "HTN Yes";
+                    } else {
+                        finalRisk = "Moderate Risk";
+                        finalRiskNodeId = 'nodeHTNNo_ModRiskBMI';
+                        path += "HTN No";
+                    }
+                } else { // BMI >= 30
+                    finalRisk = "High Risk";
+                    finalRiskNodeId = 'nodeBMIHigh_Risk';
+                    path += "BMI >= 30";
+                }
+            }
+            
+            const finalNode = document.getElementById(finalRiskNodeId);
+            if(finalNode) finalNode.classList.add('active-path');
+
+            decisionPathInfo.textContent = path;
+            finalRiskOutcomeEl.textContent = `Final Outcome: ${finalRisk}`;
+            finalRiskOutcomeEl.className = 'node'; // Reset classes
+            if (finalRisk === "Low Risk") finalRiskOutcomeEl.classList.add('leaf-node', 'low-risk');
+            else if (finalRisk === "Moderate Risk") finalRiskOutcomeEl.classList.add('leaf-node', 'moderate-risk');
+            else if (finalRisk === "High Risk") finalRiskOutcomeEl.classList.add('leaf-node', 'high-risk');
+            finalRiskOutcomeEl.style.display = 'inline-block';
+        }
+
+        startAssessmentBtn.addEventListener('click', assessRisk);
+        
+        // Add click listeners to nodes for info popups
+        allNodes.forEach(node => {
+            node.addEventListener('click', (event) => {
+                // Prevent assessment trigger if clicking on already assessed tree
+                event.stopPropagation(); 
+                const info = node.getAttribute('data-info');
+                if (info) {
+                    document.getElementById('popupText').textContent = info;
+                    document.getElementById('infoPopup').style.display = 'block';
+                }
+            });
+        });
+
+
+    </script>
+</body>
+</html>

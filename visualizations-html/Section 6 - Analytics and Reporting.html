@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section 6: Analytics and Reporting - Interactive Exercise</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #5b6cff 0%, #8f5fff 40%, #c471ed 100%);
+      color: #222;
+      margin: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: rgba(255,255,255,0.95);
+      border-radius: 16px;
+      box-shadow: 0 6px 24px rgba(80,40,180,0.13);
+      padding: 36px 24px;
+      border: 2.5px solid #b19fff33;
+    }
+    h1 { font-size: 2.1rem; margin-bottom: 0.5em; }
+    .intro { font-size: 1.1rem; margin-bottom: 2em; }
+    .info-cards { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 2em; }
+    .info-card {
+      flex: 1 1 220px;
+      background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+      border: 1.5px solid #b19fff88;
+      border-radius: 10px;
+      padding: 20px;
+      min-width: 180px;
+      cursor: pointer;
+      transition: box-shadow 0.2s, border 0.18s;
+      font-weight: 500;
+      color: #4b277a;
+      box-shadow: 0 2px 8px #b19fff11;
+    }
+    .info-card:hover {
+      box-shadow: 0 4px 16px #8f5fff22;
+      border-color: #7b61ff;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(135deg, #c471ed 0%, #e0c3fc 100%);
+      border: 2px solid #7b61ff;
+      border-radius: 14px;
+      padding: 28px 34px;
+      z-index: 100;
+      box-shadow: 0 8px 32px #8f5fff33;
+      max-width: 350px;
+      color: #3b2067;
+    }
+    .popup-content { font-size: 1.05rem; }
+    .close-popup {
+      position: absolute;
+      top: 8px; right: 12px;
+      font-size: 1.2rem;
+      color: #7b61ff;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .quiz-block {
+      background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+      border: 2px solid #7b61ff44;
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 2em;
+      box-shadow: 0 2px 8px rgba(91,108,255,0.07);
+    }
+    .question { font-weight: 500; margin-bottom: 1em; }
+    .options { list-style: none; padding: 0; margin: 0 0 1em 0; }
+    .options li { margin-bottom: 0.75em; }
+    .option-btn {
+      background: linear-gradient(90deg, #f3e7fa 0%, #e3f0ff 100%);
+      border: 1.5px solid #b19fff88;
+      border-radius: 7px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.22s, border 0.22s, color 0.18s;
+      width: 100%;
+      text-align: left;
+      font-weight: 500;
+      box-shadow: 0 1px 4px #b19fff11;
+    }
+    .option-btn:hover {
+      background: linear-gradient(90deg, #d0c7ff 0%, #e3f0ff 100%);
+      border-color: #7b61ff;
+    }
+    .option-btn.selected {
+      background: linear-gradient(90deg, #b19fff 0%, #c471ed 100%);
+      border-color: #7b61ff;
+      color: #fff;
+    }
+    .feedback { font-size: 1.05rem; margin-top: 0.5em; font-weight: 500; }
+    .correct { color: #198754; }
+    .incorrect { color: #dc3545; }
+    .explanation { margin-top: 0.5em; font-size: 0.98rem; color: #555; }
+    @media (max-width: 600px) { .container { padding: 12px 4vw; } .info-cards { flex-direction: column; gap: 12px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Section 6: Analytics and Reporting</h1>
+    <div class="intro">
+      Learn how to build actionable healthcare dashboards and analytics in Microsoft Fabric using Power BI, DirectLake, and best practices for secure, real-time reporting.
+    </div>
+    <!-- Interactive Info Cards -->
+    <div class="info-cards">
+      <div class="info-card" data-popup="popup1">Healthcare Analytics Types</div>
+      <div class="info-card" data-popup="popup2">Power BI Connection Modes</div>
+      <div class="info-card" data-popup="popup3">Healthcare Dashboards</div>
+      <div class="info-card" data-popup="popup4">Row-Level Security</div>
+    </div>
+    <!-- Popups for Info Cards -->
+    <div class="popup" id="popup1">
+      <button class="close-popup" onclick="closePopup()">&times;</button>
+      <div class="popup-content">
+        <b>Healthcare Analytics Types</b><br>
+        Clinical, operational, financial, and public health analytics drive better care, efficiency, and outcomes.
+      </div>
+    </div>
+    <div class="popup" id="popup2">
+      <button class="close-popup" onclick="closePopup()">&times;</button>
+      <div class="popup-content">
+        <b>Power BI Connection Modes</b><br>
+        Import (fast, duplicates data), DirectQuery (live, higher latency), and DirectLake (Fabric-only, best performance, no duplication).
+      </div>
+    </div>
+    <div class="popup" id="popup3">
+      <button class="close-popup" onclick="closePopup()">&times;</button>
+      <div class="popup-content">
+        <b>Healthcare Dashboards</b><br>
+        Build dashboards for clinical quality, operations, finance, and patient engagement. Use best practices for visuals and accessibility.
+      </div>
+    </div>
+    <div class="popup" id="popup4">
+      <button class="close-popup" onclick="closePopup()">&times;</button>
+      <div class="popup-content">
+        <b>Row-Level Security</b><br>
+        Segment data access by user role (e.g., provider, analyst) using security tables and RLS to ensure compliance and privacy.
+      </div>
+    </div>
+    <!-- Quiz Block -->
+    <div class="quiz-block">
+      <div class="question">Which Power BI connection mode offers <b>live queries</b> on OneLake data with the best performance and no data duplication?</div>
+      <ul class="options">
+        <li><button class="option-btn" onclick="selectOption(this, false, 'Not quite! Import mode duplicates data and is not live.')">Import</button></li>
+        <li><button class="option-btn" onclick="selectOption(this, false, 'Not quite! DirectQuery is live, but has higher latency and is not Fabric-optimized.')">DirectQuery</button></li>
+        <li><button class="option-btn" onclick="selectOption(this, true, 'Correct! DirectLake is Fabric-only, live, and avoids data duplication for best performance.')">DirectLake</button></li>
+        <li><button class="option-btn" onclick="selectOption(this, false, 'Not quite! Composite is not a Power BI connection mode in this context.')">Composite</button></li>
+      </ul>
+      <div class="feedback" id="quizFeedback"></div>
+      <div class="explanation" id="quizExplanation"></div>
+      <button id="resetQuizBtn" style="margin-top:1em;background:linear-gradient(90deg,#7b61ff,#c471ed);color:#fff;font-weight:600;border:none;border-radius:7px;padding:10px 22px;box-shadow:0 2px 8px #b19fff22;cursor:pointer;font-size:1rem;">Reset Quiz</button>
+    </div>
+  </div>
+  <script>
+    // Info card popup logic
+    document.querySelectorAll('.info-card').forEach(card => {
+      card.addEventListener('click', function() {
+        const popupId = this.getAttribute('data-popup');
+        document.getElementById(popupId).style.display = 'block';
+      });
+    });
+    function closePopup() {
+      document.querySelectorAll('.popup').forEach(p => p.style.display = 'none');
+    }
+    // Quiz logic
+    let quizAnswered = false;
+    function selectOption(btn, isCorrect, explanation) {
+      if (quizAnswered) return;
+      quizAnswered = true;
+      document.querySelectorAll('.option-btn').forEach(opt => opt.classList.remove('selected'));
+      btn.classList.add('selected');
+      const feedback = document.getElementById('quizFeedback');
+      const explain = document.getElementById('quizExplanation');
+      if (isCorrect) {
+        feedback.textContent = '✅ Correct!';
+        feedback.className = 'feedback correct';
+      } else {
+        feedback.textContent = '❌ Incorrect.';
+        feedback.className = 'feedback incorrect';
+      }
+      explain.innerHTML = explanation;
+    }
+    // Reset Quiz logic
+    document.getElementById('resetQuizBtn').addEventListener('click', function() {
+      quizAnswered = false;
+      document.querySelectorAll('.option-btn').forEach(opt => opt.classList.remove('selected'));
+      document.getElementById('quizFeedback').textContent = '';
+      document.getElementById('quizFeedback').className = 'feedback';
+      document.getElementById('quizExplanation').textContent = '';
+    });
+  </script>
+</body>
+</html>

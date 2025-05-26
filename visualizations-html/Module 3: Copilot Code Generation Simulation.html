@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 3: Copilot Code Generation Simulation</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; align-items: center; margin: 20px; background-color: #f0f4f8; color: #333; }
+        .container { display: flex; flex-direction: column; align-items: center; width: 90%; max-width: 800px; background-color: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        h2 { color: #005a9e; text-align: center; margin-bottom: 20px; }
+        .copilot-interaction { width: 100%; }
+        .prompt-area { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; color: #003366; }
+        textarea#copilotPrompt {
+            width: calc(100% - 22px); /* Account for padding and border */
+            padding: 10px; border-radius: 5px; border: 1px solid #b0c4de; font-family: 'Consolas', monospace;
+            font-size: 14px; min-height: 60px; resize: vertical;
+        }
+        button#generateCodeBtn {
+            padding: 10px 20px; font-size: 15px; color: white; background-color: #0078d4;
+            border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;
+            display: block; margin: 10px auto;
+        }
+        button#generateCodeBtn:hover { background-color: #005a9e; }
+        .code-output-area { margin-top: 20px; width: 100%; }
+        pre#generatedCode {
+            background-color: #2d2d2d; color: #dcdcdc; padding: 15px; border-radius: 5px;
+            overflow-x: auto; font-family: 'Consolas', monospace; font-size: 14px;
+            white-space: pre-wrap; /* Ensures long lines wrap */
+            word-wrap: break-word; /* Ensures long words break to prevent overflow */
+            border: 1px solid #444; min-height: 100px;
+        }
+        .copilot-info { font-size: 0.9em; color: #555; margin-top: 15px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Module 3: Copilot Code Generation Simulation</h2>
+
+        <div class="copilot-interaction">
+            <div class="prompt-area">
+                <label for="copilotPrompt">Your Prompt for Copilot:</label>
+                <textarea id="copilotPrompt" placeholder="e.g., Write PySpark code to load 'MyTable' and show 5 rows..."></textarea>
+            </div>
+            <button id="generateCodeBtn">Generate Code</button>
+
+            <div class="code-output-area">
+                <label>Copilot's Suggested Code:</label>
+                <pre id="generatedCode"># Python (PySpark) code will appear here...</pre>
+            </div>
+            <p class="copilot-info">
+                This is a simplified simulation. In a real Fabric Notebook, Copilot offers more interactive suggestions and explanations.
+                Always review and test Copilot-generated code.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const copilotPrompt = document.getElementById('copilotPrompt');
+        const generateCodeBtn = document.getElementById('generateCodeBtn');
+        const generatedCodePre = document.getElementById('generatedCode');
+
+        // Pre-populate with an example prompt
+        copilotPrompt.value = "Write PySpark code to load the 'Silver_Patients_FHIR' Delta table from the default Lakehouse into a DataFrame called 'patients_df' and then display the first 5 rows of 'patients_df'.";
+
+
+        generateCodeBtn.addEventListener('click', () => {
+            const userPrompt = copilotPrompt.value.toLowerCase();
+            let outputCode = "# Default response: Could not understand the prompt clearly.\n" +
+                             "# Please try a more specific prompt related to PySpark and loading data.";
+
+            // Basic keyword matching for simulation
+            if (userPrompt.includes("load") && userPrompt.includes("delta table") && (userPrompt.includes("show") || userPrompt.includes("display"))) {
+                let tableName = "YourTableName"; // Default
+                const tableMatch = userPrompt.match(/'([^']+)'/); // Try to extract table name like 'Silver_Patients_FHIR'
+                if (tableMatch && tableMatch[1]) {
+                    tableName = tableMatch[1];
+                }
+                
+                let dfName = "df"; // Default DataFrame name
+                const dfNameMatch = userPrompt.match(/dataframe called '([^']+)'/i) || userPrompt.match(/into a dataframe '([^']+)'/i);
+                 if (dfNameMatch && dfNameMatch[1]) {
+                    dfName = dfNameMatch[1];
+                }
+
+                outputCode = `from pyspark.sql import SparkSession
+
+# Initialize Spark Session (typically already available in Fabric Notebooks)
+# spark = SparkSession.builder.appName("CopilotExample").getOrCreate()
+
+# Load the Delta table from the default Lakehouse
+# Assuming your Lakehouse is set as default or you'd specify the path
+${dfName} = spark.read.format("delta").table("${tableName}")
+
+# Display the first 5 rows of the DataFrame
+print("Displaying the first 5 rows of '${tableName}':")
+${dfName}.show(5)`; // Removed semicolon here
+
+                if (userPrompt.includes("count")) { // Check for "count" in the original prompt to add to the initial output
+                    outputCode += `
+
+# Count the total number of patients
+patient_count = ${dfName}.count()
+print(f"Total number of patients in '${tableName}': {patient_count}")`;
+                }
+            } else if (userPrompt.includes("count")) { // If "count" is a follow-up or main part of prompt
+                 let dfName = "df"; // Default DataFrame name
+                // Try to get dfName from prompt, or from previous code if it was a follow up
+                const dfNameMatchInCount = userPrompt.match(/dataframe '([^']+)'/i) || userPrompt.match(/in the dataframe '([^']+)'/i);
+                 if (dfNameMatchInCount && dfNameMatchInCount[1]) {
+                    dfName = dfNameMatchInCount[1];
+                } else if (generatedCodePre.textContent.includes("spark.read.format")) { 
+                    // Try to guess from previous code if 'dfName' was defined there
+                    const prevDfMatch = generatedCodePre.textContent.match(/(\w+)\s*=\s*spark\.read/);
+                    if (prevDfMatch && prevDfMatch[1]) {
+                        dfName = prevDfMatch[1];
+                    }
+                }
+                 outputCode = `# Assuming '${dfName}' DataFrame is already loaded.
+
+# Count the total number of records
+record_count = ${dfName}.count()
+print(f"Total number of records in the DataFrame: {record_count}")`;
+            }
+
+            generatedCodePre.textContent = outputCode;
+        });
+    </script>
+</body>
+</html>

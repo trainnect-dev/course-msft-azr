@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #4b0082, #8a2be2); /* Purple gradient */
+            color: #fff; /* White text */
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center horizontally */
+            margin: 0;
+            padding: 20px; /* Add some padding */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px; /* Add margin below the title */
+            margin-top: 0; /* Remove default top margin */
+        }
+        #quiz-container {
+            background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            margin: 20px auto; /* Center the container horizontally and add vertical margin */
+        }
+        #question {
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+        #options {
+            margin-bottom: 20px;
+        }
+        .option {
+            margin: 10px;
+            padding: 12px 20px;
+            cursor: pointer;
+            background-color: rgba(138, 43, 226, 0.7); /* BlueViolet with transparency */
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+        .option:hover {
+            background-color: rgba(138, 43, 226, 1); /* Solid BlueViolet on hover */
+        }
+        #feedback {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        #score {
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Quiz</h1>
+    <div id="quiz-container">
+        <div id="question"></div>
+        <div id="options"></div>
+        <div id="feedback"></div>
+        <div id="score">Score: 0</div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is a key feature of Microsoft Fabric’s security framework?",
+                options: ["Data Encryption", "Access Control", "Auditing & Monitoring", "All of the above"],
+                answer: "All of the above"
+            },
+            {
+                question: "What does Microsoft Purview help with?",
+                options: ["Data Discovery", "Data Classification", "Data Lineage", "All of the above"],
+                answer: "All of the above"
+            },
+            {
+                question: "What is the purpose of self-service analytics in healthcare?",
+                options: ["To reduce dependency on IT", "To speed up decision-making", "To empower non-technical users", "All of the above"],
+                answer: "All of the above"
+            },
+            {
+                question: "What is a Patient 360?",
+                options: ["A type of dashboard", "A comprehensive view of patient data", "A security feature", "A data storage solution"],
+                answer: "A comprehensive view of patient data"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('question').innerText = q.question;
+            const optionsDiv = document.getElementById('options');
+            optionsDiv.innerHTML = '';
+            q.options.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'option';
+                button.innerText = option;
+                button.onclick = () => checkAnswer(option);
+                optionsDiv.appendChild(button);
+            });
+            document.getElementById('feedback').innerText = '';
+        }
+
+        function checkAnswer(selected) {
+            const q = questions[currentQuestion];
+            const feedback = document.getElementById('feedback');
+            if (selected === q.answer) {
+                feedback.innerText = 'Correct! Great job!';
+                score++;
+                document.getElementById('score').innerText = `Score: ${score}`;
+            } else {
+                feedback.innerText = `Incorrect. The correct answer is: ${q.answer}`;
+            }
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                    loadQuestion();
+                } else {
+                    document.getElementById('question').innerText = 'Quiz Complete!';
+                    document.getElementById('options').innerHTML = '';
+                    document.getElementById('feedback').innerText = `Final Score: ${score}/${questions.length}`;
+                }
+            }, 1000);
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>

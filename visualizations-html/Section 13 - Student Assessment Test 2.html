@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section 13: Student Assessment Test 2 - Microsoft Fabric for Healthcare</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #5b6cff 0%, #8f5fff 40%, #c471ed 100%);
+      color: #222;
+      margin: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: rgba(255,255,255,0.97);
+      border-radius: 16px;
+      box-shadow: 0 6px 24px rgba(80,40,180,0.13);
+      padding: 36px 24px;
+      border: 2.5px solid #b19fff33;
+    }
+    h1 { font-size: 2.1rem; margin-bottom: 0.5em; }
+    .intro { font-size: 1.1rem; margin-bottom: 2em; }
+    .question-block { margin-bottom: 2em; }
+    .question {
+      font-weight: 500;
+      font-size: 1.1rem;
+      margin-bottom: 1em;
+    }
+    .options { list-style: none; padding: 0; margin: 0 0 1em 0; }
+    .options li { margin-bottom: 0.75em; }
+    .option-btn {
+      background: linear-gradient(90deg, #f3e7fa 0%, #e3f0ff 100%);
+      border: 1.5px solid #b19fff88;
+      border-radius: 7px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.22s, border 0.22s, color 0.18s;
+      width: 100%;
+      text-align: left;
+      font-weight: 500;
+      box-shadow: 0 1px 4px #b19fff11;
+    }
+    .option-btn:hover, .option-btn.selected {
+      background: linear-gradient(90deg, #b19fff 0%, #c471ed 100%);
+      border-color: #7b61ff;
+      color: #fff;
+    }
+    .feedback { font-size: 1.05rem; margin-top: 0.5em; font-weight: 500; }
+    .correct { color: #198754; }
+    .incorrect { color: #dc3545; }
+    .nav-btn {
+      margin: 1.5em 0.5em 0 0;
+      background: linear-gradient(90deg,#7b61ff,#c471ed);
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      border-radius: 7px;
+      padding: 10px 22px;
+      box-shadow: 0 2px 8px #b19fff22;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.18s;
+    }
+    .nav-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .score-summary {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #4b277a;
+      margin-top: 2em;
+      background: linear-gradient(90deg, #e0c3fc 0%, #8ec5fc 100%);
+      padding: 18px 16px;
+      border-radius: 10px;
+      border: 1.5px solid #b19fff88;
+      box-shadow: 0 2px 8px #b19fff11;
+    }
+    @media (max-width: 600px) { .container { padding: 12px 4vw; } }
+      @media print {
+      body, .container {
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: none !important;
+      }
+      .container {
+        border: none !important;
+        padding: 0.5in 0.25in !important;
+        max-width: 100% !important;
+      }
+      .option-btn, .option-btn.selected, .option-btn.correct-answer {
+        background: #fff !important;
+        color: #000 !important;
+        border: 1px solid #888 !important;
+        box-shadow: none !important;
+      }
+      .score-summary, .feedback, .intro {
+        background: none !important;
+        color: #000 !important;
+        box-shadow: none !important;
+      }
+      .nav-btn, button, [onclick] {
+        display: none !important;
+      }
+      h1, .question, .options li {
+        color: #000 !important;
+      }
+      .question-block {
+        page-break-inside: avoid;
+      }
+    }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Section 13: Student Assessment Test 2</h1>
+    <div class="intro">
+      Answer the following questions to test your knowledge of Microsoft Fabric for Healthcare. Select an answer and use Next/Previous to navigate. Your score will be shown at the end.
+    </div>
+    <div id="quizArea"></div>
+  </div>
+  <script>
+    const questions = [
+      {
+        question: "Which Microsoft Fabric layer is responsible for storing raw, unprocessed data?",
+        options: ["Gold", "Silver", "Bronze", "Analytics"],
+        answer: 2
+      },
+      {
+        question: "What feature in Fabric enables version control and collaboration on notebooks?",
+        options: ["OneLake Shortcuts", "Git Integration", "Audit Logs", "Power BI"],
+        answer: 1
+      },
+      {
+        question: "Which Fabric tool is best for building real-time dashboards?",
+        options: ["Data Factory", "Power BI", "Purview", "Azure Monitor"],
+        answer: 1
+      },
+      {
+        question: "What is the main benefit of using Sensitivity Labels in Fabric?",
+        options: ["Pipeline scheduling", "Data encryption", "Compliance and data classification", "Data transformation"],
+        answer: 2
+      },
+      {
+        question: "Which command logs a parameter in MLflow?",
+        options: ["mlflow.log_param()", "mlflow.start_run()", "mlflow.save()", "mlflow.log_metric()"],
+        answer: 0
+      },
+      {
+        question: "What does DLP stand for in the context of Microsoft Fabric?",
+        options: ["Data Lake Performance", "Data Loss Prevention", "Data Labeling Policy", "Data Lineage Platform"],
+        answer: 1
+      },
+      {
+        question: "Which portal provides best practices for cloud-native solutions?",
+        options: ["Compliance Manager", "Azure Architecture Center", "Fabric Feedback Portal", "Power BI Community"],
+        answer: 1
+      },
+      {
+        question: "What is a key requirement for HIPAA compliance in Fabric?",
+        options: ["Enable public sharing", "No audit logs", "Apply access controls and encryption", "Remove all RBAC"],
+        answer: 2
+      },
+      {
+        question: "Which Fabric feature helps automate data workflows?",
+        options: ["Dataflows Gen2", "Notebooks", "Power BI", "Compliance Manager"],
+        answer: 0
+      },
+      {
+        question: "What is the purpose of the Silver layer in the Medallion architecture?",
+        options: ["Store raw data", "Serve as a curated layer for cleansed data", "Pipeline scheduling", "Data encryption"],
+        answer: 1
+      }
+    ];
+    let current = 0;
+    let score = 0;
+    let selected = Array(questions.length).fill(null);
+    function renderQuestion(idx) {
+      const q = questions[idx];
+      let html = `<div class='question-block'>`;
+      html += `<div class='question'>${idx+1}. ${q.question}</div><ul class='options'>`;
+      q.options.forEach((opt, i) => {
+        let sel = selected[idx] === i ? 'selected' : '';
+        html += `<li><button class='option-btn ${sel}' onclick='selectOption(${i})'>${opt}</button></li>`;
+      });
+      html += `</ul>`;
+      if (selected[idx] !== null) {
+        if (selected[idx] === q.answer) {
+          html += `<div class='feedback correct'>✅ Correct!</div>`;
+        } else {
+          html += `<div class='feedback incorrect'>❌ Incorrect.</div>`;
+        }
+      }
+      html += `</div>`;
+      html += `<button class='nav-btn' onclick='prevQ()' ${idx===0?'disabled':''}>Previous</button>`;
+      html += `<button class='nav-btn' onclick='nextQ()' ${idx===questions.length-1?'disabled':''}>Next</button>`;
+      if (idx === questions.length-1) {
+        html += `<button class='nav-btn' onclick='showScore()'>Finish</button>`;
+      }
+      document.getElementById('quizArea').innerHTML = html;
+    }
+    window.selectOption = function(i) {
+      selected[current] = i;
+      renderQuestion(current);
+    };
+    window.prevQ = function() {
+      if (current > 0) { current--; renderQuestion(current); }
+    };
+    window.nextQ = function() {
+      if (current < questions.length-1) { current++; renderQuestion(current); }
+    };
+    window.showScore = function() {
+      score = selected.reduce((acc, sel, idx) => sel === questions[idx].answer ? acc+1 : acc, 0);
+      document.getElementById('quizArea').innerHTML = `<div class='score-summary'>You scored <b>${score} / ${questions.length}</b> (${Math.round(score/questions.length*100)}%)</div><button class='nav-btn' onclick='restartQuiz()'>Restart Test</button>`;
+    };
+    window.restartQuiz = function() {
+      current = 0;
+      score = 0;
+      selected = Array(questions.length).fill(null);
+      renderQuestion(current);
+    };
+    renderQuestion(current);
+  </script>
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2: Building Your Data Pipeline</title>
+    <style>
+        /* General body styling */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            margin: 20px; 
+            background-color: #f0f4f8; /* Light blue-grey background */
+            color: #333; /* Dark grey text color */
+        }
+        /* Main container for the diagram */
+        .container { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            width: 95%; 
+            max-width: 1200px; /* Max width for larger screens */
+            background-color: #fff; /* White background for content */
+            padding: 25px; 
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* Subtle shadow for depth */
+        }
+        /* Styling for headings */
+        h2, h3 { 
+            color: #005a9e; /* Microsoft blue for headings */
+            text-align: center; 
+        }
+        /* Styling for each stage in the pipeline */
+        .pipeline-stage { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            margin: 20px 0; 
+            width: 100%; 
+        }
+        /* Row container for elements within a stage */
+        .elements-row { 
+            display: flex; 
+            justify-content: space-around; /* Distribute elements evenly */
+            align-items: center; 
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            width: 100%; 
+            margin-bottom: 20px; 
+        }
+        /* Common styling for data source, Fabric, insight icons, and OneLake layers */
+        .data-icon, .fabric-icon, .insight-icon, .onelake-layer {
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-align: center;
+            padding: 15px; 
+            margin: 10px; 
+            border-radius: 8px; /* Rounded corners for icons */
+            background-color: #e7eff6; /* Light blue background for icons */
+            border: 1px solid #b0c4de; /* Light steel blue border */
+            color: #003366; /* Dark blue text */
+            min-width: 120px; /* Minimum width */
+            min-height: 100px; /* Minimum height */
+            justify-content: center; /* Center content vertically */
+            cursor: pointer; /* Indicate interactivity */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transitions for hover */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow */
+        }
+        /* Hover effect for icons */
+        .data-icon:hover, .fabric-icon:hover, .insight-icon:hover, .onelake-layer:hover { 
+            transform: translateY(-5px); /* Lift icon on hover */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Enhance shadow on hover */
+        }
+        /* Styling for images within icons */
+        .data-icon img, .fabric-icon img, .insight-icon img, .onelake-layer img { 
+            width: 48px; 
+            height: 48px; 
+            margin-bottom: 8px; /* Space between image and text */
+        }
+        /* Canvas for drawing connecting lines */
+        .lines-canvas { 
+            width: 100%; 
+            height: 100px; /* Fixed height, adjust as needed */
+            position: relative; 
+            margin-top: -10px; /* Overlap slightly with elements above */
+            margin-bottom: -10px; /* Overlap slightly with elements below */
+        }
+
+        /* Styling for action buttons */
+        .action-button {
+            padding: 12px 25px; 
+            font-size: 16px; 
+            color: white; 
+            background-color: #0078d4; /* Microsoft primary button blue */
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            margin: 20px 0;
+            transition: background-color 0.3s ease; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .action-button:hover { 
+            background-color: #005a9e; /* Darker blue on hover */
+        }
+        .action-button:disabled { 
+            background-color: #b0b0b0; /* Grey out disabled buttons */
+            cursor: not-allowed; 
+        }
+
+        /* Container for OneLake layers */
+        .onelake-container { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            margin-top: 15px; 
+        }
+        /* Row for OneLake layers */
+        .onelake-layers-row { 
+            display: flex; 
+            justify-content: center; 
+            align-items: stretch; /* Make layers same height */
+            flex-wrap: wrap; 
+        }
+        /* Specific styling for OneLake layers */
+        .onelake-layer { 
+            width: 150px; /* Fixed width for layers */
+            margin: 5px; 
+            background-color: #f0f8ff; /* Alice blue for base layer */
+            border-color: #add8e6; /* Light blue border */
+        }
+        /* Bronze layer styling */
+        .bronze { 
+            background-color: #cdab77; /* Brownish color */
+            border-color: #b8860b; /* Dark goldenrod border */
+            color: #fff; /* White text */
+        }
+        /* Silver layer styling */
+        .silver { 
+            background-color: #d3d3d3; /* Light grey */
+            border-color: #a9a9a9; /* Dark grey border */
+            color: #000; /* Black text */
+        }
+        /* Gold layer styling */
+        .gold { 
+            background-color: #fffacd; /* Lemon chiffon (goldish) */
+            border-color: #ffd700; /* Gold border */
+            color: #8b4513; /* Saddle brown text */
+        }
+
+        /* Utility class to hide elements */
+        .hidden { 
+            display: none !important; /* Ensure it's hidden */
+            opacity: 0; 
+        }
+        /* Utility class to show elements with fade-in animation */
+        .visible { 
+            display: flex; /* Or appropriate display type */
+            opacity: 1; 
+            animation: fadeIn 0.5s ease-in-out; 
+        }
+        /* Fade-in animation keyframes */
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        /* Styling for the information popup */
+        .popup {
+            position: fixed; /* Position relative to viewport */
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); /* Center the popup */
+            background-color: #ffffff; 
+            padding: 25px; 
+            border: 1px solid #ccc; /* Grey border */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Shadow for popup */
+            z-index: 1000; /* Ensure popup is on top */
+            border-radius: 8px; 
+            width: 90%; 
+            max-width: 400px; /* Max width for popup */
+            text-align: left; 
+        }
+        /* Content area of the popup */
+        .popup-content { 
+            font-size: 15px; 
+            line-height: 1.6; 
+        }
+        /* Close button for the popup */
+        .close-popup {
+            position: absolute; 
+            top: 10px; 
+            right: 15px; 
+            cursor: pointer;
+            font-size: 24px; 
+            color: #777; /* Grey color for close icon */
+            font-weight: bold;
+        }
+        .close-popup:hover { 
+            color: #333; /* Darken on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Module 2: Building Your Data Pipeline with Fabric</h2>
+
+        <div id="stageSources" class="pipeline-stage visible">
+            <h3>Step 1: Identify Your Data Sources</h3>
+            <div class="elements-row">
+                <div class="data-icon" id="ehrSource" data-info="EHR Systems: Contain patient demographics, encounter history, diagnoses, medications, procedures, clinical notes. Core clinical data.">
+                    <img src="https://img.icons8.com/fluency/48/hospital.png" alt="EHR Systems" onerror="this.onerror=null;this.src='https://placehold.co/48x48/e7eff6/003366?text=EHR';">EHR Systems
+                </div>
+                <div class="data-icon" id="labsSource" data-info="Lab Systems (LIS): Manage lab test orders and results (e.g., blood tests, pathology). Critical for diagnosis and monitoring.">
+                    <img src="https://img.icons8.com/fluency/48/test-tube.png" alt="Lab Systems" onerror="this.onerror=null;this.src='https://placehold.co/48x48/e7eff6/003366?text=Labs';">Lab Systems
+                </div>
+                <div class="data-icon" id="wearablesSource" data-info="Wearables/IoT: Data from patient wearables (fitness trackers, smartwatches, VR headsets) or medical IoT devices (e.g., continuous glucose monitors, remote heart monitors). Provides real-time patient generated health data.">
+                    <img src="https://img.icons8.com/fluency/48/virtual-reality.png" alt="Wearables/IoT - VR Headset" onerror="this.onerror=null;this.src='https://placehold.co/48x48/e7eff6/003366?text=IoT/VR';">Wearables/IoT
+                </div>
+            </div>
+            <button id="btnProcessWithDataFactory" class="action-button">Process with Data Factory</button>
+        </div>
+        <canvas id="canvasSourcesToDF" class="lines-canvas"></canvas>
+
+        <div id="stageDataFactory" class="pipeline-stage hidden">
+            <h3>Step 2: Ingest & Transform with Data Factory</h3>
+            <div class="fabric-icon" id="dataFactory" data-info="Microsoft Fabric Data Factory: Ingests data from various sources using connectors, orchestrates data pipelines, and performs transformations (e.g., using Dataflows Gen2) to prepare data for OneLake.">
+                <img src="https://img.icons8.com/fluency/48/data-configuration.png" alt="Data Factory" onerror="this.onerror=null;this.src='https://placehold.co/48x48/e7eff6/003366?text=DF';">Data Factory
+            </div>
+            <button id="btnFlowToOneLake" class="action-button hidden">Load to OneLake</button>
+        </div>
+        <canvas id="canvasDFToOneLake" class="lines-canvas"></canvas>
+
+        <div id="stageOneLake" class="pipeline-stage hidden">
+            <h3>Step 3: Store & Refine in OneLake (Medallion Architecture)</h3>
+            <div class="fabric-icon" id="oneLakeMain" data-info="OneLake: Fabric's unified, logical data lake. Stores data in open Delta Parquet format. Enables the Medallion Architecture for progressive data refinement.">
+                 <img src="https://img.icons8.com/fluency/48/data-lake.png" alt="OneLake" onerror="this.onerror=null;this.src='https://placehold.co/48x48/e7eff6/003366?text=Lake';">OneLake
+            </div>
+            <div class="onelake-container">
+                <div class="onelake-layers-row">
+                    <div class="onelake-layer bronze" id="oneLakeBronze" data-info="Bronze Layer (Raw): Data is ingested in its original, raw format. Provides a historical archive and a source for re-processing if needed. Minimal transformation.">
+                        <img src="https://img.icons8.com/color/48/data-matrix-code.png" alt="Bronze Layer" onerror="this.onerror=null;this.src='https://placehold.co/48x48/cdab77/FFFFFF?text=B';">Bronze (Raw)
+                    </div>
+                    <div class="onelake-layer silver" id="oneLakeSilver" data-info="Silver Layer (Cleansed/Conformed): Data from Bronze is cleansed, de-duplicated, validated, and conformed to standardized models (e.g., FHIR-aligned). Data is more queryable and reliable.">
+                        <img src="https://img.icons8.com/color/48/data-quality.png" alt="Silver Layer" onerror="this.onerror=null;this.src='https://placehold.co/48x48/d3d3d3/000000?text=S';">Silver (Cleansed)
+                    </div>
+                    <div class="onelake-layer gold" id="oneLakeGold" data-info="Gold Layer (Curated/BI-Ready): Data from Silver is aggregated, enriched, and modeled into business-specific views, often as star schemas or denormalized tables. Optimized for analytics and reporting.">
+                        <img src="https://img.icons8.com/color/48/gold-bars.png" alt="Gold Layer" onerror="this.onerror=null;this.src='https://placehold.co/48x48/fffacd/8B4513?text=G';">Gold (Curated)
+                    </div>
+                </div>
+            </div>
+            <button id="btnGenerateInsights" class="action-button hidden">Generate Insights</button>
+        </div>
+        <canvas id="canvasOneLakeToInsights" class="lines-canvas"></canvas>
+
+        <div id="stageInsights" class="pipeline-stage hidden">
+            <h3>Step 4: Drive Insights & Actions</h3>
+            <div class="elements-row">
+                <div class="insight-icon" id="powerBI" data-info="Power BI Dashboards: Visualize curated data from OneLake's Gold layer to create interactive reports and dashboards for clinical decision support, operational monitoring, and population health management.">
+                    <img src="https://img.icons8.com/color/48/power-bi.png" alt="Power BI Dashboards" onerror="this.onerror=null;this.src='https://placehold.co/48x48/e7eff6/003366?text=BI';">Power BI Dashboards
+                </div>
+                <div class="insight-icon" id="aiModels" data-info="AI/ML Models: Leverage data in OneLake (Silver/Gold) to train, deploy, and run machine learning models for predictive analytics (e.g., readmission risk, disease progression, patient deterioration).">
+                    <img src="https://img.icons8.com/fluency/48/artificial-intelligence.png" alt="AI/ML Models" onerror="this.onerror=null;this.src='https://placehold.co/48x48/e7eff6/003366?text=AI';">AI/ML Models
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="infoPopup" class="popup hidden">
+        <span class="close-popup" onclick="closeInfoPopup()">×</span>
+        <div id="popupText" class="popup-content"></div>
+    </div>
+
+    <script>
+        // DOM element references for pipeline stages
+        const stages = {
+            sources: document.getElementById('stageSources'),
+            dataFactory: document.getElementById('stageDataFactory'),
+            oneLake: document.getElementById('stageOneLake'),
+            insights: document.getElementById('stageInsights')
+        };
+
+        // DOM element references for action buttons
+        const buttons = {
+            processWithDF: document.getElementById('btnProcessWithDataFactory'),
+            flowToOneLake: document.getElementById('btnFlowToOneLake'),
+            generateInsights: document.getElementById('btnGenerateInsights')
+        };
+
+        // DOM element references for individual icons/elements in the diagram
+        const elements = {
+            ehrSource: document.getElementById('ehrSource'),
+            labsSource: document.getElementById('labsSource'),
+            wearablesSource: document.getElementById('wearablesSource'),
+            dataFactoryIcon: document.getElementById('dataFactory'),
+            oneLakeMainIcon: document.getElementById('oneLakeMain'),
+            oneLakeBronze: document.getElementById('oneLakeBronze'),
+            oneLakeSilver: document.getElementById('oneLakeSilver'),
+            oneLakeGold: document.getElementById('oneLakeGold'),
+            powerBIIcon: document.getElementById('powerBI'),
+            aiModelsIcon: document.getElementById('aiModels')
+        };
+
+        // Get 2D rendering contexts for all canvases used to draw lines
+        const canvases = {
+            sourcesToDF: document.getElementById('canvasSourcesToDF').getContext('2d'),
+            dfToOneLake: document.getElementById('canvasDFToOneLake').getContext('2d'),
+            oneLakeToInsights: document.getElementById('canvasOneLakeToInsights').getContext('2d')
+        };
+        
+        // Initialize canvas dimensions based on their offsetWidth/Height to ensure crisp drawing
+        Object.values(canvases).forEach(ctx => {
+            const canvasEl = ctx.canvas;
+            canvasEl.width = canvasEl.offsetWidth;
+            canvasEl.height = canvasEl.offsetHeight;
+        });
+
+
+        // DOM elements for the information popup
+        const infoPopup = document.getElementById('infoPopup');
+        const popupText = document.getElementById('popupText');
+
+        /**
+         * Shows an information popup with details from the clicked element's 'data-info' attribute.
+         * @param {HTMLElement} element - The element that was clicked.
+         */
+        function showInfoPopup(element) {
+            const info = element.getAttribute('data-info');
+            if (info) {
+                popupText.innerHTML = info; // Use innerHTML as info might contain simple formatting
+                infoPopup.classList.remove('hidden');
+                infoPopup.classList.add('visible');
+            }
+        }
+
+        /**
+         * Closes the information popup.
+         */
+        function closeInfoPopup() {
+            infoPopup.classList.add('hidden');
+            infoPopup.classList.remove('visible');
+        }
+
+        // Attach click event listeners to all elements that should show an info popup
+        [...document.querySelectorAll('.data-icon, .fabric-icon, .insight-icon, .onelake-layer')].forEach(el => {
+            el.addEventListener('click', (event) => {
+                // Prevent popup from showing if the click was on a button inside the element (if any)
+                if (event.target.closest('button')) {
+                    return;
+                }
+                showInfoPopup(el);
+            });
+        });
+        
+        /**
+         * Draws a line on a canvas between two HTML elements.
+         * @param {CanvasRenderingContext2D} ctx - The canvas 2D rendering context.
+         * @param {HTMLElement} fromEl - The starting HTML element.
+         * @param {HTMLElement} toEl - The ending HTML element.
+         */
+        function drawLine(ctx, fromEl, toEl) {
+            if (!fromEl || !toEl || !ctx) return; // Ensure all elements are available
+
+            const canvas = ctx.canvas;
+            const canvasRect = canvas.getBoundingClientRect(); // Get canvas position
+
+            const fromRect = fromEl.getBoundingClientRect(); // Get 'from' element position
+            const toRect = toEl.getBoundingClientRect();   // Get 'to' element position
+
+            // Calculate start coordinates (bottom-center of 'fromEl') relative to the canvas
+            const startX = (fromRect.left + fromRect.width / 2) - canvasRect.left;
+            const startY = fromRect.bottom - canvasRect.top;
+            
+            // Calculate end coordinates (top-center of 'toEl') relative to the canvas
+            const endX = (toRect.left + toRect.width / 2) - canvasRect.left;
+            const endY = toRect.top - canvasRect.top;
+
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.lineTo(endX, endY);
+            ctx.strokeStyle = '#0078d4'; // Line color (Microsoft blue)
+            ctx.lineWidth = 3;           // Line thickness
+            ctx.stroke();
+        }
+        
+        /**
+         * Clears a given canvas.
+         * @param {CanvasRenderingContext2D} ctx - The canvas 2D rendering context.
+         */
+        function clearCanvas(ctx) {
+            if (ctx && ctx.canvas) {
+                ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            }
+        }
+
+        // Event listener for the "Process with Data Factory" button
+        buttons.processWithDF.addEventListener('click', () => {
+            stages.dataFactory.classList.remove('hidden'); // Show Data Factory stage
+            stages.dataFactory.classList.add('visible');
+            buttons.flowToOneLake.classList.remove('hidden'); // Show "Load to OneLake" button
+            buttons.processWithDF.disabled = true; // Disable current button
+            
+            clearCanvas(canvases.sourcesToDF); // Clear previous lines
+            // Draw lines from data sources to Data Factory icon
+            drawLine(canvases.sourcesToDF, elements.ehrSource, elements.dataFactoryIcon);
+            drawLine(canvases.sourcesToDF, elements.labsSource, elements.dataFactoryIcon);
+            drawLine(canvases.sourcesToDF, elements.wearablesSource, elements.dataFactoryIcon);
+            stages.dataFactory.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Scroll to the new stage
+        });
+
+        // Event listener for the "Load to OneLake" button
+        buttons.flowToOneLake.addEventListener('click', () => {
+            stages.oneLake.classList.remove('hidden'); // Show OneLake stage
+            stages.oneLake.classList.add('visible');
+            buttons.generateInsights.classList.remove('hidden'); // Show "Generate Insights" button
+            buttons.flowToOneLake.disabled = true; // Disable current button
+            
+            clearCanvas(canvases.dfToOneLake); // Clear previous lines
+            // Draw line from Data Factory to the main OneLake icon
+            drawLine(canvases.dfToOneLake, elements.dataFactoryIcon, elements.oneLakeMainIcon);
+            stages.oneLake.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Scroll to the new stage
+        });
+
+        // Event listener for the "Generate Insights" button
+        buttons.generateInsights.addEventListener('click', () => {
+            stages.insights.classList.remove('hidden'); // Show Insights stage
+            stages.insights.classList.add('visible');
+            buttons.generateInsights.disabled = true; // Disable current button
+            
+            clearCanvas(canvases.oneLakeToInsights); // Clear previous lines
+            // Draw lines from the OneLake Gold layer to insight tools
+            drawLine(canvases.oneLakeToInsights, elements.oneLakeGold, elements.powerBIIcon);
+            drawLine(canvases.oneLakeToInsights, elements.oneLakeGold, elements.aiModelsIcon);
+            stages.insights.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Scroll to the new stage
+        });
+        
+        // Handle window resize to redraw lines and adjust canvas dimensions
+        window.addEventListener('resize', () => {
+            // Update canvas dimensions first
+            Object.values(canvases).forEach(ctx => {
+                const canvasEl = ctx.canvas;
+                if (canvasEl.offsetWidth > 0 && canvasEl.offsetHeight > 0) { // Ensure canvas is visible and has dimensions
+                    canvasEl.width = canvasEl.offsetWidth;
+                    canvasEl.height = canvasEl.offsetHeight;
+                }
+            });
+
+            // Redraw lines based on the current state of the diagram
+            // This ensures lines are repositioned correctly if elements move due to resize
+            if (!buttons.processWithDF.disabled) { 
+                // No lines drawn yet or stage 1 is active
+                clearCanvas(canvases.sourcesToDF);
+            } else if (!buttons.flowToOneLake.disabled) {
+                // Stage 2 (Data Factory) is active, redraw lines from sources to DF
+                clearCanvas(canvases.sourcesToDF);
+                drawLine(canvases.sourcesToDF, elements.ehrSource, elements.dataFactoryIcon);
+                drawLine(canvases.sourcesToDF, elements.labsSource, elements.dataFactoryIcon);
+                drawLine(canvases.sourcesToDF, elements.wearablesSource, elements.dataFactoryIcon);
+                clearCanvas(canvases.dfToOneLake); // Clear next canvas too
+            } else if (!buttons.generateInsights.disabled) {
+                // Stage 3 (OneLake) is active, redraw lines for previous stages and current
+                clearCanvas(canvases.sourcesToDF);
+                drawLine(canvases.sourcesToDF, elements.ehrSource, elements.dataFactoryIcon);
+                drawLine(canvases.sourcesToDF, elements.labsSource, elements.dataFactoryIcon);
+                drawLine(canvases.sourcesToDF, elements.wearablesSource, elements.dataFactoryIcon);
+                
+                clearCanvas(canvases.dfToOneLake);
+                drawLine(canvases.dfToOneLake, elements.dataFactoryIcon, elements.oneLakeMainIcon);
+                clearCanvas(canvases.oneLakeToInsights); // Clear next canvas
+            } else { 
+                // All stages processed, redraw all lines
+                clearCanvas(canvases.sourcesToDF);
+                drawLine(canvases.sourcesToDF, elements.ehrSource, elements.dataFactoryIcon);
+                drawLine(canvases.sourcesToDF, elements.labsSource, elements.dataFactoryIcon);
+                drawLine(canvases.sourcesToDF, elements.wearablesSource, elements.dataFactoryIcon);
+
+                clearCanvas(canvases.dfToOneLake);
+                drawLine(canvases.dfToOneLake, elements.dataFactoryIcon, elements.oneLakeMainIcon);
+
+                clearCanvas(canvases.oneLakeToInsights);
+                drawLine(canvases.oneLakeToInsights, elements.oneLakeGold, elements.powerBIIcon);
+                drawLine(canvases.oneLakeToInsights, elements.oneLakeGold, elements.aiModelsIcon);
+            }
+        });
+
+    </script>
+</body>
+</html>

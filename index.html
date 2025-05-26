@@ -1,0 +1,4527 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Complete_Training_Manual-2 Day-full-course-Microsoft Fabric Healthcare Discovery Session Skilling Plan-v2.8-gk.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%F0%9F%93%98-microsoft-fabric-for-healthcare-2-day-technical-training-manual">📘 Microsoft Fabric for Healthcare: 2-Day Technical Training Manual</h1>
+<h2 id="course-mindmap">Course Mindmap</h2>
+<figure>
+  <img src="./images/diagram_course-mindmap.png" alt="Microsoft Fabric Healthcare Skilling Plan Mindmap" style="width:100%;" />
+  <figcaption><em>Figure: Mindmap overview of the Microsoft Fabric Healthcare Skilling Plan.</em></figcaption>
+</figure>
+<hr>
+<h2 id="%F0%9F%93%91-training-manual-outline">📑 Training Manual Outline</h2>
+<ol>
+<li>
+<p><strong>Introduction to Microsoft Fabric in Healthcare</strong></p>
+<ul>
+<li>Overview of Microsoft Fabric</li>
+<li>Importance in the healthcare industry</li>
+<li>Key features and benefits</li>
+<li>Interactive info card: Industry impact (<a href="./visualizations-html/Section%201%20-%20Introduction%20to%20Microsoft%20Fabric%20in%20Healthcare.html" target="_blank">Access Interactive Element</a>)</li>
+</ul>
+</li>
+<li>
+<p><strong>Setting Up the Environment</strong></p>
+<ul>
+<li>Prerequisites and system requirements</li>
+<li>Installation and configuration (step-by-step, with interactive visuals)</li>
+<li>Accessing Microsoft Fabric components</li>
+<li>Hands-on setup checklist (<a href="./visualizations-html/Section%202%20-%20Setting%20Up%20the%20Environment.html" target="_blank">Access Interactive Element</a>)</li>
+</ul>
+</li>
+<li>
+<p><strong>Data Ingestion and Integration</strong></p>
+<ul>
+<li>Connecting to various data sources (guided walkthrough)</li>
+<li>Data ingestion techniques (interactive demo)</li>
+<li>Ensuring data quality and consistency</li>
+<li>Embedded quiz: Data pipeline best practices (<a href="./visualizations-html/Section%203%20-%20Data%20Ingestion%20and%20Integration.html" target="_blank">Access Interactive Element</a>)</li>
+</ul>
+</li>
+<li>
+<p><strong>Data Modeling and Transformation</strong></p>
+<ul>
+<li>Designing data models (drag-and-drop exercise)</li>
+<li>Data transformation processes</li>
+<li>Best practices for data modeling in healthcare</li>
+<li>Scenario-based interactive questions (<a href="./visualizations-html/Section%204%20-%20Data%20Modeling%20and%20Transformation.html" target="_blank">Access Interactive Element</a>)</li>
+</ul>
+</li>
+<li>
+<p><strong>Security and Compliance</strong></p>
+<ul>
+<li>Understanding HIPAA and HITRUST requirements</li>
+<li>Implementing security measures (interactive checklist)</li>
+<li>Ensuring compliance in data handling</li>
+<li>Case study: Secure data workflow (with instant feedback) (<a href="./visualizations-html/Section%205%20-%20Security,%20Compliance,%20and%20Governance.html" target="_blank">Access Interactive Element</a>)</li>
+</ul>
+</li>
+<li>
+<p><strong>Analytics and Reporting</strong></p>
+<ul>
+<li>Utilizing analytics tools within Microsoft Fabric</li>
+<li>Creating reports and dashboards</li>
+<li>Interpreting analytical results</li>
+<li>(<a href="./visualizations-html/Section%206%20-%20Analytics%20and%20Reporting.html" target="_blank">Access Interactive Element</a>)</li>
+</ul>
+</li>
+<li>
+<p><strong>Machine Learning and AI Integration</strong></p>
+<ul>
+<li>Introduction to machine learning concepts</li>
+<li>Integrating AI models</li>
+<li>Use cases in healthcare</li>
+<li>(<a href="./visualizations-html/Section%207%20-%20Machine%20Learning%20and%20AI%20Integration.html" target="_blank">Access Interactive Element</a>)</li>
+</ul>
+</li>
+<li>
+<p><strong>Performance Optimization</strong></p>
+<ul>
+<li>Monitoring system performance</li>
+<li>Optimizing data processing</li>
+<li>Troubleshooting common issues</li>
+<li>(<a href="./visualizations-html/Section%208%20-%20Performance%20Optimization.html" target="_blank">Access Interactive Element</a>)</li>
+</ul>
+</li>
+<li>
+<p><strong>Collaboration and Sharing</strong></p>
+<ul>
+<li>Sharing data and insights</li>
+<li>Collaborating within teams</li>
+<li>Managing access and permissions</li>
+<li>(<a href="./visualizations-html/Section%209%20-%20Collaboration%20and%20Sharing.html" target="_blank">Access Interactive Element</a>)</li>
+</ul>
+</li>
+<li>
+<p><strong>Advanced Features and Customization</strong></p>
+<ul>
+<li>Exploring advanced functionalities</li>
+<li>Customizing Microsoft Fabric components</li>
+<li>Extending capabilities with add-ons</li>
+<li>(<a href="./visualizations-html/Section%2010%20-%20Advanced%20Features%20and%20Customization.html" target="_blank">Access Interactive Element</a>)</li>
+</ul>
+</li>
+<li>
+<p><strong>Case Studies and Real-world Applications</strong></p>
+<ul>
+<li>Examining successful implementations</li>
+<li>Lessons learned from real-world scenarios</li>
+<li>Applying knowledge to practical situations</li>
+<li>(<a href="./visualizations-html/Section%2011%20-%20Case%20Studies%20and%20Real-World%20Applications.html" target="_blank">Access Interactive Element</a>)</li>
+</ul>
+</li>
+<li>
+<p><strong>Labs and Exercises</strong></p>
+<ul>
+<li>Hands-on labs for each module</li>
+<li>Practice exercises with solutions</li>
+<li>Reinforcing learning through application</li>
+<li>(<a href="./visualizations-html/Section%2012%20-%20Labs%20and%20Exercises.html" target="_blank">Access Interactive Element</a>)</li>
+</ul>
+</li>
+<li>
+<p><strong>Assessment and Certification</strong></p>
+<ul>
+<li>Comprehensive quiz covering all modules</li>
+<li>Evaluation criteria</li>
+<li>Certification of completion</li>
+<li>(<a href="./visualizations-html/Section%2013%20-%20Assessment%20and%20Certification.html" target="_blank">Access Interactive Element</a>)</li>
+<li>(<a href="./visualizations-html/Section%2013%20-%20Student%20Assessment%20Test.html" target="_blank">Student Assessment Test</a>)</li>
+<li>(<a href="./visualizations-html/Section%2013%20-%20Student%20Assessment%20Test%202.html" target="_blank">Student Assessment Test 2</a>)</li>
+<li>(<a href="./visualizations-html/microsoft-fabric-interactive-quiz.html" target="_blank">Microsoft Fabric Interactive Quiz</a>)</li>
+</ul>
+</li>
+<li>
+<p><strong>Job Aids and Cheat Sheets</strong></p>
+<ul>
+<li>Quick reference guides</li>
+<li>Tips and tricks for efficient use</li>
+<li>Summarized procedures and workflows</li>
+<li>(<a href="./visualizations-html/Section%2014%20-%20Job%20Aids%20and%20Cheat%20Sheets.html" target="_blank">Access Interactive Element</a>)</li>
+</ul>
+</li>
+<li>
+<p><strong>References and Further Reading</strong></p>
+<ul>
+<li>Additional resources</li>
+<li>Suggested readings</li>
+<li>Links to official documentation</li>
+<li>(<a href="./visualizations-html/Section%2015%20-%20Final%20Notes%20and%20Resources.html" target="_blank">Access Interactive Element</a>)</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="%F0%9F%93%98-section-1-introduction-to-microsoft-fabric-in-healthcare">📘 Section 1: Introduction to Microsoft Fabric in Healthcare</h2>
+<hr>
+<h3 id="10-overview">1.0 Overview</h3>
+<p>In the age of digital transformation, healthcare organizations face unprecedented challenges and opportunities. Data is both a burden and a blessing. While the volume of data continues to grow exponentially—coming from electronic health records (EHRs), laboratory systems, wearable devices, imaging repositories, and more—the ability to derive real-time, actionable insights remains constrained by legacy architectures, siloed systems, and interoperability gaps.</p>
+<p>Enter <strong>Microsoft Fabric</strong>, an integrated Software-as-a-Service (SaaS) data platform built on top of Azure that consolidates analytics, governance, AI, and data engineering in one seamless environment. For data engineers in healthcare, Fabric isn't just a tool—it's a comprehensive platform that redefines how healthcare data is ingested, secured, modeled, analyzed, and operationalized.</p>
+<p>This manual begins with a robust understanding of why Fabric matters to healthcare and what foundational competencies engineers must build to effectively implement it in clinical settings.</p>
+<hr>
+<h3 id="11-the-healthcare-data-dilemma">1.1 The Healthcare Data Dilemma</h3>
+<p>Before diving into technology, it's critical to grasp the environment in which it operates.</p>
+<h4 id="fragmentation-across-systems">Fragmentation Across Systems</h4>
+<p>Healthcare systems are notoriously siloed. Data lives in:</p>
+<ul>
+<li><strong>EHRs</strong> (Epic, Cerner, Meditech, etc.)</li>
+<li><strong>Laboratory Information Systems (LIS)</strong></li>
+<li><strong>Radiology PACS</strong></li>
+<li><strong>Pharmacy dispensing systems</strong></li>
+<li><strong>Billing and revenue cycle software</strong></li>
+<li><strong>IoT-enabled medical devices</strong></li>
+<li><strong>Department-level Excel sheets or Access DBs</strong></li>
+</ul>
+<p>Each repository holds vital data, but their lack of interconnectivity impairs holistic insights. Interoperability standards like HL7v2, FHIR, and DICOM attempt to bridge the divide—but real-time, semantic-level interoperability remains elusive.</p>
+<h4 id="the-challenge-of-data-velocity--variety">The Challenge of Data Velocity & Variety</h4>
+<ul>
+<li><strong>Structured data</strong> (e.g., vitals, lab results)</li>
+<li><strong>Unstructured data</strong> (e.g., physician notes, PDF scans)</li>
+<li><strong>Image data</strong> (e.g., MRI, CT)</li>
+<li><strong>Streaming data</strong> (e.g., continuous glucose monitors, heart monitors)</li>
+</ul>
+<p>Handling these streams in a secure, compliant, and analyzable fashion demands more than traditional data warehouses.</p>
+<h4 id="compliance-pressures">Compliance Pressures</h4>
+<p>Healthcare organizations are bound by rigorous regulations:</p>
+<ul>
+<li><strong>HIPAA (U.S.):</strong> Ensures privacy and security of protected health information (PHI).</li>
+<li><strong>HITRUST:</strong> A certifiable framework combining ISO, NIST, and HIPAA.</li>
+<li><strong>State regulations:</strong> Varying rules on data storage, breach notification, and access auditing.</li>
+</ul>
+<p>Fabric addresses these with built-in governance, access controls, encryption, and integration with Microsoft Purview.</p>
+<hr>
+<h3 id="12-what-is-microsoft-fabric">1.2 What is Microsoft Fabric?</h3>
+<p>Microsoft Fabric is a <strong>SaaS-based unified data platform</strong> designed to consolidate multiple Azure services into one streamlined experience:</p>
+<ul>
+<li><strong>Azure Data Factory</strong> (for data integration)</li>
+<li><strong>Azure Synapse Analytics</strong> (for data engineering)</li>
+<li><strong>Power BI</strong> (for business intelligence)</li>
+<li><strong>Real-Time Analytics</strong> (for event streaming and telemetry)</li>
+<li><strong>Data Science tools</strong> (with MLflow, notebooks)</li>
+<li><strong>Microsoft Purview integration</strong> (for data governance)</li>
+</ul>
+<p>At its core is <strong>OneLake</strong>: a single, logical data lake for the entire organization where data resides in an open format (Delta Parquet).</p>
+<h4 id="core-features">Core Features</h4>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OneLake</td>
+<td>Centralized data lake using open Delta format</td>
+</tr>
+<tr>
+<td>Data Factory</td>
+<td>Connect, ingest, and orchestrate data pipelines</td>
+</tr>
+<tr>
+<td>Notebooks</td>
+<td>Jupyter-style environments for PySpark, Python, R</td>
+</tr>
+<tr>
+<td>Power BI Integration</td>
+<td>Real-time visual analytics on unified data</td>
+</tr>
+<tr>
+<td>AI/ML Integration</td>
+<td>Train models directly within Fabric, leverage Azure Cognitive Services</td>
+</tr>
+<tr>
+<td>Data Governance</td>
+<td>RBAC, data classification, audit trails via Microsoft Purview</td>
+</tr>
+<tr>
+<td>Copilot Integration</td>
+<td>Natural language interface to generate code, queries, and dashboards</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="13-why-microsoft-fabric-matters-to-healthcare">1.3 Why Microsoft Fabric Matters to Healthcare</h3>
+<h4 id="a-unified-data-estate">A. Unified Data Estate</h4>
+<p>Microsoft Fabric allows healthcare organizations to unify patient, clinical, financial, and operational data from multiple systems into <strong>OneLake</strong>. This enables:</p>
+<ul>
+<li>Patient 360 views</li>
+<li>Population health dashboards</li>
+<li>Real-time alerts</li>
+<li>Interdepartmental collaboration</li>
+</ul>
+<h4 id="b-ai-powered-analytics">B. AI-Powered Analytics</h4>
+<p>With integrated ML capabilities, data engineers can deploy models for:</p>
+<ul>
+<li>Predicting readmission risk</li>
+<li>ICU deterioration monitoring</li>
+<li>Medication adherence</li>
+<li>No-show prediction</li>
+<li>Operational throughput</li>
+</ul>
+<h4 id="c-compliance-and-security">C. Compliance and Security</h4>
+<p>Fabric supports:</p>
+<ul>
+<li>End-to-end encryption (at rest, in transit)</li>
+<li>Role-based access control (RBAC)</li>
+<li>Activity auditing</li>
+<li>Support for customer-managed keys</li>
+<li>De-identification workflows</li>
+<li>Integration with Purview for lineage tracking</li>
+</ul>
+<h4 id="d-developer-productivity">D. Developer Productivity</h4>
+<p>Via Copilot, engineers can:</p>
+<ul>
+<li>Auto-generate transformation code</li>
+<li>Get SQL/DAX suggestions</li>
+<li>Receive inline documentation</li>
+<li>Troubleshoot errors</li>
+</ul>
+<hr>
+<h3 id="14-visualizing-data-architectures">1.4 Visualizing Data Architectures</h3>
+<h4 id="141-traditional-vs-unified-data-flow-in-microsoft-fabric">1.4.1 Traditional vs. Unified Data Flow in Microsoft Fabric</h4>
+<figure>
+  <img src="./images/1.4-diagram_Conceptual%20diagram%20illustrating%20traditional%20fragmented%20data.png" alt="Traditional fragmented data vs. Microsoft Fabric unified data approach" style="width:100%;" />
+  <figcaption><em>Figure: Conceptual diagram illustrating traditional fragmented data approaches versus Microsoft Fabric's unified data approach.</em></figcaption>
+</figure>
+<hr>
+<h3 id="15-lab-understanding-healthcare-data-fragmentation">1.5 Lab: Understanding Healthcare Data Fragmentation</h3>
+<p><strong>Objective:</strong> Analyze a fictional hospital’s data systems to identify fragmentation and model a unified design using Fabric.</p>
+<h4 id="scenario">Scenario</h4>
+<p><em>Valley General Hospital</em> uses:</p>
+<ol>
+<li><strong>EHR System</strong> – patient demographics, encounters, medications</li>
+<li><strong>Pharmacy System</strong> – prescriptions, fill history</li>
+<li><strong>Lab System</strong> – test results</li>
+<li><strong>Outpatient Portal</strong> – appointments and notes</li>
+</ol>
+<h4 id="questions">Questions</h4>
+<ol>
+<li><strong>List which data elements are stored in each system.</strong></li>
+<li><strong>What are the challenges if you want to predict readmission within 30 days?</strong></li>
+<li><strong>How can Fabric’s OneLake + Data Factory help?</strong></li>
+</ol>
+<h4 id="sample-answer">Sample Answer</h4>
+<ol>
+<li>EHR: demographics, meds; Pharmacy: fill history; Lab: A1C values; Portal: follow-ups</li>
+<li>Fragmentation leads to missed follow-up trends, non-adherence</li>
+<li>Fabric integrates them into OneLake, enabling AI modeling across systems</li>
+</ol>
+<p><strong>Interactive Lab:</strong> <a href="./visualizations-html/Module%201-The%20Data%20Unification%20Journey.html" target="_blank">Module 1 - The Data Unification Journey</a></p>
+<hr>
+<h3 id="16-exercise-your-organizations-fragmentation-map">1.6 Exercise: Your Organization’s Fragmentation Map</h3>
+<p><strong>Instructions:</strong></p>
+<p>Draw a simple flow of your current healthcare data systems. Then answer:</p>
+<ol>
+<li>Which of these systems are connected today?</li>
+<li>Where are the gaps?</li>
+<li>Which departments most struggle with data access?</li>
+<li>Which datasets would benefit most from AI analysis?</li>
+</ol>
+<hr>
+<h3 id="17-knowledge-review-flash-cards">1.7 Knowledge Review: Flash Cards</h3>
+<table>
+<thead>
+<tr>
+<th>Front</th>
+<th>Back</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What is Microsoft Fabric?</td>
+<td>A SaaS analytics platform unifying data engineering, AI, BI in OneLake</td>
+</tr>
+<tr>
+<td>What is OneLake?</td>
+<td>A unified Delta Parquet-based data lake embedded in Fabric</td>
+</tr>
+<tr>
+<td>Key Fabric Benefits for Healthcare</td>
+<td>Unified views, AI capabilities, security compliance, productivity</td>
+</tr>
+<tr>
+<td>How does Fabric support HIPAA?</td>
+<td>RBAC, encryption, audit logs, Purview integration</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="18-summary">1.8 Summary</h3>
+<p>This introductory chapter sets the foundation for mastering Microsoft Fabric. You now understand:</p>
+<ul>
+<li>The key pain points in healthcare data management</li>
+<li>How Fabric addresses fragmentation, AI needs, and compliance</li>
+<li>The essential components of the platform</li>
+</ul>
+<p>In the next section, we’ll begin configuring and preparing the Fabric environment.</p>
+<hr>
+<h3 id="%E2%9C%85-certification-quiz">✅ Certification Quiz</h3>
+<p><strong>1. Which format does OneLake store data in?</strong>
+a) CSV
+b) JSON
+c) Delta Parquet
+<strong>→ Answer: c</strong></p>
+<p><strong>2. Which regulation applies to patient privacy in the U.S.?</strong>
+a) GDPR
+b) HIPAA
+c) PCI-DSS
+<strong>→ Answer: b</strong></p>
+<p><strong>3. What role does Microsoft Purview play?</strong>
+a) Visualization
+b) Governance
+c) Backup
+<strong>→ Answer: b</strong></p>
+<hr>
+<h3 id="%F0%9F%94%96-cheat-sheet-printable">🔖 Cheat Sheet (Printable)</h3>
+<ul>
+<li><strong>OneLake</strong> = Fabric’s unified Delta-based data lake</li>
+<li><strong>Data Factory</strong> = Data pipeline and transformation tool</li>
+<li><strong>Power BI</strong> = Visualize data directly from OneLake</li>
+<li><strong>Copilot</strong> = Code/insight generator</li>
+<li><strong>Fabric Compliance</strong> = Encryption + RBAC + Audit + Purview</li>
+</ul>
+<hr>
+<h3 id="interactive-element-for-section-1">Interactive Element for Section 1</h3>
+<p><a href="./visualizations-html/Section%201%20-%20Introduction%20to%20Microsoft%20Fabric%20in%20Healthcare.html" target="_blank">Interactive Info Card: Industry Impact</a></p>
+<hr>
+<h2 id="%F0%9F%93%98-section-2-setting-up-the-environment">📘 Section 2: Setting Up the Environment</h2>
+<hr>
+<h3 id="20-overview">2.0 Overview</h3>
+<p>Before diving into ingestion pipelines, AI modeling, and governance layers, it's essential to configure a robust, compliant, and scalable <strong>Microsoft Fabric environment</strong>. This chapter will guide healthcare data engineers through the initial setup of the environment—including provisioning access, establishing workspace boundaries, configuring tools, and applying basic governance policies—all while adhering to HIPAA and HITRUST standards.</p>
+<hr>
+<h3 id="21-prerequisites">2.1 Prerequisites</h3>
+<h4 id="%E2%9C%94%EF%B8%8F-organizational-requirements">✔️ Organizational Requirements</h4>
+<p>To begin using Microsoft Fabric effectively, your organization must:</p>
+<ul>
+<li>Have an active <strong>Microsoft 365 tenant</strong></li>
+<li>Possess a valid <strong>Microsoft Fabric license</strong> (details below)</li>
+<li>Enable <strong>Microsoft Fabric in the Microsoft 365 Admin Center</strong></li>
+<li>Assign <strong>Power BI Admin and Fabric Admin roles</strong> for workspace provisioning</li>
+<li>Possess <strong>Azure Active Directory (Azure AD / Entra ID)</strong> for identity and access management</li>
+</ul>
+<h4 id="%E2%9C%94%EF%B8%8F-role-based-access-considerations">✔️ Role-Based Access Considerations</h4>
+<p>From the outset, it’s crucial to define <strong>personas</strong> and align them with the proper <strong>roles and access levels</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Common Tasks</th>
+<th>Fabric Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Engineer</td>
+<td>Pipeline design, transformation logic</td>
+<td>Contributor / Admin</td>
+</tr>
+<tr>
+<td>Data Scientist</td>
+<td>Model training, notebooks</td>
+<td>Contributor</td>
+</tr>
+<tr>
+<td>Analyst</td>
+<td>Report creation</td>
+<td>Member / Viewer</td>
+</tr>
+<tr>
+<td>Compliance Officer</td>
+<td>Audit log access, governance</td>
+<td>Viewer (Purview access)</td>
+</tr>
+</tbody>
+</table>
+<p>Use <strong>RBAC</strong> principles to minimize data exposure and restrict unnecessary permissions.</p>
+<hr>
+<h3 id="22-licensing-and-region-selection">2.2 Licensing and Region Selection</h3>
+<h4 id="fabric-licensing">Fabric Licensing</h4>
+<p>Microsoft Fabric is integrated into <strong>Power BI Premium</strong>, <strong>Microsoft 365 E5</strong>, or via <strong>Fabric capacity SKUs</strong>. Licensing influences:</p>
+<ul>
+<li>Data capacity</li>
+<li>Performance</li>
+<li>Real-time analytics limits</li>
+</ul>
+<blockquote>
+<p>💡 <strong>Tip:</strong> For healthcare scenarios, a minimum of <strong>F64 capacity</strong> is recommended for large datasets and concurrent AI modeling.</p>
+</blockquote>
+<h4 id="region-selection-and-hipaa-compliance">Region Selection and HIPAA Compliance</h4>
+<p>When creating a Microsoft Fabric tenant:</p>
+<ul>
+<li>Choose <strong>U.S.-based regions</strong> to ensure <strong>HIPAA data residency</strong></li>
+<li>Avoid cross-region data flows unless governed and encrypted</li>
+<li>Consider <strong>multi-geo</strong> for national health systems</li>
+</ul>
+<blockquote>
+<p>🛡️ Microsoft signs a <strong>Business Associate Agreement (BAA)</strong> for HIPAA compliance with Azure customers using eligible services, including Fabric.</p>
+</blockquote>
+<hr>
+<h3 id="23-accessing-microsoft-fabric">2.3 Accessing Microsoft Fabric</h3>
+<p>To begin using Fabric:</p>
+<ol>
+<li><strong>Sign into Microsoft 365 portal</strong> as a global admin or Power BI admin</li>
+<li>Navigate to <strong>Power BI Admin Portal</strong></li>
+<li>Select <strong>“Tenant Settings” → Enable Microsoft Fabric</strong></li>
+<li>Assign <strong>admin, contributor, member, or viewer roles</strong> within Fabric workspaces</li>
+</ol>
+<h4 id="ui-walkthrough">UI Walkthrough</h4>
+<p>Fabric is accessed via:</p>
+<ul>
+<li><a href="https://app.fabric.microsoft.com">https://app.fabric.microsoft.com</a></li>
+<li>Once inside, users can switch between tools: <strong>Data Factory</strong>, <strong>Power BI</strong>, <strong>Real-Time Analytics</strong>, <strong>Data Activator</strong>, and <strong>Notebooks</strong></li>
+</ul>
+<blockquote>
+<p>📸 Screenshot Note: Include labeled screenshot of Fabric UI with arrows pointing to Data Factory, Lakehouse, Notebooks, and Power BI.</p>
+</blockquote>
+<hr>
+<h3 id="24-creating-your-first-workspace">2.4 Creating Your First Workspace</h3>
+<p>Workspaces serve as <strong>project containers</strong> in Fabric. Think of them as boundary-enforced collaboration zones.</p>
+<h4 id="steps">Steps:</h4>
+<ol>
+<li>
+<p>In the Fabric portal, click <strong>“New Workspace”</strong></p>
+</li>
+<li>
+<p>Name the workspace (e.g., <em>ClinicalAnalytics</em>)</p>
+</li>
+<li>
+<p>Choose the desired <strong>capacity</strong></p>
+</li>
+<li>
+<p>Assign roles:</p>
+<ul>
+<li>Admin: Data Engineering Lead</li>
+<li>Member: Analysts</li>
+<li>Viewer: Compliance officer</li>
+</ul>
+</li>
+</ol>
+<h4 id="workspace-best-practices">Workspace Best Practices</h4>
+<ul>
+<li>Separate <strong>development</strong>, <strong>test</strong>, and <strong>production</strong> workspaces</li>
+<li>Use <strong>prefixes</strong> like <code>DEV_</code>, <code>TEST_</code>, <code>PROD_</code> to identify environments</li>
+<li>Document workspace purposes and access rules</li>
+<li>Enable <strong>sensitivity labels</strong> via Microsoft Purview (more in Section 5)</li>
+</ul>
+<hr>
+<h3 id="25-connecting-data-sources">2.5 Connecting Data Sources</h3>
+<p>Microsoft Fabric enables hundreds of connectors. In a healthcare context, the most common data sources are:</p>
+<table>
+<thead>
+<tr>
+<th>Source Type</th>
+<th>Example Systems</th>
+<th>Connector</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database</td>
+<td>SQL Server, Oracle, PostgreSQL</td>
+<td>Native</td>
+</tr>
+<tr>
+<td>Cloud Storage</td>
+<td>Azure Blob, ADLS Gen2</td>
+<td>Native</td>
+</tr>
+<tr>
+<td>APIs</td>
+<td>FHIR Server, HL7 Gateway</td>
+<td>REST/OData</td>
+</tr>
+<tr>
+<td>Files</td>
+<td>HL7 batch files, CSVs, DICOM metadata</td>
+<td>File Connector</td>
+</tr>
+<tr>
+<td>Streaming</td>
+<td>Medical IoT (via Event Hub)</td>
+<td>Eventstream</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🧪 Use <strong>Dataflows Gen2</strong> or <strong>Spark Notebooks</strong> to begin loading data.</p>
+</blockquote>
+<hr>
+<h3 id="26-setting-up-onelake">2.6 Setting Up OneLake</h3>
+<p><strong>OneLake</strong> is Microsoft Fabric’s <strong>Delta Parquet-based centralized data lake</strong>. It's auto-provisioned at the tenant level.</p>
+<h4 id="how-to-use-it">How to Use It:</h4>
+<ul>
+<li>
+<p>Each Fabric workspace contains a <strong>Lakehouse</strong> (your logical interface into OneLake)</p>
+</li>
+<li>
+<p>Data is stored in <strong>Bronze (raw), Silver (conformed), and Gold (aggregated)</strong> layers</p>
+</li>
+<li>
+<p>You can create <strong>shortcuts</strong> to bring in existing data from:</p>
+<ul>
+<li>Azure Data Lake</li>
+<li>Amazon S3</li>
+<li>Google Cloud Storage</li>
+</ul>
+</li>
+</ul>
+<h4 id="hipaa-alignment">HIPAA Alignment</h4>
+<ul>
+<li>All data is <strong>encrypted at rest</strong></li>
+<li>RBAC can restrict access to specific folders</li>
+<li><strong>Audit logs</strong> track access to sensitive PHI</li>
+</ul>
+<h4 id="conceptual-data-flow-for-unified-healthcare-data-estate-medallion-architecture">Conceptual Data Flow for Unified Healthcare Data Estate (Medallion Architecture)</h4>
+<figure>
+  <img src="./images/2.6-diagram%20illustrates%20the%20Medallion%20Architecture%20%28Bronze,%20Silver,%20Gold%20layers%29%20within%20OneLake.png" alt="Medallion Architecture (Bronze, Silver, Gold layers) in OneLake" style="width:100%;" />
+  <figcaption><em>Figure: This diagram illustrates the Medallion Architecture (Bronze, Silver, Gold layers) within OneLake, a common best practice for building robust and scalable data estates.</em></figcaption>
+</figure>
+<hr>
+<h3 id="27-toolchain-setup">2.7 Toolchain Setup</h3>
+<h4 id="%E2%9C%85-data-factory-fabric-native">✅ Data Factory (Fabric-native)</h4>
+<ul>
+<li>
+<p>Open a workspace</p>
+</li>
+<li>
+<p>Click <strong>New → Data pipeline</strong></p>
+</li>
+<li>
+<p>Drag and drop activities:</p>
+<ul>
+<li>Source (e.g., SQL Server)</li>
+<li>Dataflow Gen2 (transform)</li>
+<li>Sink (Lakehouse)</li>
+</ul>
+</li>
+</ul>
+<h4 id="%E2%9C%85-power-bi">✅ Power BI</h4>
+<ul>
+<li>Reports use <strong>DirectLake</strong> connection</li>
+<li>Power BI pulls from OneLake without duplicating data</li>
+<li>Use <strong>row-level security (RLS)</strong> for role-based access to dashboards</li>
+</ul>
+<h4 id="%E2%9C%85-notebooks">✅ Notebooks</h4>
+<ul>
+<li>Launch Fabric’s <strong>Jupyter-style Notebooks</strong></li>
+<li>Language support: <strong>Python, Spark, SQL, R</strong></li>
+<li>Access any Lakehouse table with:</li>
+</ul>
+<pre class="hljs"><code><div>df = spark.read.format(<span class="hljs-string">"delta"</span>).load(<span class="hljs-string">"Tables/Gold_PatientRisk"</span>)
+</div></code></pre>
+<hr>
+<h3 id="28-setting-up-governance-basics">2.8 Setting Up Governance Basics</h3>
+<p>Fabric integrates with <strong>Microsoft Purview</strong> for compliance, governance, and lineage.</p>
+<h4 id="key-actions">Key Actions:</h4>
+<ul>
+<li>Classify PHI using built-in classifiers (e.g., "patient name", "DOB")</li>
+<li>Assign <strong>sensitivity labels</strong></li>
+<li>Create <strong>lineage diagrams</strong> from source to dashboard</li>
+<li>Enable <strong>access policies</strong> to restrict export/sharing</li>
+</ul>
+<blockquote>
+<p>🛡️ Purview is essential for <strong>HIPAA’s “audit control” and “integrity” safeguards</strong></p>
+</blockquote>
+<hr>
+<h3 id="29-lab-setting-up-your-first-environment">2.9 Lab: Setting Up Your First Environment</h3>
+<p><strong>Objective:</strong> Build a compliant, collaborative Fabric environment</p>
+<h4 id="tasks">Tasks:</h4>
+<ol>
+<li>Enable Microsoft Fabric in the tenant</li>
+<li>Create a workspace named <code>DEV_CardiologyPipeline</code></li>
+<li>Add team members with appropriate roles</li>
+<li>Ingest sample data from a CSV into a new Lakehouse table</li>
+<li>Access data using a notebook and visualize it in Power BI</li>
+</ol>
+<h4 id="questions">Questions:</h4>
+<ol>
+<li>What level of access should a data analyst be granted?</li>
+<li>Which Fabric tool is best for building ETL pipelines?</li>
+<li>How does OneLake enhance collaboration between roles?</li>
+</ol>
+<p><strong>Answers:</strong></p>
+<ol>
+<li>Member or Viewer</li>
+<li>Data Factory</li>
+<li>All data resides in a single place and can be accessed via different engines (SQL, Power BI, Spark) without duplication</li>
+</ol>
+<p><strong>Interactive Lab:</strong> <a href="./visualizations-html/Module%202:%20Building%20Your%20Data%20Pipeline.html" target="_blank">Module 2 - Building Your Data Pipeline</a></p>
+<hr>
+<h3 id="210-quiz">2.10 Quiz</h3>
+<p><strong>1. What format does OneLake store data in?</strong>
+a) CSV
+b) JSON
+c) Delta Parquet
+<strong>→ Answer: c</strong></p>
+<p><strong>2. What is the default security model for workspaces?</strong>
+a) Public
+b) Private
+c) Role-based access control
+<strong>→ Answer: c</strong></p>
+<p><strong>3. What is the purpose of Microsoft Purview?</strong>
+a) Data visualization
+b) Governance and compliance
+c) Query optimization
+<strong>→ Answer: b</strong></p>
+<hr>
+<h3 id="211-cheat-sheet-printable">2.11 Cheat Sheet (Printable)</h3>
+<ul>
+<li><strong>OneLake</strong> = Unified, tenant-wide data lake</li>
+<li><strong>Workspaces</strong> = Role-bound collaborative zones</li>
+<li><strong>Data Factory</strong> = Pipelines for ingestion and transformation</li>
+<li><strong>Purview</strong> = Data governance, classification, audit, and lineage</li>
+<li><strong>RBAC</strong> = Assign only needed permissions</li>
+<li><strong>Encryption</strong> = In transit and at rest by default</li>
+<li><strong>HIPAA</strong> = Requires BAA + audit + access + integrity controls</li>
+</ul>
+<hr>
+<h3 id="interactive-element-for-section-2">Interactive Element for Section 2</h3>
+<p><a href="./visualizations-html/Section%202%20-%20Setting%20Up%20the%20Environment.html" target="_blank">Hands-on Setup Checklist</a></p>
+<hr>
+<h2 id="%F0%9F%93%98-section-3-data-ingestion-and-integration">📘 Section 3: Data Ingestion and Integration</h2>
+<hr>
+<h3 id="30-overview">3.0 Overview</h3>
+<p>The cornerstone of any successful data platform—especially in healthcare—is robust, scalable, secure <strong>data ingestion and integration</strong>. Healthcare organizations must harmonize fragmented datasets from a variety of clinical, operational, and research systems.</p>
+<p>This section introduces how <strong>Microsoft Fabric</strong> helps data engineers ingest and integrate diverse datasets from EHRs, HL7 messages, FHIR APIs, imaging systems, pharmacy systems, and streaming medical devices. You'll also learn how to construct <strong>batch and real-time ingestion pipelines</strong> while preserving data lineage and privacy, enabling AI/BI downstream.</p>
+<hr>
+<h3 id="31-key-principles-of-healthcare-data-ingestion">3.1 Key Principles of Healthcare Data Ingestion</h3>
+<h4 id="1-diversity-of-data-sources">1. Diversity of Data Sources</h4>
+<p>Healthcare data may originate from:</p>
+<table>
+<thead>
+<tr>
+<th>System Type</th>
+<th>Example</th>
+<th>Format/Source Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EHR</td>
+<td>Epic, Cerner</td>
+<td>SQL DB, FHIR API, HL7</td>
+</tr>
+<tr>
+<td>Lab Systems</td>
+<td>LIS</td>
+<td>CSV, HL7</td>
+</tr>
+<tr>
+<td>Radiology</td>
+<td>PACS</td>
+<td>DICOM Metadata</td>
+</tr>
+<tr>
+<td>Pharmacy</td>
+<td>Cerner Rx</td>
+<td>XML, CSV</td>
+</tr>
+<tr>
+<td>Billing & Finance</td>
+<td>RCM Systems</td>
+<td>CSV, SQL</td>
+</tr>
+<tr>
+<td>Wearables/IoT</td>
+<td>CGMs, BP Monitors</td>
+<td>Streaming JSON via Event Hub</td>
+</tr>
+<tr>
+<td>Research Data</td>
+<td>Clinical Trials</td>
+<td>Excel, REDCap, Flat Files</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-ingestion-modalities">2. Ingestion Modalities</h4>
+<ul>
+<li><strong>Batch Ingestion:</strong> Scheduled jobs (hourly, daily) pulling from files or DBs</li>
+<li><strong>Streaming Ingestion:</strong> Real-time telemetry from IoT, EMR events</li>
+<li><strong>API-Based Ingestion:</strong> Pull data from RESTful FHIR servers or internal APIs</li>
+</ul>
+<h4 id="3-compliance-considerations">3. Compliance Considerations</h4>
+<ul>
+<li><strong>Audit every data movement</strong></li>
+<li>Encrypt data at every step</li>
+<li>Use minimum necessary data (Privacy Rule)</li>
+<li>Support de-identification pipelines</li>
+</ul>
+<hr>
+<h3 id="32-using-microsoft-fabric-data-factory">3.2 Using Microsoft Fabric Data Factory</h3>
+<p><strong>Data Factory</strong> in Microsoft Fabric is your control hub for data ingestion and orchestration.</p>
+<h4 id="key-components">Key Components</h4>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pipelines</td>
+<td>Sequence of steps/tasks</td>
+</tr>
+<tr>
+<td>Dataflows Gen2</td>
+<td>Low-code Power Query-based transformations</td>
+</tr>
+<tr>
+<td>Notebooks</td>
+<td>PySpark-based custom logic</td>
+</tr>
+<tr>
+<td>Linked Services</td>
+<td>External source connectors</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ingestion-flow">Ingestion Flow</h4>
+<pre class="hljs"><code><div>Source System → Linked Service → Dataflow/Notebook → Lakehouse (Bronze) → Transformation
+</div></code></pre>
+<h4 id="hands-on-setup">Hands-On Setup</h4>
+<ol>
+<li><strong>Launch Data Factory</strong> in your Fabric workspace</li>
+<li>Click <strong>New → Pipeline</strong></li>
+<li>Add a <strong>Dataflow Gen2</strong> step</li>
+<li>Connect to a <strong>FHIR server</strong> using REST API</li>
+<li>Map FHIR <code>Patient</code> resource to a table</li>
+<li>Sink data into <code>Bronze_FHIRPatients</code> in Lakehouse</li>
+</ol>
+<hr>
+<h3 id="33-ingesting-hl7-messages">3.3 Ingesting HL7 Messages</h3>
+<p>HL7v2 is still a dominant format in clinical interfaces. It is delimited text and often transmitted in batched files.</p>
+<h4 id="common-hl7-messages">Common HL7 Messages:</h4>
+<ul>
+<li>ADT (Admit, Discharge, Transfer)</li>
+<li>ORU (Observation Result)</li>
+<li>MDM (Medical Document Management)</li>
+</ul>
+<h4 id="steps">Steps:</h4>
+<ol>
+<li>Use a <strong>file connector</strong> to pull HL7 batch files</li>
+<li>Apply <strong>Spark notebook</strong> to parse segments (e.g., MSH, PID, OBX)</li>
+<li>Map to interim tables (e.g., <code>Bronze_HL7_ADT</code>)</li>
+<li>Optionally, transform to <strong>FHIR-equivalent resources</strong> (<code>Patient</code>, <code>Encounter</code>)</li>
+</ol>
+<h4 id="hipaa-tip">HIPAA Tip</h4>
+<p>Track and log:</p>
+<ul>
+<li>Source file path</li>
+<li>File checksum (data integrity)</li>
+<li>Timestamp of ingestion</li>
+<li>User/service principal ID performing ingestion</li>
+</ul>
+<hr>
+<h3 id="34-integrating-fhir-apis">3.4 Integrating FHIR APIs</h3>
+<p>FHIR (Fast Healthcare Interoperability Resources) enables standardized data exchange.</p>
+<h4 id="steps-to-ingest-fhir">Steps to Ingest FHIR:</h4>
+<ol>
+<li>
+<p>Create REST API linked service</p>
+</li>
+<li>
+<p>Use GET requests with filters:</p>
+<ul>
+<li><code>/Patient?_lastUpdated=gt2024-01-01</code></li>
+<li><code>/Observation?code=1234-5</code></li>
+</ul>
+</li>
+<li>
+<p>Store response in <strong>Lakehouse → Bronze_FHIR</strong></p>
+</li>
+<li>
+<p>Use <strong>Dataflow Gen2</strong> to flatten JSON</p>
+</li>
+<li>
+<p>Transform into a structured table <code>Silver_Patient</code></p>
+</li>
+</ol>
+<h4 id="tips">Tips:</h4>
+<ul>
+<li>Use pagination and throttling</li>
+<li>Use <code>since</code> parameters for delta loads</li>
+<li>Encrypt tokens & headers in Key Vault</li>
+</ul>
+<hr>
+<h3 id="35-handling-dicom-metadata">3.5 Handling DICOM Metadata</h3>
+<p>Though Fabric doesn’t process full image binaries, it can ingest DICOM metadata.</p>
+<h4 id="steps">Steps:</h4>
+<ol>
+<li>
+<p>Use a pipeline to read <strong>DICOM metadata CSV</strong></p>
+</li>
+<li>
+<p>Include fields like:</p>
+<ul>
+<li>PatientID</li>
+<li>Modality</li>
+<li>StudyInstanceUID</li>
+<li>AcquisitionDate</li>
+</ul>
+</li>
+<li>
+<p>Load into Lakehouse <code>Bronze_DICOM_Metadata</code></p>
+</li>
+<li>
+<p>Link metadata to encounter data for cohorting</p>
+</li>
+</ol>
+<hr>
+<h3 id="36-streaming-iot-data-eg-bedside-monitors">3.6 Streaming IoT Data (e.g., Bedside Monitors)</h3>
+<p>Vital signs and telemetry can be streamed into Fabric via <strong>Real-Time Analytics (KQL)</strong> and Eventstreams.</p>
+<h4 id="setup">Setup:</h4>
+<ol>
+<li>Create an Event Hub (Azure) → Forward to Eventstream in Fabric</li>
+<li>Use KQL query to ingest into <code>Bronze_StreamingVitals</code></li>
+<li>Optionally: apply feature engineering in Notebooks</li>
+<li>Store results in <code>Silver_PatientVitals</code></li>
+</ol>
+<h4 id="hipaa-compliance">HIPAA Compliance</h4>
+<ul>
+<li>Use private endpoints</li>
+<li>Encrypt message payload</li>
+<li>Log event IDs, timestamps, sender identity</li>
+</ul>
+<hr>
+<h3 id="37-building-a-medallion-architecture">3.7 Building a Medallion Architecture</h3>
+<p>The <strong>Bronze → Silver → Gold</strong> pattern is crucial for scalable ingestion.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bronze</td>
+<td>Raw ingested data</td>
+<td>HL7 ADT messages</td>
+</tr>
+<tr>
+<td>Silver</td>
+<td>Cleaned, conformed, standardized</td>
+<td>FHIR <code>Patient</code> resource</td>
+</tr>
+<tr>
+<td>Gold</td>
+<td>Aggregated, analytical structures</td>
+<td>Dim_Patient, Fact_Visit</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="38-lab-ingesting-patient-encounter-data-from-hl7-and-fhir">3.8 Lab: Ingesting Patient Encounter Data from HL7 and FHIR</h3>
+<p><strong>Objective:</strong> Build an ingestion pipeline for encounter data from two different sources.</p>
+<h4 id="tasks">Tasks:</h4>
+<ol>
+<li>Read HL7 ADT batch file from local folder</li>
+<li>Use Spark notebook to extract <code>PID</code> and <code>PV1</code> segments</li>
+<li>Store raw output to <code>Bronze_HL7_Encounters</code></li>
+<li>Use REST API to pull FHIR <code>Encounter</code> resources</li>
+<li>Store to <code>Bronze_FHIR_Encounters</code></li>
+<li>Conform both into a unified <code>Silver_Encounter</code> table</li>
+</ol>
+<h4 id="questions">Questions:</h4>
+<ol>
+<li>What fields in HL7 and FHIR represent patient identity?</li>
+<li>Why do we keep a Bronze layer even after transformation?</li>
+<li>What governance logging would you apply?</li>
+</ol>
+<p><strong>Sample Answers:</strong></p>
+<ol>
+<li>HL7 = PID-3; FHIR = Encounter.subject.reference</li>
+<li>For traceability, auditing, reprocessing</li>
+<li>File origin, time of ingestion, data volume</li>
+</ol>
+<hr>
+<h3 id="39-quiz">3.9 Quiz</h3>
+<p><strong>1. What Fabric tool is best suited for visual low-code ingestion?</strong>
+a) Notebooks
+b) Dataflows Gen2
+c) Power BI
+<strong>→ Answer: b</strong></p>
+<p><strong>2. HL7 ADT messages are commonly used for?</strong>
+a) Imaging
+b) Discharge and transfer events
+c) Lab tests
+<strong>→ Answer: b</strong></p>
+<p><strong>3. What does the Bronze layer represent?</strong>
+a) Raw ingested data
+b) AI predictions
+c) Visual dashboards
+<strong>→ Answer: a</strong></p>
+<hr>
+<h3 id="310-cheat-sheet-printable">3.10 Cheat Sheet (Printable)</h3>
+<ul>
+<li><strong>Bronze = Raw data</strong> (e.g., HL7, FHIR API response)</li>
+<li><strong>Silver = Cleaned/conformed</strong> (e.g., structured Encounter table)</li>
+<li><strong>Gold = Aggregated/analytic</strong> (e.g., dashboards, ML input)</li>
+<li><strong>Dataflows Gen2</strong> = Visual ingestion and transformation</li>
+<li><strong>Notebooks</strong> = Custom PySpark parsing (e.g., HL7, JSON)</li>
+<li><strong>Eventstream + KQL</strong> = Real-time device data</li>
+<li><strong>Always log:</strong> timestamp, source, user ID, file checksum</li>
+</ul>
+<hr>
+<h3 id="interactive-element-for-section-3">Interactive Element for Section 3</h3>
+<p><a href="./visualizations-html/Section%203%20-%20Data%20Ingestion%20and%20Integration.html" target="_blank">Embedded Quiz: Data Pipeline Best Practices</a></p>
+<hr>
+<h2 id="%F0%9F%93%98-section-4-data-modeling-and-transformation">📘 Section 4: Data Modeling and Transformation</h2>
+<hr>
+<h3 id="40-overview">4.0 Overview</h3>
+<p>Data modeling and transformation are the backbone of usable analytics and AI. Once healthcare data is ingested—be it from FHIR APIs, HL7 batches, or DICOM metadata—it needs to be <strong>cleansed</strong>, <strong>standardized</strong>, <strong>linked</strong>, and <strong>modeled</strong> to create business-ready structures.</p>
+<p>In Microsoft Fabric, this is achieved through <strong>Lakehouse-based medallion architecture</strong>, supported by <strong>Dataflows Gen2</strong>, <strong>Spark Notebooks</strong>, and <strong>SQL-based Warehouses</strong>. This section will train data engineers to create resilient data models, ensure data quality, and transform fragmented datasets into conformed, analytics-ready layers.</p>
+<hr>
+<h3 id="41-introduction-to-healthcare-data-modeling">4.1 Introduction to Healthcare Data Modeling</h3>
+<figure>
+  <img src="./images/4.1-Healthcare%20Data%20Modeling%20&%20Transformation%20Diagram.png" alt="Data Modeling & Transformation Diagram" style="width:100%;" />
+  <figcaption><em>Figure: Data Modeling & Transformation Diagram.</em></figcaption>
+</figure>
+<p>Healthcare data is complex. A single patient journey might touch multiple departments, systems, and events.</p>
+<h4 id="key-modeling-concepts">Key Modeling Concepts:</h4>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Entity Modeling</td>
+<td>Identifying real-world entities (Patients, Visits, Medications)</td>
+</tr>
+<tr>
+<td>Relationship Modeling</td>
+<td>Capturing associations (e.g., a Patient has many Encounters)</td>
+</tr>
+<tr>
+<td>Normalization</td>
+<td>Structuring data to reduce redundancy (3NF for OLTP)</td>
+</tr>
+<tr>
+<td>Denormalization</td>
+<td>Flattening for performance (used in OLAP for analytics)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="42-the-medallion-architecture-revisited">4.2 The Medallion Architecture: Revisited</h3>
+<p>The <strong>Bronze → Silver → Gold</strong> approach is a modeling pattern that guides transformation.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bronze</td>
+<td>Raw data</td>
+<td>HL7 segments, FHIR JSON</td>
+</tr>
+<tr>
+<td>Silver</td>
+<td>Cleansed, standardized, FHIR-aligned</td>
+<td><code>Patient</code>, <code>Encounter</code>, <code>Condition</code></td>
+</tr>
+<tr>
+<td>Gold</td>
+<td>Denormalized, aggregated</td>
+<td><code>Dim_Patient</code>, <code>Fact_Visit</code>, <code>Patient_360</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="benefits">Benefits:</h4>
+<ul>
+<li>Supports <strong>lineage tracking</strong> (HIPAA audit)</li>
+<li>Enforces <strong>data quality rules</strong> progressively</li>
+<li>Enables <strong>AI model training</strong> and <strong>Power BI reporting</strong></li>
+</ul>
+<hr>
+<h3 id="43-tools-for-transformation-in-fabric">4.3 Tools for Transformation in Fabric</h3>
+<h4 id="1-dataflows-gen2">1. <strong>Dataflows Gen2</strong></h4>
+<ul>
+<li>
+<p>Visual, no/low-code interface using Power Query</p>
+</li>
+<li>
+<p>Best for:</p>
+<ul>
+<li>Joins</li>
+<li>Conditional logic</li>
+<li>Lookups</li>
+<li>Formatting</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-notebooks-pyspark-python">2. <strong>Notebooks (PySpark, Python)</strong></h4>
+<ul>
+<li>
+<p>Best for:</p>
+<ul>
+<li>Advanced transformations</li>
+<li>HL7 parsing</li>
+<li>JSON unnesting</li>
+<li>Data cleansing pipelines</li>
+<li>De-identification</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-sql-in-warehouses">3. <strong>SQL in Warehouses</strong></h4>
+<ul>
+<li>
+<p>Use for:</p>
+<ul>
+<li>View creation (<code>CREATE VIEW</code>)</li>
+<li>Aggregate metrics</li>
+<li>Fact/dimension tables</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="44-modeling-fhir-resources">4.4 Modeling FHIR Resources</h3>
+<p>FHIR defines <strong>modular “resources”</strong> such as <code>Patient</code>, <code>Encounter</code>, <code>Condition</code>, <code>Observation</code>, etc.</p>
+<h4 id="example-mapping-hl7-to-fhir">Example Mapping: HL7 to FHIR</h4>
+<table>
+<thead>
+<tr>
+<th>HL7 Segment</th>
+<th>FHIR Resource</th>
+<th>Field Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PID</td>
+<td>Patient</td>
+<td>PID-3 → Patient.identifier</td>
+</tr>
+<tr>
+<td>PV1</td>
+<td>Encounter</td>
+<td>PV1-2 → Encounter.class</td>
+</tr>
+<tr>
+<td>OBX</td>
+<td>Observation</td>
+<td>OBX-5 → Observation.valueQuantity</td>
+</tr>
+</tbody>
+</table>
+<h4 id="steps">Steps:</h4>
+<ol>
+<li>Parse HL7 using Notebooks → Bronze</li>
+<li>Map segments → FHIR fields → Silver</li>
+<li>Store structured tables (e.g., <code>Silver_FHIR_Encounter</code>)</li>
+<li>Link via reference fields (e.g., <code>Encounter.subject = Patient.id</code>)</li>
+</ol>
+<blockquote>
+<p>💡 <em>Use FHIR canonical URLs and codings for interoperability</em></p>
+</blockquote>
+<hr>
+<h3 id="45-dimensional-modeling-for-analytics-gold-layer">4.5 Dimensional Modeling for Analytics (Gold Layer)</h3>
+<p>The Gold Layer consists of <strong>business-oriented data marts</strong> that power BI reports and ML models.</p>
+<h4 id="example-dimensional-model">Example: Dimensional Model</h4>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Purpose</th>
+<th>Sample Columns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dim_Patient</td>
+<td>Master view of patients</td>
+<td>PatientID, DOB, Sex, Race</td>
+</tr>
+<tr>
+<td>Dim_Provider</td>
+<td>Care team</td>
+<td>ProviderID, NPI, Specialty</td>
+</tr>
+<tr>
+<td>Fact_Encounter</td>
+<td>Visit-level events</td>
+<td>EncounterID, PatientID, Date, Type</td>
+</tr>
+<tr>
+<td>Fact_LabResult</td>
+<td>Labs</td>
+<td>ResultID, LOINC, Value, Date</td>
+</tr>
+</tbody>
+</table>
+<h4 id="keys">Keys:</h4>
+<ul>
+<li>Use <strong>surrogate keys</strong> (non-PHI)</li>
+<li>Maintain <strong>PatientID mapping tables</strong> for de-identification</li>
+<li>Add <strong>record audit columns</strong>: <code>CreatedBy</code>, <code>UpdatedOn</code>, <code>SourceSystem</code></li>
+</ul>
+<hr>
+<h3 id="46-schema-evolution-and-validation">4.6 Schema Evolution and Validation</h3>
+<p>Healthcare data is <strong>dynamic</strong>—new codes, structures, regulations emerge.</p>
+<h4 id="best-practices">Best Practices:</h4>
+<ul>
+<li>
+<p>Use <strong>Delta format</strong> in OneLake to enable:</p>
+<ul>
+<li><strong>Schema evolution</strong> (new fields without breaking pipeline)</li>
+<li><strong>Time travel</strong> for audit and rollback</li>
+</ul>
+</li>
+<li>
+<p>Enforce <strong>data contracts</strong> via Power Query schema checks</p>
+</li>
+<li>
+<p>Use <strong>validation layers</strong>:</p>
+<ul>
+<li>Required fields (<code>Patient.birthDate</code>)</li>
+<li>Value ranges (A1c between 2.0–20.0%)</li>
+<li>Categorical validity (e.g., <code>Sex</code> ∈ [M, F, O, U])</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="47-data-quality-and-referential-integrity">4.7 Data Quality and Referential Integrity</h3>
+<h4 id="key-techniques">Key Techniques:</h4>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Null Checks</td>
+<td>Dataflow or Notebook</td>
+<td>Ensure required fields</td>
+</tr>
+<tr>
+<td>Lookup Validation</td>
+<td>SQL JOINs or Dataflows</td>
+<td>Ensure valid foreign keys</td>
+</tr>
+<tr>
+<td>De-duplication</td>
+<td>PySpark or SQL</td>
+<td>Remove redundant records</td>
+</tr>
+<tr>
+<td>Anomaly Detection</td>
+<td>Notebooks (z-score, IQR)</td>
+<td>Identify outliers</td>
+</tr>
+</tbody>
+</table>
+<h4 id="healthcare-use-case">Healthcare Use Case:</h4>
+<p><em>Two systems record the same patient differently.</em> Use <strong>Master Patient Index (MPI)</strong> or <strong>hash-based linking</strong> (e.g., SSN + DOB + ZIP) to consolidate.</p>
+<blockquote>
+<p>🛡️ <em>All patient IDs must be masked, encrypted, or tokenized in Gold layer for external analytics.</em></p>
+</blockquote>
+<hr>
+<h3 id="48-lab-modeling-patient-encounters">4.8 Lab: Modeling Patient Encounters</h3>
+<p><strong>Objective:</strong> Create a Gold-layer fact/dim model from raw encounter data.</p>
+<h4 id="dataset">Dataset:</h4>
+<p>Bronze:</p>
+<ul>
+<li><code>Bronze_HL7_ADT</code></li>
+<li><code>Bronze_FHIR_Encounter</code></li>
+</ul>
+<h4 id="tasks">Tasks:</h4>
+<ol>
+<li>Use Dataflows Gen2 to cleanse & standardize into <code>Silver_Encounter</code></li>
+<li>Create <code>Dim_Patient</code> with demographic attributes</li>
+<li>Create <code>Fact_Encounter</code> with date, provider, reason</li>
+<li>Use SQL Warehouse to link and build <code>Patient_Visit_360</code> view</li>
+</ol>
+<h4 id="questions">Questions:</h4>
+<ol>
+<li>What are surrogate keys used for?</li>
+<li>How do we track data lineage across Silver to Gold?</li>
+<li>Which tools support schema evolution?</li>
+</ol>
+<p><strong>Answers:</strong></p>
+<ol>
+<li>Anonymous, unique record IDs</li>
+<li>Use metadata + Delta Lake logs + Purview</li>
+<li>Delta format in OneLake</li>
+</ol>
+<p><strong>Interactive Lab:</strong> <a href="./visualizations-html/Module%204:%20AI%20Model%20Decision%20Tree%20Simulation.html" target="_blank">Module 4 - AI Model Decision Tree Simulation</a> <em>(Note: This lab is from the "2 Day..." doc, chosen for relevance to modeling concepts, though the section MD's lab is also good.)</em></p>
+<hr>
+<h3 id="49-quiz">4.9 Quiz</h3>
+<p><strong>1. What is the Silver layer used for?</strong>
+a) Raw ingestion
+b) AI predictions
+c) Cleaned, conformed data
+<strong>→ Answer: c</strong></p>
+<p><strong>2. What tool is ideal for low-code data transformations in Fabric?</strong>
+a) SQL Warehouse
+b) Dataflows Gen2
+c) Notebooks
+<strong>→ Answer: b</strong></p>
+<p><strong>3. What is a surrogate key?</strong>
+a) Original patient MRN
+b) A business term
+c) A generated, non-PHI identifier
+<strong>→ Answer: c</strong></p>
+<hr>
+<h3 id="410-cheat-sheet-printable">4.10 Cheat Sheet (Printable)</h3>
+<ul>
+<li><strong>Bronze</strong> = Raw (HL7, FHIR JSON)</li>
+<li><strong>Silver</strong> = FHIR-aligned, clean tables</li>
+<li><strong>Gold</strong> = Analytics-ready dimensional model</li>
+<li><strong>Dim_Patient</strong> = Patient metadata</li>
+<li><strong>Fact_Encounter</strong> = Visit-level records</li>
+<li><strong>Dataflows Gen2</strong> = Power Query visual tool</li>
+<li><strong>Notebooks</strong> = Spark/Python transformation logic</li>
+<li><strong>Delta Format</strong> = Schema evolution + audit + rollback</li>
+<li><strong>Use Purview</strong> = Lineage + classification</li>
+</ul>
+<hr>
+<h3 id="interactive-element-for-section-4">Interactive Element for Section 4</h3>
+<p><a href="./visualizations-html/Section%204%20-%20Data%20Modeling%20and%20Transformation.html" target="_blank">Scenario-Based Interactive Questions</a></p>
+<hr>
+<h2 id="%F0%9F%93%98-section-5-security-compliance-and-governance">📘 Section 5: Security, Compliance, and Governance</h2>
+<hr>
+<h3 id="50-overview">5.0 Overview</h3>
+<p>Healthcare organizations face immense pressure to maintain the <strong>confidentiality</strong>, <strong>integrity</strong>, and <strong>availability</strong> of Protected Health Information (PHI). With the introduction of Microsoft Fabric, these responsibilities must now be applied in a cloud-native, highly-integrated analytics environment.</p>
+<p>This section explores how to <strong>build and enforce a secure data governance strategy</strong> within Fabric, ensuring full alignment with <strong>HIPAA</strong>, <strong>HITRUST</strong>, and best practices for modern healthcare data platforms. You’ll learn to implement role-based access controls (RBAC), encryption, audit logging, and governance classification using <strong>Microsoft Purview</strong>, all within a structured data lifecycle model.</p>
+<hr>
+<h3 id="51-regulatory-frameworks-in-focus">5.1 Regulatory Frameworks in Focus</h3>
+<figure>
+  <img src="./images/5.1%20Regulatory%20Frameworks%20in%20Focus.png" alt="Security, Compliance & Governance Diagram" style="width:100%;" />
+  <figcaption><em>Figure: Security, Compliance & Governance Diagram.</em></figcaption>
+</figure>
+<h4 id="hipaa-health-insurance-portability-and-accountability-act">HIPAA (Health Insurance Portability and Accountability Act)</h4>
+<ul>
+<li>
+<p>Applies to <strong>Covered Entities</strong> (hospitals, clinics, etc.) and <strong>Business Associates</strong> (vendors handling PHI)</p>
+</li>
+<li>
+<p>Key provisions:</p>
+<ul>
+<li><strong>Privacy Rule</strong>: Controls access and sharing</li>
+<li><strong>Security Rule</strong>: Requires technical safeguards</li>
+<li><strong>Breach Notification Rule</strong>: Mandates disclosure of data breaches</li>
+</ul>
+</li>
+</ul>
+<h4 id="hitrust-csf-common-security-framework">HITRUST CSF (Common Security Framework)</h4>
+<ul>
+<li>
+<p>Certifiable framework that combines:</p>
+<ul>
+<li>HIPAA</li>
+<li>NIST</li>
+<li>ISO/IEC 27001</li>
+</ul>
+</li>
+<li>
+<p>Often required by large providers or payers</p>
+</li>
+<li>
+<p>Strong on <strong>access controls</strong>, <strong>audit</strong>, and <strong>data integrity</strong></p>
+</li>
+</ul>
+<hr>
+<h3 id="52-fabrics-built-in-security-architecture">5.2 Fabric’s Built-In Security Architecture</h3>
+<h4 id="core-security-features">Core Security Features</h4>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RBAC</strong></td>
+<td>Role-Based Access Control for workspaces, items, pipelines</td>
+</tr>
+<tr>
+<td><strong>Encryption</strong></td>
+<td>At-rest and in-transit via Microsoft-managed or customer-managed keys (CMK)</td>
+</tr>
+<tr>
+<td><strong>Audit Logs</strong></td>
+<td>Logs of all access, modification, sharing</td>
+</tr>
+<tr>
+<td><strong>Purview Integration</strong></td>
+<td>Classify, label, and monitor data usage</td>
+</tr>
+<tr>
+<td><strong>Sensitivity Labels</strong></td>
+<td>Tag data with HIPAA or confidential classification</td>
+</tr>
+<tr>
+<td><strong>Data Loss Prevention (DLP)</strong></td>
+<td>Prevent export/sharing of sensitive data</td>
+</tr>
+<tr>
+<td><strong>Conditional Access</strong></td>
+<td>Restrict access by device, IP, compliance state</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="53-implementing-role-based-access-control-rbac">5.3 Implementing Role-Based Access Control (RBAC)</h3>
+<p>Fabric enforces RBAC at multiple levels:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Resource</th>
+<th>Roles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tenant</td>
+<td>Entire Fabric tenant</td>
+<td>Global Admin, Fabric Admin</td>
+</tr>
+<tr>
+<td>Workspace</td>
+<td>Data projects</td>
+<td>Admin, Member, Contributor, Viewer</td>
+</tr>
+<tr>
+<td>Item</td>
+<td>Individual datasets, notebooks</td>
+<td>Owner, Viewer, Contributor</td>
+</tr>
+</tbody>
+</table>
+<h4 id="best-practices">Best Practices:</h4>
+<ul>
+<li><strong>Least privilege</strong>: Grant only needed access</li>
+<li>Use <strong>security groups</strong> in Entra ID to manage roles</li>
+<li>Review permissions quarterly</li>
+</ul>
+<hr>
+<h3 id="54-encryption-and-key-management">5.4 Encryption and Key Management</h3>
+<h4 id="encryption-in-fabric">Encryption in Fabric</h4>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Scope</th>
+<th>Key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>In-Transit</td>
+<td>All data moving between services</td>
+<td>TLS 1.2+</td>
+</tr>
+<tr>
+<td>At-Rest</td>
+<td>Stored in OneLake and Warehouse</td>
+<td>AES-256</td>
+</tr>
+<tr>
+<td>CMK</td>
+<td>Customer-managed</td>
+<td>Azure Key Vault</td>
+</tr>
+</tbody>
+</table>
+<h4 id="hipaa-considerations">HIPAA Considerations</h4>
+<ul>
+<li>Encrypt all PHI at rest and in transit</li>
+<li>Rotate keys on a scheduled basis</li>
+<li>Log all key access and changes</li>
+</ul>
+<hr>
+<h3 id="55-auditing-and-activity-monitoring">5.5 Auditing and Activity Monitoring</h3>
+<p>Audit logs are essential for HIPAA compliance and forensic review.</p>
+<h4 id="using-microsoft-purview-audit">Using Microsoft Purview Audit</h4>
+<ul>
+<li>
+<p>Tracks:</p>
+<ul>
+<li>Who accessed what</li>
+<li>When and from where</li>
+<li>Actions taken (view, download, delete)</li>
+</ul>
+</li>
+<li>
+<p>Enables:</p>
+<ul>
+<li><strong>Access investigation</strong></li>
+<li><strong>Breach forensics</strong></li>
+<li><strong>Usage pattern tracking</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="integration-with-siem-eg-sentinel">Integration with SIEM (e.g., Sentinel)</h4>
+<ul>
+<li>Export logs to Azure Monitor or Microsoft Sentinel</li>
+<li>Correlate with other events (e.g., login anomalies)</li>
+</ul>
+<hr>
+<h3 id="56-sensitivity-labels-and-data-classification">5.6 Sensitivity Labels and Data Classification</h3>
+<p>Microsoft Purview allows you to classify and tag data.</p>
+<h4 id="steps-to-enable">Steps to Enable:</h4>
+<ol>
+<li>
+<p>Enable <strong>Microsoft Purview Governance Portal</strong></p>
+</li>
+<li>
+<p>Set up <strong>data classification rules</strong>:</p>
+<ul>
+<li>PHI: Names, DOB, MRNs, SSN</li>
+<li>PII: Email, phone, address</li>
+</ul>
+</li>
+<li>
+<p>Apply <strong>sensitivity labels</strong>:</p>
+<ul>
+<li>HIPAA-HIGH, Confidential-HITRUST</li>
+</ul>
+</li>
+<li>
+<p>Set <strong>auto-labeling policies</strong> for:</p>
+<ul>
+<li>Excel files</li>
+<li>CSV uploads</li>
+<li>JSON APIs</li>
+</ul>
+</li>
+</ol>
+<h4 id="fabric-application">Fabric Application</h4>
+<ul>
+<li>
+<p>Labels are inherited across:</p>
+<ul>
+<li>Lakehouses</li>
+<li>Reports</li>
+<li>Pipelines</li>
+</ul>
+</li>
+<li>
+<p>Use <strong>DLP policies</strong> to:</p>
+<ul>
+<li>Block export of labeled data</li>
+<li>Alert on downloads or external sharing</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="57-conditional-access-and-dlp">5.7 Conditional Access and DLP</h3>
+<p>Using <strong>Microsoft Entra ID (Azure AD)</strong>:</p>
+<ul>
+<li>
+<p>Define policies:</p>
+<ul>
+<li>Block access from unmanaged devices</li>
+<li>Require MFA for privileged access</li>
+<li>Restrict export of confidential data</li>
+</ul>
+</li>
+</ul>
+<h4 id="dlp-actions">DLP Actions</h4>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Scenario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Block Download</td>
+<td>Report contains <code>HIPAA-HIGH</code> data</td>
+</tr>
+<tr>
+<td>Alert</td>
+<td>Export of data from PHI-labeled table</td>
+</tr>
+<tr>
+<td>Restrict Sharing</td>
+<td>Only allow internal users</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="58-data-governance-with-microsoft-purview">5.8 Data Governance with Microsoft Purview</h3>
+<h4 id="core-functions">Core Functions</h4>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Catalog</td>
+<td>Discover and tag datasets</td>
+</tr>
+<tr>
+<td>Classification</td>
+<td>Tag PHI/PII/Sensitive</td>
+</tr>
+<tr>
+<td>Lineage</td>
+<td>Track data from source to report</td>
+</tr>
+<tr>
+<td>Access Policies</td>
+<td>Control data actions</td>
+</tr>
+</tbody>
+</table>
+<h4 id="compliance-alignment">Compliance Alignment</h4>
+<ul>
+<li>Lineage enables <strong>audit trail for HIPAA’s Access & Integrity controls</strong></li>
+<li>Classification supports <strong>minimum necessary principle</strong></li>
+<li>Policies help prevent <strong>inadvertent disclosure</strong></li>
+</ul>
+<hr>
+<h3 id="59-lab-configure-governance-for-a-new-dataset">5.9 Lab: Configure Governance for a New Dataset</h3>
+<p><strong>Scenario:</strong> A new dataset of patient appointments and visit notes is uploaded to the Fabric Lakehouse.</p>
+<h4 id="tasks">Tasks:</h4>
+<ol>
+<li>Classify dataset with <strong>“HIPAA-HIGH”</strong> sensitivity label</li>
+<li>Apply <strong>DLP rule</strong>: block download outside corporate IPs</li>
+<li>Enable <strong>audit tracking</strong></li>
+<li>Create a <strong>lineage diagram</strong> from ingestion to Power BI report</li>
+<li>Set up <strong>access policy</strong>: Analysts = View only</li>
+</ol>
+<h4 id="questions">Questions:</h4>
+<ol>
+<li>Why use “least privilege” for Viewer roles?</li>
+<li>How does Purview support breach investigations?</li>
+<li>What triggers a DLP block?</li>
+</ol>
+<p><strong>Answers:</strong></p>
+<ol>
+<li>Reduces attack surface, minimizes exposure</li>
+<li>Logs who accessed/modified data</li>
+<li>Export/download of sensitive labeled content</li>
+</ol>
+<p><strong>Interactive Lab:</strong> <a href="./visualizations-html/Module%205:%20HIPAA%20Compliance%20Check.html" target="_blank">Module 5 - HIPAA Compliance Check</a></p>
+<hr>
+<h3 id="510-quiz">5.10 Quiz</h3>
+<p><strong>1. What does HIPAA require for stored data?</strong>
+a) Compression
+b) Encryption
+c) Zip format
+<strong>→ Answer: b</strong></p>
+<p><strong>2. What tool in Microsoft Fabric supports audit and classification?</strong>
+a) Power BI
+b) Purview
+c) SQL Warehouse
+<strong>→ Answer: b</strong></p>
+<p><strong>3. Which control prevents data downloads?</strong>
+a) Notebooks
+b) DLP
+c) RBAC
+<strong>→ Answer: b</strong></p>
+<hr>
+<h3 id="511-cheat-sheet-printable">5.11 Cheat Sheet (Printable)</h3>
+<ul>
+<li><strong>HIPAA</strong> = Privacy + Security + Breach Notification</li>
+<li><strong>HITRUST</strong> = Certifiable control framework</li>
+<li><strong>RBAC</strong> = Control access by role and project</li>
+<li><strong>Encryption</strong> = TLS in-transit, AES-256 at-rest</li>
+<li><strong>Purview</strong> = Classify, label, and audit PHI</li>
+<li><strong>Sensitivity Labels</strong> = HIPAA-HIGH, HITRUST, Confidential</li>
+<li><strong>DLP</strong> = Prevent export or misuse of sensitive data</li>
+<li><strong>Audit Logs</strong> = Track every action on data</li>
+<li><strong>Lineage Diagrams</strong> = Visualize movement of PHI</li>
+</ul>
+<hr>
+<h3 id="interactive-element-for-section-5">Interactive Element for Section 5</h3>
+<p><a href="./visualizations-html/Section%205%20-%20Security,%20Compliance,%20and%20Governance.html" target="_blank">Case Study: Secure Data Workflow</a></p>
+<hr>
+<h2 id="%F0%9F%93%98-section-6-analytics-and-reporting">📘 Section 6: Analytics and Reporting</h2>
+<hr>
+<h3 id="60-overview">6.0 Overview</h3>
+<p>Transforming raw data into actionable intelligence is one of the most vital outcomes of any healthcare data platform. Microsoft Fabric streamlines this process by offering <strong>native integration with Power BI</strong>, enabling secure, compliant, real-time visualization and reporting directly from Lakehouse and Warehouse models using the <strong>DirectLake</strong> connection.</p>
+<p>This section equips data engineers with the knowledge to build high-performance analytics pipelines, design healthcare-specific dashboards, and implement <strong>role-based data access</strong> to meet regulatory and operational requirements.</p>
+<hr>
+<h3 id="61-analytics-in-the-healthcare-context">6.1 Analytics in the Healthcare Context</h3>
+<figure>
+  <img src="./images/6.1-Analytics%20&%20Reporting%20Diagram.png" alt="Analytics & Reporting Diagram" style="width:100%;" />
+  <figcaption><em>Figure: Analytics & Reporting Diagram.</em></figcaption>
+</figure>
+<p>Healthcare analytics can be broadly categorized into:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Clinical</strong></td>
+<td>Patient readmission risk, Disease prevalence, ICU alerts</td>
+</tr>
+<tr>
+<td><strong>Operational</strong></td>
+<td>Bed utilization, Appointment no-shows, Staff productivity</td>
+</tr>
+<tr>
+<td><strong>Financial</strong></td>
+<td>Denial rates, Billing lags, Reimbursement analytics</td>
+</tr>
+<tr>
+<td><strong>Public Health</strong></td>
+<td>Vaccination tracking, Infection surveillance</td>
+</tr>
+</tbody>
+</table>
+<p>Power BI in Fabric supports real-time dashboards, KPI trend reports, and interactive drilldowns.</p>
+<hr>
+<h3 id="62-directlake-vs-import-vs-directquery">6.2 DirectLake vs Import vs DirectQuery</h3>
+<h4 id="power-bi-connection-modes">Power BI Connection Modes:</h4>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Performance</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Import</td>
+<td>Fastest, but data is duplicated</td>
+<td>Stable, infrequent refresh</td>
+</tr>
+<tr>
+<td>DirectQuery</td>
+<td>Live query against Warehouse</td>
+<td>Real-time needs, higher latency</td>
+</tr>
+<tr>
+<td><strong>DirectLake</strong></td>
+<td>Fabric-only: live query on OneLake</td>
+<td>Best performance + no duplication</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 Use <strong>DirectLake</strong> for patient-level reports with large datasets from Lakehouse tables.</p>
+</blockquote>
+<hr>
+<h3 id="63-connecting-power-bi-to-fabric">6.3 Connecting Power BI to Fabric</h3>
+<h4 id="steps-to-visualize-lakehouse-data">Steps to Visualize Lakehouse Data:</h4>
+<ol>
+<li>
+<p>In Fabric Workspace → Select Lakehouse</p>
+</li>
+<li>
+<p>Click “New Power BI Dataset”</p>
+</li>
+<li>
+<p>Choose the table (<code>Gold_Patient_360</code>, <code>Fact_Visit</code>)</p>
+</li>
+<li>
+<p>Power BI creates dataset → Click “Create Report”</p>
+</li>
+<li>
+<p>Build visualizations:</p>
+<ul>
+<li>Bar: Readmissions by Hospital</li>
+<li>Line: Avg LOS over time</li>
+<li>Matrix: Patient counts by provider + condition</li>
+</ul>
+</li>
+</ol>
+<h4 id="notes">Notes:</h4>
+<ul>
+<li>Data remains in <strong>OneLake</strong>—no duplication</li>
+<li>Changes in Lakehouse are reflected live</li>
+</ul>
+<hr>
+<h3 id="64-common-healthcare-dashboards">6.4 Common Healthcare Dashboards</h3>
+<h4 id="example-dashboards">Example Dashboards:</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Key Visuals</th>
+<th>Audience</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Clinical Quality</strong></td>
+<td>HEDIS scores, Mortality rates</td>
+<td>CMOs, Care Managers</td>
+</tr>
+<tr>
+<td><strong>Operations</strong></td>
+<td>Daily census, OR delays</td>
+<td>Admin, Ops Leaders</td>
+</tr>
+<tr>
+<td><strong>Financial</strong></td>
+<td>Payer mix, Reimbursement lag</td>
+<td>CFO, Billing</td>
+</tr>
+<tr>
+<td><strong>Patient Engagement</strong></td>
+<td>Portal logins, Message response</td>
+<td>Marketing, Patient Services</td>
+</tr>
+</tbody>
+</table>
+<p>Each dashboard should follow <strong>visual best practices</strong>:</p>
+<ul>
+<li>Use muted colors for clinical severity</li>
+<li>Sort by most recent month</li>
+<li>Display <strong>counts</strong>, <strong>rates</strong>, and <strong>trends</strong></li>
+<li>Ensure accessible color contrast</li>
+</ul>
+<hr>
+<h3 id="65-implementing-row-level-security-rls">6.5 Implementing Row-Level Security (RLS)</h3>
+<p>In healthcare, <strong>data segmentation is mandatory</strong> for compliance and privacy.</p>
+<h4 id="use-case-examples">Use Case Examples:</h4>
+<table>
+<thead>
+<tr>
+<th>User Role</th>
+<th>View Restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clinic Director</td>
+<td>Only their location</td>
+</tr>
+<tr>
+<td>Provider</td>
+<td>Only their patients</td>
+</tr>
+<tr>
+<td>Analyst</td>
+<td>Aggregated, de-identified</td>
+</tr>
+</tbody>
+</table>
+<h4 id="steps-to-implement-rls">Steps to Implement RLS:</h4>
+<ol>
+<li>
+<p>Create a <strong>security table</strong>:</p>
+<pre class="hljs"><code><div>SecurityMatrix(UserEmail, Department, AccessLevel)
+</div></code></pre>
+</li>
+<li>
+<p>Define roles in Power BI → Manage Roles</p>
+</li>
+<li>
+<p>Use DAX filters:</p>
+<pre class="hljs"><code><div>[Department] = LOOKUPVALUE(SecurityMatrix[Department], SecurityMatrix[UserEmail], USERPRINCIPALNAME())
+</div></code></pre>
+</li>
+</ol>
+<hr>
+<h3 id="66-embedding-and-publishing-dashboards">6.6 Embedding and Publishing Dashboards</h3>
+<p>Dashboards can be:</p>
+<ul>
+<li>Shared via Power BI Service</li>
+<li>Embedded in EHR portals (e.g., Epic Hyperspace via iframe)</li>
+<li>Scheduled as PDF/email snapshots</li>
+<li>Restricted with Sensitivity Labels and DLP</li>
+</ul>
+<h4 id="governance-reminders">Governance Reminders:</h4>
+<ul>
+<li>Apply <strong>sensitivity labels</strong> to all datasets</li>
+<li>Enable <strong>export restrictions</strong></li>
+<li>Track report access via <strong>Purview activity logs</strong></li>
+</ul>
+<hr>
+<h3 id="67-performance-tuning-tips">6.7 Performance Tuning Tips</h3>
+<p>To optimize Power BI performance:</p>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Use Measures</td>
+<td>Replace calculated columns</td>
+</tr>
+<tr>
+<td>Avoid Bi-Directional Filters</td>
+<td>Simplify relationships</td>
+</tr>
+<tr>
+<td>Limit Visuals per Page</td>
+<td>Reduce render time</td>
+</tr>
+<tr>
+<td>Index Fact Tables</td>
+<td>Pre-aggregate where possible</td>
+</tr>
+<tr>
+<td>Prefer DirectLake</td>
+<td>Avoid dataset duplication</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="68-lab-build-a-readmissions-dashboard">6.8 Lab: Build a Readmissions Dashboard</h3>
+<p><strong>Scenario:</strong> Your hospital wants a Power BI report tracking 30-day readmissions by diagnosis and provider.</p>
+<h4 id="dataset">Dataset:</h4>
+<p><code>Gold_Admissions</code>, <code>Dim_Provider</code>, <code>Dim_Diagnosis</code></p>
+<h4 id="tasks">Tasks:</h4>
+<ol>
+<li>
+<p>Connect Power BI to Fabric Lakehouse using DirectLake</p>
+</li>
+<li>
+<p>Build:</p>
+<ul>
+<li>Bar chart: Readmissions by diagnosis</li>
+<li>Matrix: Provider vs. Readmission %</li>
+<li>Slicer: Date range</li>
+</ul>
+</li>
+<li>
+<p>Apply RLS: Providers see only their patients</p>
+</li>
+<li>
+<p>Publish and apply “HIPAA-HIGH” label</p>
+</li>
+</ol>
+<h4 id="questions">Questions:</h4>
+<ol>
+<li>Why is DirectLake preferred for live analytics?</li>
+<li>What is the purpose of RLS?</li>
+<li>How does labeling protect reports?</li>
+</ol>
+<p><strong>Answers:</strong></p>
+<ol>
+<li>Low-latency access to large tables without duplication</li>
+<li>Limits data visibility based on user roles</li>
+<li>Restricts sharing/export and triggers alerts on violations</li>
+</ol>
+<p><strong>Interactive Lab:</strong> <a href="./visualizations-html/Module%207:%20Power%20BI%20Dashboard%20Element%20Simulation.html" target="_blank">Module 7 - Power BI Dashboard Element Simulation</a> <em>(Note: This lab is from "2 Day..." doc, relevant to dashboard building)</em></p>
+<hr>
+<h3 id="69-quiz">6.9 Quiz</h3>
+<p><strong>1. What connection mode keeps data in OneLake while allowing fast analytics?</strong>
+a) Import
+b) DirectQuery
+c) DirectLake
+<strong>→ Answer: c</strong></p>
+<p><strong>2. What Power BI feature restricts user-specific access?</strong>
+a) Bookmarks
+b) RLS
+c) Filters
+<strong>→ Answer: b</strong></p>
+<p><strong>3. Which type of dashboard shows operational performance?</strong>
+a) Mortality tracking
+b) No-show appointment rate
+c) HbA1c trend
+<strong>→ Answer: b</strong></p>
+<hr>
+<h3 id="610-cheat-sheet-printable">6.10 Cheat Sheet (Printable)</h3>
+<ul>
+<li><strong>DirectLake</strong> = Live OneLake access, no duplication</li>
+<li><strong>RLS</strong> = User-based data segmentation</li>
+<li><strong>Power BI</strong> = Integrated in Fabric for real-time visuals</li>
+<li><strong>HIPAA Label</strong> = Applied via Purview for PHI reports</li>
+<li><strong>Dashboards</strong> = Clinical, operational, financial, engagement</li>
+<li><strong>Export Control</strong> = Enforced via DLP & sensitivity labels</li>
+</ul>
+<hr>
+<h3 id="interactive-element-for-section-6">Interactive Element for Section 6</h3>
+<p><a href="./visualizations-html/Section%206%20-%20Analytics%20and%20Reporting.html" target="_blank">Interactive Analytics & Reporting Element</a></p>
+<hr>
+<h2 id="%F0%9F%93%98-section-7-machine-learning-and-ai-integration">📘 Section 7: Machine Learning and AI Integration</h2>
+<hr>
+<h3 id="70-overview">7.0 Overview</h3>
+<p>Machine Learning (ML) and Artificial Intelligence (AI) are transforming healthcare by enabling predictive insights that were once impossible with traditional analytics. From predicting patient readmissions to automating claims fraud detection, the potential of AI is vast.</p>
+<p>Microsoft Fabric empowers healthcare data engineers to build, train, deploy, and operationalize ML models using <strong>integrated notebooks, PySpark, and Azure Machine Learning (Azure ML)</strong>. This section will guide you through the end-to-end process of developing explainable, regulatory-compliant AI workflows in Fabric, ensuring trust, fairness, and clinical relevance.</p>
+<hr>
+<h3 id="71-ai-in-healthcare-use-cases">7.1 AI in Healthcare: Use Cases</h3>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Readmission Prediction</strong></td>
+<td>Predict likelihood of a patient returning within 30 days</td>
+</tr>
+<tr>
+<td><strong>Sepsis Detection</strong></td>
+<td>Alert clinicians of early warning signs</td>
+</tr>
+<tr>
+<td><strong>Clinical Deterioration</strong></td>
+<td>Track ICU patients for vital instability</td>
+</tr>
+<tr>
+<td><strong>Claims Anomaly Detection</strong></td>
+<td>Identify billing errors and fraud</td>
+</tr>
+<tr>
+<td><strong>Patient Segmentation</strong></td>
+<td>Stratify populations for care coordination</td>
+</tr>
+<tr>
+<td><strong>No-Show Prediction</strong></td>
+<td>Forecast appointment attendance risks</td>
+</tr>
+</tbody>
+</table>
+<p>These models must be built and deployed with <strong>transparency</strong>, <strong>privacy</strong>, and <strong>interpretability</strong> at the forefront.</p>
+<h4 id="711-aiml-workflow-in-microsoft-fabric">7.1.1 AI/ML Workflow in Microsoft Fabric</h4>
+<figure>
+  <img src="./images/7.1-diagram_AI%3AML%20Workflow%20in%20Microsoft%20Fabric.png" alt="AI/ML Workflow in Microsoft Fabric" style="width:100%;" />
+  <figcaption><em>Figure: Overview of the AI/Machine Learning workflow within Microsoft Fabric, from data sources to actionable insights.</em></figcaption>
+</figure>
+<hr>
+<h3 id="72-ai-architecture-in-fabric">7.2 AI Architecture in Fabric</h3>
+<p>Microsoft Fabric enables ML workflows through:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lakehouse</strong></td>
+<td>Stores training/validation datasets</td>
+</tr>
+<tr>
+<td><strong>Notebooks</strong></td>
+<td>Develop ML models using Python, Spark MLlib, Scikit-Learn</td>
+</tr>
+<tr>
+<td><strong>MLflow Integration</strong></td>
+<td>Track experiments, hyperparameters, metrics</td>
+</tr>
+<tr>
+<td><strong>Azure ML</strong></td>
+<td>Model registration, endpoint deployment, governance</td>
+</tr>
+<tr>
+<td><strong>Power BI</strong></td>
+<td>Visualize predictions</td>
+</tr>
+<tr>
+<td><strong>Purview</strong></td>
+<td>Monitor AI data lineage, classifications</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 Notebooks support Python, Spark, SQL, and R kernels.</p>
+</blockquote>
+<hr>
+<h3 id="73-ml-development-workflow-in-fabric">7.3 ML Development Workflow in Fabric</h3>
+<h4 id="step-by-step-pipeline">Step-by-Step Pipeline:</h4>
+<ol>
+<li>
+<p><strong>Define Business Problem</strong></p>
+<ul>
+<li>E.g., Predict 30-day readmission for CHF patients</li>
+</ul>
+</li>
+<li>
+<p><strong>Ingest & Clean Data</strong></p>
+<ul>
+<li>Use Lakehouse Bronze → Silver → Gold pipeline</li>
+</ul>
+</li>
+<li>
+<p><strong>Engineer Features</strong></p>
+<ul>
+<li>Prior admissions, vitals, age, comorbidities</li>
+</ul>
+</li>
+<li>
+<p><strong>Split Dataset</strong></p>
+<ul>
+<li>70/30 train-test split</li>
+</ul>
+</li>
+<li>
+<p><strong>Train Model</strong></p>
+<ul>
+<li>Logistic Regression, XGBoost, Random Forest</li>
+</ul>
+</li>
+<li>
+<p><strong>Evaluate Performance</strong></p>
+<ul>
+<li>AUC, Precision, Recall, F1</li>
+</ul>
+</li>
+<li>
+<p><strong>Track via MLflow</strong></p>
+<ul>
+<li>Log metrics, hyperparameters, artifacts</li>
+</ul>
+</li>
+<li>
+<p><strong>Deploy Model</strong></p>
+<ul>
+<li>Azure ML endpoint or Fabric Notebook</li>
+</ul>
+</li>
+<li>
+<p><strong>Score New Data</strong></p>
+<ul>
+<li>Write back predictions to <code>Gold_PatientRisk</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Visualize in Power BI</strong></p>
+</li>
+</ol>
+<ul>
+<li>Create dashboards filtered by risk bands</li>
+</ul>
+<hr>
+<h3 id="74-building-in-notebooks">7.4 Building in Notebooks</h3>
+<h4 id="sample-logistic-regression-for-readmissions">Sample: Logistic Regression for Readmissions</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
+<span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> LogisticRegression
+<span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> classification_report, roc_auc_score
+<span class="hljs-keyword">import</span> mlflow
+
+<span class="hljs-comment"># Assuming df is your Spark DataFrame loaded from Gold_Admissions</span>
+<span class="hljs-comment"># df = spark.read.format("delta").load("/Tables/Gold_Admissions")</span>
+<span class="hljs-comment"># For simplicity, let's assume pandas_df is already prepared</span>
+<span class="hljs-comment"># pandas_df = df.toPandas() </span>
+
+<span class="hljs-comment"># Example: Replace with actual feature and target column names</span>
+<span class="hljs-comment"># X = pandas_df[["Age", "PriorVisits", "ChronicConditions"]]</span>
+<span class="hljs-comment"># y = pandas_df["Readmitted"]</span>
+
+<span class="hljs-comment"># X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)</span>
+
+<span class="hljs-comment"># with mlflow.start_run():</span>
+<span class="hljs-comment">#     model = LogisticRegression()</span>
+<span class="hljs-comment">#     model.fit(X_train, y_train)</span>
+
+<span class="hljs-comment">#     y_pred = model.predict(X_test)</span>
+<span class="hljs-comment">#     y_pred_proba = model.predict_proba(X_test)[:,1] # For AUC</span>
+
+<span class="hljs-comment">#     print(classification_report(y_test, y_pred))</span>
+<span class="hljs-comment">#     auc_score = roc_auc_score(y_test, y_pred_proba)</span>
+<span class="hljs-comment">#     print("AUC:", auc_score)</span>
+    
+<span class="hljs-comment">#     mlflow.log_metric("auc", auc_score)</span>
+<span class="hljs-comment">#     mlflow.sklearn.log_model(model, "readmission_model")</span>
+
+</div></code></pre>
+<blockquote>
+<p>📌 Use <strong>Delta Tables</strong> to persist scoring outputs.</p>
+</blockquote>
+<hr>
+<h3 id="75-azure-ml-integration">7.5 Azure ML Integration</h3>
+<p>Models developed in Fabric can be pushed to <strong>Azure ML</strong> for:</p>
+<ul>
+<li>Centralized <strong>model registry</strong></li>
+<li>Scalable <strong>batch inference</strong></li>
+<li>Realtime <strong>REST endpoints</strong></li>
+<li><strong>CI/CD pipelines</strong> for model promotion</li>
+</ul>
+<h4 id="hipaa-notes">HIPAA Notes:</h4>
+<ul>
+<li>Ensure endpoints are secured</li>
+<li>Use only <strong>de-identified or tokenized</strong> data</li>
+<li>Monitor access via Azure Monitor & Purview</li>
+</ul>
+<hr>
+<h3 id="76-explainability-and-responsible-ai">7.6 Explainability and Responsible AI</h3>
+<h4 id="tools">Tools:</h4>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SHAP</strong></td>
+<td>Feature attribution</td>
+</tr>
+<tr>
+<td><strong>Fairlearn</strong></td>
+<td>Bias auditing</td>
+</tr>
+<tr>
+<td><strong>MLflow</strong></td>
+<td>Model traceability</td>
+</tr>
+<tr>
+<td><strong>Purview</strong></td>
+<td>Data lineage</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-bias-check-with-fairlearn">Example: Bias Check with Fairlearn</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># from fairlearn.metrics import MetricFrame, selection_rate</span>
+<span class="hljs-comment"># Assuming y_test, y_pred, and sensitive features (e.g., pandas_df["Sex"]) are defined</span>
+<span class="hljs-comment"># sensitive_features_test = X_test["Sex"] # Or however sensitive features are aligned with y_test</span>
+<span class="hljs-comment"># grouped_on_sex = MetricFrame(metrics=selection_rate,</span>
+<span class="hljs-comment">#                              y_true=y_test,</span>
+<span class="hljs-comment">#                              y_pred=y_pred,</span>
+<span class="hljs-comment">#                              sensitive_features=sensitive_features_test)</span>
+<span class="hljs-comment"># print(grouped_on_sex.by_group)</span>
+</div></code></pre>
+<blockquote>
+<p>🛡️ Explainability is crucial for <strong>clinician trust</strong> and <strong>regulatory defense</strong>.</p>
+</blockquote>
+<h4 id="761-ai-for-chronic-disease-progression-modeling">7.6.1 AI for Chronic Disease Progression Modeling</h4>
+<figure>
+  <img src="./images/7.6.1-diagram_Conceptual%20workflow%20for%20AI-driven%20chronic%20disease%20progression%20modeling%20using%20Microsoft%20Fabric.png" alt="AI for Chronic Disease Progression Modeling Workflow" style="width:100%;" />
+  <figcaption><em>Figure: Conceptual workflow for AI-driven chronic disease progression modeling using Microsoft Fabric.</em></figcaption>
+</figure>
+<hr>
+<h3 id="77-hipaa-and-hitrust-considerations">7.7 HIPAA and HITRUST Considerations</h3>
+<ul>
+<li>All training data must be <strong>de-identified or covered under BAA</strong></li>
+<li>Secure PHI using <strong>Customer Managed Keys</strong></li>
+<li>Enable <strong>audit logging</strong> on all Notebook sessions</li>
+<li>Perform <strong>periodic access reviews</strong></li>
+<li>Implement <strong>Human-in-the-Loop (HITL)</strong> for critical decisions</li>
+</ul>
+<hr>
+<h3 id="78-lab-build-a-readmission-risk-model">7.8 Lab: Build a Readmission Risk Model</h3>
+<h4 id="objective">Objective:</h4>
+<p>Predict 30-day readmission risk using patient demographics, clinical data, and prior encounters.</p>
+<h4 id="tasks">Tasks:</h4>
+<ol>
+<li>
+<p>Load dataset from <code>Gold_Admissions</code></p>
+</li>
+<li>
+<p>Use Notebook to:</p>
+<ul>
+<li>Clean nulls, encode categorical vars</li>
+<li>Train RandomForestClassifier</li>
+<li>Calculate Precision, Recall, AUC</li>
+</ul>
+</li>
+<li>
+<p>Log metrics via MLflow</p>
+</li>
+<li>
+<p>Persist predictions to <code>Gold_PatientRisk</code></p>
+</li>
+<li>
+<p>Visualize in Power BI by hospital and provider</p>
+</li>
+</ol>
+<h4 id="questions">Questions:</h4>
+<ol>
+<li>What makes a model “explainable”?</li>
+<li>How do SHAP values assist clinicians?</li>
+<li>Why is model lineage important?</li>
+</ol>
+<p><strong>Answers:</strong></p>
+<ol>
+<li>Stakeholders can understand its reasoning</li>
+<li>Show how each input influences output</li>
+<li>Enables audits, debugging, regulatory transparency</li>
+</ol>
+<p><strong>Interactive Labs:</strong></p>
+<ul>
+<li><a href="./visualizations-html/Module%203:%20Copilot%20Code%20Generation%20Simulation.html" target="_blank">Module 3 - Copilot Code Generation Simulation</a></li>
+<li><a href="./visualizations-html/Module%204:%20AI%20Model%20Decision%20Tree%20Simulation.html" target="_blank">Module 4 - AI Model Decision Tree Simulation</a></li>
+</ul>
+<hr>
+<h3 id="79-quiz">7.9 Quiz</h3>
+<p><strong>1. What is MLflow used for in Fabric?</strong>
+a) Data ingestion
+b) Tracking models and metrics
+c) Sharing reports
+<strong>→ Answer: b</strong></p>
+<p><strong>2. What is a common model used for binary predictions in healthcare?</strong>
+a) K-Means
+b) Logistic Regression
+c) PCA
+<strong>→ Answer: b</strong></p>
+<p><strong>3. Which tool helps explain feature influence?</strong>
+a) SHAP
+b) KQL
+c) RLS
+<strong>→ Answer: a</strong></p>
+<hr>
+<h3 id="710-cheat-sheet-printable">7.10 Cheat Sheet (Printable)</h3>
+<ul>
+<li><strong>MLflow</strong> = Track metrics, parameters, artifacts</li>
+<li><strong>Azure ML</strong> = Register, deploy, govern models</li>
+<li><strong>SHAP</strong> = Explainability for predictions</li>
+<li><strong>Fairlearn</strong> = Bias auditing</li>
+<li><strong>Delta Tables</strong> = Persist scored outputs</li>
+<li><strong>HIPAA</strong> = Requires secure, explainable AI</li>
+<li><strong>Gold_PatientRisk</strong> = Recommended output table</li>
+</ul>
+<hr>
+<h3 id="interactive-element-for-section-7">Interactive Element for Section 7</h3>
+<p><a href="./visualizations-html/Section%207%20-%20Machine%20Learning%20and%20AI%20Integration.html" target="_blank">Interactive ML & AI Element</a></p>
+<hr>
+<h2 id="%F0%9F%93%98-section-8-performance-optimization">📘 Section 8: Performance Optimization</h2>
+<hr>
+<h3 id="80-overview">8.0 Overview</h3>
+<p>As healthcare data volumes grow—spanning patient records, telemetry, imaging metadata, and financial transactions—so too does the complexity of managing system performance. Even a well-architected Fabric deployment can suffer from latency, bottlenecks, and resource contention without targeted tuning.</p>
+<p>This section empowers Data Engineers to identify, troubleshoot, and resolve performance issues across <strong>Microsoft Fabric’s components</strong>: Lakehouse, Spark Notebooks, SQL Warehouses, and Power BI reports. Strategies outlined here will ensure seamless operation, faster insights, and cost-effective resource consumption—without compromising security or compliance.</p>
+<hr>
+<h3 id="81-key-areas-of-optimization">8.1 Key Areas of Optimization</h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Focus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lakehouse</strong></td>
+<td>Partitioning, file sizes, metadata</td>
+</tr>
+<tr>
+<td><strong>Notebooks (Spark)</strong></td>
+<td>Caching, parallelism, memory tuning</td>
+</tr>
+<tr>
+<td><strong>SQL Warehouses</strong></td>
+<td>Indexing, query plans, concurrency</td>
+</tr>
+<tr>
+<td><strong>Power BI Reports</strong></td>
+<td>DAX formulas, visual load, data reduction</td>
+</tr>
+<tr>
+<td><strong>Pipelines</strong></td>
+<td>Step execution time, parallelism</td>
+</tr>
+<tr>
+<td><strong>Storage and I/O</strong></td>
+<td>Delta file structure, read/write latency</td>
+</tr>
+</tbody>
+</table>
+<h4 id="data-driven-ed-optimization-workflow">Data-Driven ED Optimization Workflow</h4>
+<figure>
+  <img src="./images/8.1-diagram_Data-Driven%20ED%20Optimization%20Workflow.png" alt="Data-Driven Emergency Department Optimization Workflow" style="width:100%;" />
+  <figcaption><em>Figure: Data-Driven Emergency Department Optimization Workflow using Microsoft Fabric.</em></figcaption>
+</figure>
+<hr>
+<h3 id="82-lakehouse-and-delta-optimization">8.2 Lakehouse and Delta Optimization</h3>
+<h4 id="a-partitioning">A. Partitioning</h4>
+<p>Effective partitioning improves scan performance by reducing file reads.</p>
+<table>
+<thead>
+<tr>
+<th>Recommended Partition Fields</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EncounterDate</td>
+<td><code>2024-01-01</code></td>
+</tr>
+<tr>
+<td>FacilityID</td>
+<td><code>Hospital_001</code></td>
+</tr>
+<tr>
+<td>Year-Month</td>
+<td><code>2024-01</code></td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div><span class="hljs-comment"># df.write.format("delta").partitionBy("YearMonth").save("path/to/partitioned_table")</span>
+</div></code></pre>
+<blockquote>
+<p>📌 Avoid over-partitioning (>5000 small partitions) which increases metadata overhead.</p>
+</blockquote>
+<h4 id="b-optimize-and-vacuum">B. Optimize and Vacuum</h4>
+<ul>
+<li>Use <code>OPTIMIZE</code> to compact small files</li>
+<li>Use <code>VACUUM</code> to remove obsolete files and save storage</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">OPTIMIZE</span> Gold_Encounter
+VACUUM Gold_Encounter RETAIN <span class="hljs-number">168</span> <span class="hljs-keyword">HOURS</span>
+</div></code></pre>
+<blockquote>
+<p>🧼 Run these during low-traffic hours to prevent job conflicts.</p>
+</blockquote>
+<hr>
+<h3 id="83-spark-and-notebook-optimization">8.3 Spark and Notebook Optimization</h3>
+<h4 id="a-resource-management">A. Resource Management</h4>
+<ul>
+<li>Allocate appropriate Spark clusters (cores, RAM)</li>
+<li>Monitor executor memory and garbage collection</li>
+<li>Use <code>df.persist()</code> or <code>df.cache()</code> selectively</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># df.cache()</span>
+<span class="hljs-comment"># df.count()  # Materializes cache</span>
+</div></code></pre>
+<h4 id="b-parallelism">B. Parallelism</h4>
+<ul>
+<li>Use <code>.repartition()</code> before wide transformations</li>
+<li>Avoid <code>collect()</code> on large DataFrames</li>
+<li>Use broadcast joins for small dimension tables</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># df = df.repartition("EncounterDate")</span>
+</div></code></pre>
+<h4 id="c-udf-performance">C. UDF Performance</h4>
+<p>Avoid using Python UDFs where native Spark SQL functions can suffice—use <strong>PySpark SQL functions</strong> instead.</p>
+<hr>
+<h3 id="84-sql-warehouse-query-tuning">8.4 SQL Warehouse Query Tuning</h3>
+<h4 id="a-indexing-and-statistics">A. Indexing and Statistics</h4>
+<ul>
+<li>Create indexes on commonly filtered columns:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> idx_admitdate <span class="hljs-keyword">ON</span> Fact_Visit(AdmitDate)
+</div></code></pre>
+<ul>
+<li>Refresh table statistics regularly:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">ANALYZE</span> <span class="hljs-keyword">TABLE</span> Fact_Visit <span class="hljs-keyword">COMPUTE</span> <span class="hljs-keyword">STATISTICS</span>
+</div></code></pre>
+<h4 id="b-query-plan-analysis">B. Query Plan Analysis</h4>
+<ul>
+<li>
+<p>Use <strong>EXPLAIN PLAN</strong> to identify:</p>
+<ul>
+<li>Cartesian joins</li>
+<li>Table scans</li>
+<li>Unfiltered subqueries</li>
+</ul>
+</li>
+</ul>
+<h4 id="c-materialized-views">C. Materialized Views</h4>
+<ul>
+<li>Use for high-use aggregations:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">MATERIALIZED</span> <span class="hljs-keyword">VIEW</span> ReadmissionRate <span class="hljs-keyword">AS</span>
+<span class="hljs-keyword">SELECT</span> ProviderID, <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">WHERE</span> Readmitted=<span class="hljs-number">1</span> <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> ProviderID
+</div></code></pre>
+<hr>
+<h3 id="85-power-bi-optimization">8.5 Power BI Optimization</h3>
+<h4 id="a-data-model-best-practices">A. Data Model Best Practices</h4>
+<table>
+<thead>
+<tr>
+<th>Practice</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Star Schema</td>
+<td>Improves join efficiency</td>
+</tr>
+<tr>
+<td>Avoid Calculated Columns</td>
+<td>Use Measures</td>
+</tr>
+<tr>
+<td>Hide Unused Fields</td>
+<td>Reduce memory usage</td>
+</tr>
+</tbody>
+</table>
+<h4 id="b-dax-performance">B. DAX Performance</h4>
+<ul>
+<li>Avoid <code>CALCULATE</code> within nested filters</li>
+<li>Use <code>SUMX()</code> and <code>FILTER()</code> sparingly</li>
+<li>Prefer <code>VAR</code> blocks for complex logic</li>
+</ul>
+<h4 id="c-visual-optimization">C. Visual Optimization</h4>
+<ul>
+<li>Limit visuals per page to under 8</li>
+<li>Use bookmarks for drilldowns instead of heavy cross-filters</li>
+<li>Pre-filter large datasets</li>
+</ul>
+<hr>
+<h3 id="86-monitoring-and-diagnostics">8.6 Monitoring and Diagnostics</h3>
+<h4 id="tools">Tools:</h4>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fabric Monitoring Hub</strong></td>
+<td>View pipeline performance, errors</td>
+</tr>
+<tr>
+<td><strong>Spark UI</strong></td>
+<td>Executor logs, DAG analysis</td>
+</tr>
+<tr>
+<td><strong>Power BI Performance Analyzer</strong></td>
+<td>Visual-level timings</td>
+</tr>
+<tr>
+<td><strong>SQL Execution Plans</strong></td>
+<td>Identify bottlenecks</td>
+</tr>
+<tr>
+<td><strong>Purview</strong></td>
+<td>Lineage tracing and access analysis</td>
+</tr>
+</tbody>
+</table>
+<h4 id="metrics-to-watch">Metrics to Watch:</h4>
+<ul>
+<li>Query latency</li>
+<li>Task failure rate</li>
+<li>Dataset refresh time</li>
+<li>File scan percentage</li>
+<li>Memory spills</li>
+</ul>
+<hr>
+<h3 id="87-lab-diagnose-a-slow-report">8.7 Lab: Diagnose a Slow Report</h3>
+<p><strong>Scenario:</strong> Your Power BI report showing encounter trends is slow to load.</p>
+<h4 id="dataset">Dataset:</h4>
+<p><code>Gold_Encounter</code>, <code>Dim_Patient</code>, <code>Fact_LabResults</code></p>
+<h4 id="tasks">Tasks:</h4>
+<ol>
+<li>Use Power BI Performance Analyzer</li>
+<li>Identify visuals with longest render time</li>
+<li>Replace calculated columns with Measures</li>
+<li>Reduce unnecessary fields in visuals</li>
+<li>Repartition <code>Gold_Encounter</code> on EncounterDate</li>
+<li>Apply <code>OPTIMIZE</code> to improve scan time</li>
+</ol>
+<h4 id="questions">Questions:</h4>
+<ol>
+<li>Why use Measures instead of Calculated Columns?</li>
+<li>What causes slow file scans in Lakehouse?</li>
+<li>How can caching improve notebook speed?</li>
+</ol>
+<p><strong>Answers:</strong></p>
+<ol>
+<li>Measures compute at query time, save memory</li>
+<li>Poor partitioning or many small files</li>
+<li>Reduces repeated reads from storage layer</li>
+</ol>
+<p><strong>Interactive Lab:</strong> <a href="./visualizations-html/Module%208:%20KPI%20Anomaly%20Detection%20Simulation.html" target="_blank">Module 8 - KPI Anomaly Detection Simulation</a></p>
+<hr>
+<h3 id="88-quiz">8.8 Quiz</h3>
+<p><strong>1. What Spark function improves performance by materializing data?</strong>
+a) collect()
+b) persist()
+c) printSchema()
+<strong>→ Answer: b</strong></p>
+<p><strong>2. Which SQL command compacts files in Lakehouse?</strong>
+a) DELETE
+b) MERGE
+c) OPTIMIZE
+<strong>→ Answer: c</strong></p>
+<p><strong>3. What tool helps analyze Power BI visual load time?</strong>
+a) SQL Profiler
+b) Performance Analyzer
+c) Report Builder
+<strong>→ Answer: b</strong></p>
+<hr>
+<h3 id="89-cheat-sheet-printable">8.9 Cheat Sheet (Printable)</h3>
+<ul>
+<li><strong>OPTIMIZE</strong> = Compact Delta files</li>
+<li><strong>VACUUM</strong> = Clean up obsolete files</li>
+<li><strong>Repartition()</strong> = Increase parallelism</li>
+<li><strong>df.cache()</strong> = Persist intermediate results</li>
+<li><strong>EXPLAIN PLAN</strong> = View query execution steps</li>
+<li><strong>Materialized Views</strong> = Improve dashboard performance</li>
+<li><strong>DAX Measures</strong> = Faster and lighter than calculated columns</li>
+<li><strong>Performance Analyzer</strong> = Power BI diagnostics tool</li>
+</ul>
+<hr>
+<h3 id="interactive-element-for-section-8">Interactive Element for Section 8</h3>
+<p><a href="./visualizations-html/Section%208%20-%20Performance%20Optimization.html" target="_blank">Interactive Performance Optimization Element</a></p>
+<hr>
+<h2 id="%F0%9F%93%98-section-9-collaboration-and-sharing">📘 Section 9: Collaboration and Sharing</h2>
+<hr>
+<h3 id="90-overview">9.0 Overview</h3>
+<p>In healthcare data environments, insights are rarely created in isolation. Collaboration between data engineers, analysts, clinicians, compliance officers, and operational leaders is essential. Microsoft Fabric’s architecture is designed to support <strong>secure, scalable, and governed collaboration</strong> on data projects—while enforcing stringent data protection policies.</p>
+<p>This section details how to manage access, coordinate across teams, share datasets and dashboards securely, and maintain compliance in collaborative workflows. It also includes hands-on configuration for real-world workspace role assignments and approval flows.</p>
+<hr>
+<h3 id="91-principles-of-secure-collaboration-in-healthcare">9.1 Principles of Secure Collaboration in Healthcare</h3>
+<h4 id="911-patient-360-data-integration-flow">9.1.1 Patient 360 Data Integration Flow</h4>
+<figure>
+  <img src="./images/9.1.1-diagram_Data%20integration%20flow%20for%20building%20a%20Patient%20360%20view%20using%20Microsoft%20Fabric.png" alt="Patient 360 Data Integration Flow" style="width:100%;" />
+  <figcaption><em>Figure: Data integration flow for building a Patient 360 view using Microsoft Fabric.</em></figcaption>
+</figure>
+<h4 id="a-principle-of-least-privilege">A. Principle of Least Privilege</h4>
+<p>Only the minimum access necessary for a user’s role should be granted. This limits risk exposure and ensures HIPAA compliance.</p>
+<h4 id="b-segregation-of-duties">B. Segregation of Duties</h4>
+<p>Preventing data manipulation and analysis by the same individual helps maintain data integrity.</p>
+<h4 id="c-role-based-collaboration">C. Role-Based Collaboration</h4>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Primary Task</th>
+<th>Typical Tools Used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Engineer</td>
+<td>Pipeline development, Lakehouse modeling</td>
+<td>Notebooks, Dataflows</td>
+</tr>
+<tr>
+<td>Analyst</td>
+<td>Report creation, data exploration</td>
+<td>Power BI, Dataflows</td>
+</tr>
+<tr>
+<td>Clinician Leader</td>
+<td>Interpretation, clinical insight validation</td>
+<td>Power BI</td>
+</tr>
+<tr>
+<td>Compliance Officer</td>
+<td>Auditing, access review</td>
+<td>Purview, Audit Logs</td>
+</tr>
+</tbody>
+</table>
+<h4 id="patient-360-data-integration-flow-example-of-collaborative-data-product">Patient 360 Data Integration Flow (Example of Collaborative Data Product)</h4>
+<figure>
+  <img src="./images/9.1.2-diagram-Patient%20360%20Data%20Integration%20Flow%20%28Example%20of%20Collaborative%20Data%20Product%29.png" alt="Patient 360 Data Integration Flow - Example of Collaborative Data Product" style="width:100%;" />
+  <figcaption><em>Figure: Patient 360 Data Integration Flow (Example of Collaborative Data Product).</em></figcaption>
+</figure>
+<hr>
+<h3 id="92-fabric-workspace-structure-for-team-collaboration">9.2 Fabric Workspace Structure for Team Collaboration</h3>
+<p>Fabric workspaces are logical containers for collaboration.</p>
+<h4 id="workspace-elements">Workspace Elements:</h4>
+<ul>
+<li><strong>Lakehouse</strong>: Shared storage for raw and processed data</li>
+<li><strong>Pipelines</strong>: Orchestrate ingestion and transformation</li>
+<li><strong>Notebooks</strong>: Enable code-based collaboration</li>
+<li><strong>Power BI Reports</strong>: Interactive data sharing</li>
+<li><strong>Dataflows/Items</strong>: Reusable logic and visual prep</li>
+</ul>
+<h4 id="best-practices">Best Practices:</h4>
+<ul>
+<li>Name workspaces clearly: <code>Cardiology_Analytics_DEV</code>, <code>ED_Operational_Metrics_PROD</code></li>
+<li>Assign team-specific permissions</li>
+<li>Use <strong>Dev-Test-Prod</strong> workspace promotion</li>
+</ul>
+<hr>
+<h3 id="93-assigning-roles-in-a-workspace">9.3 Assigning Roles in a Workspace</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Permissions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Admin</td>
+<td>Full control, including role assignments</td>
+</tr>
+<tr>
+<td>Member</td>
+<td>Can edit content, cannot manage roles</td>
+</tr>
+<tr>
+<td>Contributor</td>
+<td>Can add items (e.g., notebooks)</td>
+</tr>
+<tr>
+<td>Viewer</td>
+<td>Read-only access</td>
+</tr>
+</tbody>
+</table>
+<h4 id="steps-to-assign-roles">Steps to Assign Roles:</h4>
+<ol>
+<li>Open Fabric → Select Workspace</li>
+<li>Click “Access” → “Add User”</li>
+<li>Choose role per team member</li>
+<li>Review permissions quarterly</li>
+</ol>
+<hr>
+<h3 id="94-collaboration-with-notebooks">9.4 Collaboration with Notebooks</h3>
+<p>Fabric notebooks support multi-user editing and sharing.</p>
+<h4 id="features">Features:</h4>
+<ul>
+<li>Share notebook links within teams</li>
+<li>Use version control for edits</li>
+<li>Add Markdown comments and instructions</li>
+<li>Share outputs with analysts (dataframes, plots)</li>
+</ul>
+<blockquote>
+<p>📌 Do not embed PHI directly in shared notebooks unless access is governed and logged.</p>
+</blockquote>
+<hr>
+<h3 id="95-sharing-power-bi-reports-securely">9.5 Sharing Power BI Reports Securely</h3>
+<h4 id="options">Options:</h4>
+<ul>
+<li>Publish to Workspace → Limit viewers with RLS</li>
+<li>Share via Power BI app → Assign viewer group</li>
+<li>Embed securely in EHR portal or SharePoint</li>
+<li>Export to PDF → Only for de-identified data</li>
+</ul>
+<h4 id="hipaa-safe-sharing-practices">HIPAA-Safe Sharing Practices:</h4>
+<ul>
+<li>Use <strong>Sensitivity Labels</strong>: "HIPAA-HIGH", "Confidential"</li>
+<li>Enable <strong>Data Loss Prevention (DLP)</strong>: Block unauthorized export</li>
+<li>Log all sharing activity in <strong>Purview Audit</strong></li>
+</ul>
+<hr>
+<h3 id="96-approval-flows-and-access-reviews">9.6 Approval Flows and Access Reviews</h3>
+<h4 id="microsoft-entra-azure-ad">Microsoft Entra (Azure AD):</h4>
+<ul>
+<li>Set <strong>access expiration policies</strong></li>
+<li>Create <strong>approval workflows</strong> for workspace roles</li>
+<li>Automate <strong>quarterly access reviews</strong> for compliance</li>
+<li>Send review reports to Compliance Officers</li>
+</ul>
+<hr>
+<h3 id="97-data-sharing-outside-the-organization">9.7 Data Sharing Outside the Organization</h3>
+<h4 id="internal-collaboration">Internal Collaboration</h4>
+<ul>
+<li>
+<p>Use Azure B2B guest access for trusted collaborators</p>
+</li>
+<li>
+<p>Enforce:</p>
+<ul>
+<li>MFA</li>
+<li>Session limits</li>
+<li>Conditional access</li>
+</ul>
+</li>
+</ul>
+<h4 id="external-sharing-risks">External Sharing Risks</h4>
+<ul>
+<li>Never share PHI outside without legal, contractual, and compliance approvals</li>
+<li>Encrypt data at source and apply governance policies</li>
+<li>Use <strong>data de-identification pipelines</strong> prior to export</li>
+</ul>
+<hr>
+<h3 id="98-lab-configure-collaboration-settings-for-a-new-workspace">9.8 Lab: Configure Collaboration Settings for a New Workspace</h3>
+<h4 id="scenario">Scenario:</h4>
+<p>Your analytics team is launching a new project on Emergency Department efficiency.</p>
+<h4 id="tasks">Tasks:</h4>
+<ol>
+<li>
+<p>Create a new workspace: <code>ED_Efficiency_Q2</code></p>
+</li>
+<li>
+<p>Assign:</p>
+<ul>
+<li>Data Engineer = Admin</li>
+<li>Analyst = Contributor</li>
+<li>CMO = Viewer</li>
+</ul>
+</li>
+<li>
+<p>Share a Power BI dashboard with RLS</p>
+</li>
+<li>
+<p>Apply "HIPAA-HIGH" label</p>
+</li>
+<li>
+<p>Enable quarterly access review</p>
+</li>
+</ol>
+<h4 id="questions">Questions:</h4>
+<ol>
+<li>Why are contributors better than members for analysts?</li>
+<li>What audit tool verifies sharing activity?</li>
+<li>How do Sensitivity Labels affect external sharing?</li>
+</ol>
+<p><strong>Answers:</strong></p>
+<ol>
+<li>Contributors can build without full edit rights</li>
+<li>Microsoft Purview audit logs</li>
+<li>Labels trigger DLP rules and sharing restrictions</li>
+</ol>
+<p><strong>Interactive Lab:</strong> <a href="./visualizations-html/Module%209-Patient%20360%20Profile%20Card%20Designer.html" target="_blank">Module 9 - Patient 360 Profile Card Designer</a> <em>(Note: This lab from "2 Day..." doc can be adapted to focus on collaborative aspects of designing such a view)</em></p>
+<hr>
+<h3 id="99-quiz">9.9 Quiz</h3>
+<p><strong>1. What is the most restrictive Fabric role?</strong>
+a) Admin
+b) Viewer
+c) Member
+<strong>→ Answer: b</strong></p>
+<p><strong>2. What principle requires giving users only the access they need?</strong>
+a) Separation of Duties
+b) Privileged Escalation
+c) Least Privilege
+<strong>→ Answer: c</strong></p>
+<p><strong>3. Which tool supports version control and collaboration in Fabric notebooks?</strong>
+a) Power BI
+b) Azure DevOps
+c) Native Fabric Notebooks
+<strong>→ Answer: c</strong></p>
+<hr>
+<h3 id="910-cheat-sheet-printable">9.10 Cheat Sheet (Printable)</h3>
+<ul>
+<li><strong>Least Privilege</strong> = Only access what’s required</li>
+<li><strong>RBAC</strong> = Fabric role-based workspace permissions</li>
+<li><strong>Notebooks</strong> = Shared development with version history</li>
+<li><strong>Power BI</strong> = Share securely with RLS and labels</li>
+<li><strong>Sensitivity Labels</strong> = "HIPAA-HIGH", "Confidential"</li>
+<li><strong>DLP Policies</strong> = Block export/share of PHI</li>
+<li><strong>Purview Audit Logs</strong> = Track all data actions</li>
+<li><strong>Access Reviews</strong> = Quarterly compliance validation</li>
+</ul>
+<hr>
+<h3 id="interactive-element-for-section-9">Interactive Element for Section 9</h3>
+<p><a href="./visualizations-html/Section%209%20-%20Collaboration%20and%20Sharing.html" target="_blank">Interactive Collaboration & Sharing Element</a></p>
+<hr>
+<h2 id="%F0%9F%93%98-section-10-advanced-features-and-customization">📘 Section 10: Advanced Features and Customization</h2>
+<hr>
+<h3 id="100-overview">10.0 Overview</h3>
+<p>Once foundational systems are in place, the true power of Microsoft Fabric lies in its <strong>advanced capabilities and customization options</strong>. These allow healthcare data engineers to extend the platform across external tools, develop complex integrations, and tailor environments to unique organizational workflows—all without sacrificing security, performance, or compliance.</p>
+<p>This section details how to use advanced Fabric features such as OneLake shortcuts, custom visuals, APIs, and Git integration to elevate and personalize your healthcare data ecosystem.</p>
+<hr>
+<h3 id="101-extending-onelake-with-shortcuts">10.1 Extending OneLake with Shortcuts</h3>
+<p>OneLake allows users to create <strong>shortcuts to external storage systems</strong>, making data instantly accessible in Fabric without duplication.</p>
+<h4 id="use-cases">Use Cases:</h4>
+<table>
+<thead>
+<tr>
+<th>Source System</th>
+<th>Shortcut Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Azure Data Lake Gen2</td>
+<td>Access archived EHR batch files</td>
+</tr>
+<tr>
+<td>Amazon S3</td>
+<td>Pull research data from genomic labs</td>
+</tr>
+<tr>
+<td>Google Cloud Storage</td>
+<td>Collaborate with external research partners</td>
+</tr>
+</tbody>
+</table>
+<h4 id="how-to-create-a-shortcut">How to Create a Shortcut:</h4>
+<ol>
+<li>Open Fabric Workspace → Lakehouse</li>
+<li>Click “New” → “Shortcut”</li>
+<li>Select source: ADLS, S3, or GCS</li>
+<li>Authenticate (service principal or SAS)</li>
+<li>Map to logical folder</li>
+</ol>
+<blockquote>
+<p>📌 Shortcuts maintain source permissions and don’t ingest data physically.</p>
+</blockquote>
+<hr>
+<h3 id="102-customizing-power-bi-for-healthcare">10.2 Customizing Power BI for Healthcare</h3>
+<p>Power BI supports <strong>theme customization, branding, and advanced visuals</strong> tailored to healthcare.</p>
+<h4 id="a-themes">A. Themes</h4>
+<p>Customize reports with:</p>
+<ul>
+<li>Color palettes matching hospital branding</li>
+<li>Font consistency</li>
+<li>Header/footer templates</li>
+</ul>
+<h4 id="b-custom-visuals">B. Custom Visuals</h4>
+<p>Use industry-specific visuals:</p>
+<ul>
+<li><strong>Heatmaps</strong> (e.g., ER volume by hour)</li>
+<li><strong>Timeline slicers</strong> (for longitudinal care plans)</li>
+<li><strong>KPI indicators</strong> (color-coded thresholds)</li>
+</ul>
+<blockquote>
+<p>💡 Access AppSource for healthcare-certified visuals.</p>
+</blockquote>
+<h4 id="c-embedding-in-clinical-workflows">C. Embedding in Clinical Workflows</h4>
+<ul>
+<li>Use <strong>iframe integration</strong> to embed Power BI in EHR portals</li>
+<li>Auto-filter dashboards based on clinician credentials or department</li>
+</ul>
+<hr>
+<h3 id="103-api-access-and-automation">10.3 API Access and Automation</h3>
+<p>Fabric exposes APIs to <strong>orchestrate, monitor, and extend</strong> system components.</p>
+<h4 id="common-apis">Common APIs:</h4>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Power BI REST API</td>
+<td>Automate report deployment</td>
+</tr>
+<tr>
+<td>Fabric Pipeline API</td>
+<td>Trigger pipeline runs</td>
+</tr>
+<tr>
+<td>OneLake File API</td>
+<td>Programmatically manage data</td>
+</tr>
+<tr>
+<td>Azure ML SDK</td>
+<td>Deploy and monitor models</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sample-trigger-pipeline-from-external-app">Sample: Trigger Pipeline from External App</h4>
+<pre class="hljs"><code><div><span class="hljs-attribute">POST https://api.fabric.microsoft.com/pipelines/{pipelineId}/run
+Headers</span>: Authorization: Bearer <token>
+</div></code></pre>
+<blockquote>
+<p>🔒 Authenticate using service principals or managed identities.</p>
+</blockquote>
+<hr>
+<h3 id="104-webhooks-and-event-integration">10.4 Webhooks and Event Integration</h3>
+<p>Fabric supports <strong>event-driven architectures</strong> using Event Grid or Logic Apps.</p>
+<h4 id="use-cases">Use Cases:</h4>
+<ul>
+<li>Notify when patient volume exceeds threshold</li>
+<li>Trigger model re-training on new data arrival</li>
+<li>Automate compliance audit after data load</li>
+</ul>
+<h4 id="example">Example:</h4>
+<ol>
+<li>Create Event Grid subscription on OneLake path</li>
+<li>Route to Logic App → Send email alert</li>
+<li>Log event in audit table</li>
+</ol>
+<hr>
+<h3 id="105-integration-with-git-and-version-control">10.5 Integration with Git and Version Control</h3>
+<p>Fabric supports GitHub and Azure DevOps integration for:</p>
+<ul>
+<li>Notebook versioning</li>
+<li>Power BI report control</li>
+<li>CI/CD deployment of pipelines</li>
+</ul>
+<h4 id="steps">Steps:</h4>
+<ol>
+<li>Link Fabric workspace to Git repository</li>
+<li>Commit changes via portal or Git CLI</li>
+<li>Create pull requests and code reviews</li>
+<li>Deploy via pipelines or release agents</li>
+</ol>
+<blockquote>
+<p>🛡️ Git integration is critical for reproducibility and traceability.</p>
+</blockquote>
+<hr>
+<h3 id="106-connecting-with-dataverse-and-power-platform">10.6 Connecting with Dataverse and Power Platform</h3>
+<p>Dataverse (used in Dynamics 365) can serve as a <strong>source or target</strong> for Fabric data.</p>
+<h4 id="use-case">Use Case:</h4>
+<ul>
+<li>Read Care Coordination tasks from Dataverse</li>
+<li>Enrich with Fabric analytics</li>
+<li>Write insights back for use in Power Apps</li>
+</ul>
+<h4 id="integration">Integration:</h4>
+<ul>
+<li>Use <strong>Dataflow Gen2</strong> with Dataverse connector</li>
+<li>Apply role filters for PHI protection</li>
+</ul>
+<hr>
+<h3 id="107-leveraging-azure-cognitive-services">10.7 Leveraging Azure Cognitive Services</h3>
+<p>Enhance Fabric with AI services:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Healthcare Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Text Analytics</td>
+<td>Extract keywords from physician notes</td>
+</tr>
+<tr>
+<td>Translator</td>
+<td>Localize patient instructions</td>
+</tr>
+<tr>
+<td>OCR</td>
+<td>Extract values from scanned documents</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>📌 De-identify data before sending to external cognitive APIs.</p>
+</blockquote>
+<hr>
+<h3 id="108-lab-customize-a-workspace-and-integrate-external-data">10.8 Lab: Customize a Workspace and Integrate External Data</h3>
+<h4 id="scenario">Scenario:</h4>
+<p>Your oncology department needs to analyze clinical trial data stored in Amazon S3 and enrich it with Power BI dashboards using organizational themes.</p>
+<h4 id="tasks">Tasks:</h4>
+<ol>
+<li>
+<p>Create shortcut from Amazon S3 into Fabric Lakehouse</p>
+</li>
+<li>
+<p>Load and format trial dataset into Silver layer</p>
+</li>
+<li>
+<p>Build Power BI report with:</p>
+<ul>
+<li>Hospital branding</li>
+<li>Heatmap of patient response rates</li>
+</ul>
+</li>
+<li>
+<p>Apply “HIPAA-HIGH” label to dataset</p>
+</li>
+<li>
+<p>Create webhook to notify when new data arrives</p>
+</li>
+</ol>
+<h4 id="questions">Questions:</h4>
+<ol>
+<li>What’s the difference between a shortcut and a data import?</li>
+<li>Why use Git integration for notebooks?</li>
+<li>How do webhooks support automation?</li>
+</ol>
+<p><strong>Answers:</strong></p>
+<ol>
+<li>Shortcut doesn’t ingest or duplicate data</li>
+<li>Enables versioning, auditing, and collaboration</li>
+<li>Triggers workflows or alerts on system events</li>
+</ol>
+<hr>
+<h3 id="109-quiz">10.9 Quiz</h3>
+<p><strong>1. What is a OneLake shortcut used for?</strong>
+a) Creating pipeline templates
+b) Linking to external data without ingesting
+c) Embedding Power BI
+<strong>→ Answer: b</strong></p>
+<p><strong>2. Which tool manages notebook versioning?</strong>
+a) PowerShell
+b) Git
+c) Excel
+<strong>→ Answer: b</strong></p>
+<p><strong>3. What Azure service enables event-based triggers?</strong>
+a) Sentinel
+b) Event Grid
+c) Fabric Notebook
+<strong>→ Answer: b</strong></p>
+<hr>
+<h3 id="1010-cheat-sheet-printable">10.10 Cheat Sheet (Printable)</h3>
+<ul>
+<li><strong>OneLake Shortcut</strong> = Connect to external cloud storage</li>
+<li><strong>Custom Visuals</strong> = Heatmaps, KPI indicators, slicers</li>
+<li><strong>Power BI Themes</strong> = Tailor look-and-feel</li>
+<li><strong>Fabric APIs</strong> = Automate tasks and triggers</li>
+<li><strong>Webhooks</strong> = Trigger actions on events</li>
+<li><strong>Git Integration</strong> = CI/CD and version control</li>
+<li><strong>Dataverse</strong> = Bi-directional sync with Dynamics</li>
+<li><strong>Cognitive Services</strong> = Text extraction, translation</li>
+<li><strong>De-identify</strong> = Always before using external APIs</li>
+</ul>
+<hr>
+<h3 id="interactive-element-for-section-10">Interactive Element for Section 10</h3>
+<p><a href="./visualizations-html/Section%2010%20-%20Advanced%20Features%20and%20Customization.html" target="_blank">Interactive Advanced Features Element</a></p>
+<hr>
+<h2 id="%F0%9F%93%98-section-11-case-studies-and-real-world-applications">📘 Section 11: Case Studies and Real-World Applications</h2>
+<hr>
+<h3 id="110-overview">11.0 Overview</h3>
+<p>Theoretical understanding is essential—but seeing how Microsoft Fabric functions in <strong>real-world healthcare systems</strong> brings the platform’s potential to life. In this section, we explore practical applications of Fabric within hospitals, health systems, and clinical research institutions.</p>
+<p>Each case study reveals how data engineers orchestrated ingestion, modeling, security, and analytics to solve tangible clinical and operational challenges. We'll analyze successes, barriers, and lessons learned to provide transferable strategies for your own deployments.</p>
+<hr>
+<h3 id="111-case-study-1-reducing-emergency-department-ed-wait-times">11.1 Case Study 1: Reducing Emergency Department (ED) Wait Times</h3>
+<h4 id="organization-midwest-general-hospital-1200-bed-academic-medical-center">Organization: Midwest General Hospital (1,200-bed academic medical center)</h4>
+<p><strong>Challenge:</strong>
+Excessive wait times in the ED due to delayed patient triage and inefficient bed allocation.</p>
+<p><strong>Solution Using Fabric:</strong></p>
+<ul>
+<li><strong>Data Ingestion:</strong> Connected real-time HL7 ADT messages and staffing schedules using Data Factory.</li>
+<li><strong>Modeling:</strong> Created Gold-layer <code>Fact_Triage</code> and <code>Dim_Bed</code> tables.</li>
+<li><strong>Analytics:</strong> Deployed Power BI dashboard visualizing average wait by hour, staff-to-patient ratio.</li>
+<li><strong>AI/ML:</strong> Notebook used to predict hourly patient inflow based on seasonality and historical data.</li>
+</ul>
+<p><strong>Outcome:</strong></p>
+<ul>
+<li>ED wait times reduced by <strong>27%</strong></li>
+<li>Hospital throughput improved by <strong>18%</strong></li>
+<li>Enabled <strong>predictive staffing model</strong></li>
+</ul>
+<hr>
+<h3 id="112-case-study-2-readmission-risk-prediction">11.2 Case Study 2: Readmission Risk Prediction</h3>
+<h4 id="organization-hopewell-health-system-multi-hospital-network-in-3-states">Organization: Hopewell Health System (multi-hospital network in 3 states)</h4>
+<p><strong>Challenge:</strong>
+High rates of 30-day readmissions for CHF patients, costing $5M+ in annual penalties.</p>
+<p><strong>Solution Using Fabric:</strong></p>
+<ul>
+<li><strong>Data Integration:</strong> Combined FHIR <code>Patient</code>, <code>Encounter</code>, and <code>Condition</code> data via REST API and loaded into OneLake.</li>
+<li><strong>Model Development:</strong> Logistic regression trained in Notebook using lab results, demographics, and prior visit history.</li>
+<li><strong>Deployment:</strong> Predictions written back to <code>Gold_PatientRisk</code>, used in daily rounding reports.</li>
+<li><strong>Governance:</strong> Access controlled via Purview; model performance tracked via MLflow.</li>
+</ul>
+<p><strong>Outcome:</strong></p>
+<ul>
+<li>Readmissions dropped by <strong>19%</strong> within 6 months</li>
+<li>Achieved <strong>HITRUST AI compliance audit</strong></li>
+<li>Clinicians gained confidence via SHAP-based model explainability</li>
+</ul>
+<hr>
+<h3 id="113-case-study-3-centralizing-data-for-a-public-health-consortium">11.3 Case Study 3: Centralizing Data for a Public Health Consortium</h3>
+<h4 id="organization-state-health-collaborative-10-hospitals-3-universities">Organization: State Health Collaborative (10 hospitals, 3 universities)</h4>
+<p><strong>Challenge:</strong>
+Lack of a unified data platform for COVID surveillance, vaccination metrics, and case trend analysis.</p>
+<p><strong>Solution Using Fabric:</strong></p>
+<ul>
+<li><strong>OneLake Shortcuts:</strong> Linked data across Azure, AWS, and GCP storage.</li>
+<li><strong>Dataflows Gen2:</strong> Unified schema across hospital systems, resolving duplicate patients via hashed MPI.</li>
+<li><strong>Power BI Dashboards:</strong> Public health dashboards built for state health department use.</li>
+<li><strong>Access Review:</strong> Quarterly governance checks using Fabric’s access logs and labels.</li>
+</ul>
+<p><strong>Outcome:</strong></p>
+<ul>
+<li>Created <strong>state-wide pandemic dashboard</strong> in 3 weeks</li>
+<li>Shared insights with <strong>CDC and WHO</strong></li>
+<li>Established reusable Fabric architecture for future emergencies</li>
+</ul>
+<hr>
+<h3 id="114-case-study-4-automating-claims-anomaly-detection">11.4 Case Study 4: Automating Claims Anomaly Detection</h3>
+<h4 id="organization-urbancare-health-managed-care-organization">Organization: UrbanCare Health (Managed Care Organization)</h4>
+<p><strong>Challenge:</strong>
+Claims fraud and errors led to millions in unrecouped expenses.</p>
+<p><strong>Solution Using Fabric:</strong></p>
+<ul>
+<li>Ingested <strong>claims feeds (X12 837)</strong> and <strong>enrollment files</strong> via Data Factory.</li>
+<li>Built <strong>anomaly detection model</strong> in PySpark Notebook.</li>
+<li>Scored claims in near-real time; routed flagged claims to audit queue.</li>
+<li>Used Power BI dashboard to visualize fraud patterns by NPI and CPT codes.</li>
+</ul>
+<p><strong>Outcome:</strong></p>
+<ul>
+<li>Flagged <strong>92%</strong> of known fraud cases</li>
+<li>Recovered <strong>$1.2M</strong> in claims within 6 months</li>
+<li>Cut manual review workload by <strong>40%</strong></li>
+</ul>
+<hr>
+<h3 id="115-themes-across-all-cases">11.5 Themes Across All Cases</h3>
+<table>
+<thead>
+<tr>
+<th>Theme</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unified Data via OneLake</td>
+<td>Simplified architecture, eliminated duplication</td>
+</tr>
+<tr>
+<td>AI Integration</td>
+<td>Enabled forward-looking decision making</td>
+</tr>
+<tr>
+<td>Governance via Purview</td>
+<td>Ensured compliance and visibility</td>
+</tr>
+<tr>
+<td>Collaboration Across Teams</td>
+<td>Analysts, clinicians, and engineers worked in sync</td>
+</tr>
+<tr>
+<td>Speed to Insight</td>
+<td>Built and deployed solutions in weeks, not months</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="116-interview-snapshots-voices-from-the-field">11.6 Interview Snapshots: Voices from the Field</h3>
+<p><strong>Data Engineer – Midwest General:</strong>
+<em>"Fabric allowed me to prototype and productionalize pipelines in the same place without jumping through admin hoops."</em></p>
+<p><strong>Compliance Officer – Hopewell Health:</strong>
+<em>"Purview gave us visibility into every dataset’s lineage—no more spreadsheets to track access."</em></p>
+<p><strong>Clinical Operations Lead – UrbanCare Health:</strong>
+<em>"Power BI let us turn claims data into action. Our fraud team can now target exactly where to look."</em></p>
+<hr>
+<h3 id="117-transferable-framework-fabric-solution-blueprint">11.7 Transferable Framework: Fabric Solution Blueprint</h3>
+<p><strong>Use this adaptable sequence for deploying Fabric in any healthcare problem space:</strong></p>
+<ol>
+<li>
+<p><strong>Problem Definition</strong></p>
+<ul>
+<li>Clinical? Operational? Financial?</li>
+</ul>
+</li>
+<li>
+<p><strong>Data Discovery</strong></p>
+<ul>
+<li>Sources, sensitivity, accessibility</li>
+</ul>
+</li>
+<li>
+<p><strong>Modeling Strategy</strong></p>
+<ul>
+<li>Bronze-Silver-Gold structure, schema plan</li>
+</ul>
+</li>
+<li>
+<p><strong>Build & Test</strong></p>
+<ul>
+<li>Pipelines, notebooks, dashboards</li>
+</ul>
+</li>
+<li>
+<p><strong>Compliance Review</strong></p>
+<ul>
+<li>DLP, RBAC, audit logs, classification</li>
+</ul>
+</li>
+<li>
+<p><strong>Rollout & Feedback</strong></p>
+<ul>
+<li>Stakeholder engagement, iteration cycle</li>
+</ul>
+</li>
+<li>
+<p><strong>Monitoring</strong></p>
+<ul>
+<li>Performance tuning, model drift, access reviews</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="118-lab-apply-case-study-architecture-to-your-environment">11.8 Lab: Apply Case Study Architecture to Your Environment</h3>
+<h4 id="scenario">Scenario:</h4>
+<p>You are tasked with addressing appointment no-show rates in your cardiology clinic using Microsoft Fabric.</p>
+<h4 id="tasks">Tasks:</h4>
+<ol>
+<li>Identify relevant data: appointment schedule, patient demographics, prior history</li>
+<li>Use Fabric to ingest from EHR and scheduling system</li>
+<li>Build feature table and train no-show prediction model</li>
+<li>Surface insights in Power BI with sensitivity label</li>
+<li>Establish collaboration: engineers, analysts, and schedulers</li>
+</ol>
+<h4 id="questions">Questions:</h4>
+<ol>
+<li>What makes real-world dashboards effective?</li>
+<li>How do shortcuts and shared workspaces support scale?</li>
+<li>What risk must be mitigated when using predictions in care?</li>
+</ol>
+<p><strong>Answers:</strong></p>
+<ol>
+<li>Timeliness, interactivity, clarity, role-specific metrics</li>
+<li>Data unification across systems and teams</li>
+<li>Bias, over-reliance, misinterpretation—must be explainable and overseen</li>
+</ol>
+<hr>
+<h3 id="119-quiz">11.9 Quiz</h3>
+<p><strong>1. Which hospital unit benefited from predictive staffing models?</strong>
+a) Oncology
+b) Emergency Department
+c) Pediatrics
+<strong>→ Answer: b</strong></p>
+<p><strong>2. What tool was used to track model performance in Case Study 2?</strong>
+a) GitHub
+b) SHAP
+c) MLflow
+<strong>→ Answer: c</strong></p>
+<p><strong>3. How did Hopewell Health reduce readmissions?</strong>
+a) Manual chart review
+b) Predictive modeling + rounding dashboards
+c) EHR upgrade
+<strong>→ Answer: b</strong></p>
+<hr>
+<h3 id="1110-cheat-sheet-printable">11.10 Cheat Sheet (Printable)</h3>
+<ul>
+<li><strong>Use Cases</strong> = Readmission prediction, fraud detection, ED flow, public health reporting</li>
+<li><strong>Tools</strong> = Notebooks, Power BI, MLflow, Purview, Dataflows Gen2</li>
+<li><strong>Results</strong> = ↓ Readmissions, ↓ fraud, ↑ ED efficiency</li>
+<li><strong>Framework</strong> = Problem → Data → Build → Govern → Monitor</li>
+<li><strong>Key to Success</strong> = Interdisciplinary collaboration + governance discipline</li>
+</ul>
+<hr>
+<h3 id="interactive-element-for-section-11">Interactive Element for Section 11</h3>
+<p><a href="./visualizations-html/Section%2011%20-%20Case%20Studies%20and%20Real-World%20Applications.html" target="_blank">Interactive Case Studies Element</a></p>
+<hr>
+<h2 id="%F0%9F%93%98-section-12-labs-and-exercises">📘 Section 12: Labs and Exercises</h2>
+<hr>
+<h3 id="120-overview">12.0 Overview</h3>
+<p>Knowledge without practice is fragile. This section offers comprehensive <strong>hands-on labs and exercises</strong> aligned with each core competency explored in previous sections. These tasks simulate real-world projects in a healthcare setting and support self-guided learning, team collaboration, and practical certification preparation.</p>
+<p>Each lab is structured with:</p>
+<ul>
+<li>Scenario and objective</li>
+<li>Task steps</li>
+<li>Challenge questions</li>
+<li>Role-specific assignments</li>
+<li>Model answers for self-assessment</li>
+</ul>
+<hr>
+<h3 id="121-lab-categories">12.1 Lab Categories</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Environment Setup</strong></td>
+<td>Provisioning workspaces, roles, and Lakehouse</td>
+</tr>
+<tr>
+<td><strong>Data Ingestion</strong></td>
+<td>Ingesting HL7, FHIR, streaming, batch</td>
+</tr>
+<tr>
+<td><strong>Modeling</strong></td>
+<td>Silver-Gold data modeling, normalization</td>
+</tr>
+<tr>
+<td><strong>Governance & Security</strong></td>
+<td>RBAC, Purview classification, audit logs</td>
+</tr>
+<tr>
+<td><strong>Analytics</strong></td>
+<td>Creating clinical dashboards with Power BI</td>
+</tr>
+<tr>
+<td><strong>AI/ML</strong></td>
+<td>Training and deploying predictive models</td>
+</tr>
+<tr>
+<td><strong>Performance Optimization</strong></td>
+<td>Query tuning, Spark tuning, report load</td>
+</tr>
+<tr>
+<td><strong>Integration</strong></td>
+<td>Git, Azure ML, webhooks, APIs</td>
+</tr>
+<tr>
+<td><strong>Use Case Application</strong></td>
+<td>Build end-to-end solution from real scenario</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="122-example-lab-build-an-end-to-end-readmission-prediction-pipeline">12.2 Example Lab: Build an End-to-End Readmission Prediction Pipeline</h3>
+<h4 id="scenario">Scenario:</h4>
+<p>Hopewell Hospital’s Quality team wants a tool to identify patients at high risk of readmission within 30 days of discharge.</p>
+<hr>
+<h4 id="lab-objective">Lab Objective:</h4>
+<p>Build a complete Fabric pipeline to ingest, model, and analyze readmission risk.</p>
+<hr>
+<h4 id="tools-used">Tools Used:</h4>
+<ul>
+<li>Data Factory</li>
+<li>Notebooks</li>
+<li>Power BI</li>
+<li>MLflow</li>
+<li>Microsoft Purview</li>
+</ul>
+<hr>
+<h4 id="tasks">Tasks:</h4>
+<p><strong>1. Ingestion</strong></p>
+<ul>
+<li>Create Lakehouse table <code>Bronze_DischargeEvents</code></li>
+<li>Use Dataflow Gen2 to pull patient encounters (FHIR: <code>Encounter</code> + <code>Patient</code>)</li>
+<li>Store raw data in OneLake</li>
+</ul>
+<p><strong>2. Transformation</strong></p>
+<ul>
+<li>Normalize data into <code>Silver_Encounter</code>, <code>Silver_Patient</code></li>
+<li>Create <code>Gold_ReadmissionCandidates</code> with key predictors</li>
+</ul>
+<p><strong>3. Modeling</strong></p>
+<ul>
+<li>
+<p>In Notebook:</p>
+<ul>
+<li>Train logistic regression on Gold dataset</li>
+<li>Log metrics using MLflow</li>
+<li>Score data and append to <code>Gold_PatientRisk</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>4. Reporting</strong></p>
+<ul>
+<li>
+<p>Create Power BI report:</p>
+<ul>
+<li>Slicer: Department</li>
+<li>KPIs: Predicted readmissions by provider, diagnosis</li>
+<li>Apply “HIPAA-HIGH” sensitivity label</li>
+</ul>
+</li>
+</ul>
+<p><strong>5. Governance</strong></p>
+<ul>
+<li>Enable Purview tracking on <code>Gold_PatientRisk</code></li>
+<li>Configure quarterly access review policy</li>
+</ul>
+<hr>
+<h4 id="questions">Questions:</h4>
+<ol>
+<li>Why use Bronze → Silver → Gold architecture?</li>
+<li>What metadata should be tracked for compliance?</li>
+<li>What are signs your model may be biased?</li>
+</ol>
+<p><strong>Answers:</strong></p>
+<ol>
+<li>It preserves raw data, enforces structure, and supports scalable reporting</li>
+<li>Data source, author, access logs, lineage</li>
+<li>Consistently over/under predicting by demographic group</li>
+</ol>
+<hr>
+<h3 id="123-challenge-lab-streaming-device-data-ingestion">12.3 Challenge Lab: Streaming Device Data Ingestion</h3>
+<p><strong>Objective:</strong> Ingest real-time vitals data from a wearable and store in Lakehouse with timestamp filtering.</p>
+<p><strong>Tools:</strong></p>
+<ul>
+<li>Event Hub (simulated)</li>
+<li>Eventstream</li>
+<li>Real-Time Analytics</li>
+<li>Lakehouse (Gold_PatientVitals)</li>
+</ul>
+<hr>
+<h3 id="124-mini-scenario-exercises">12.4 Mini-Scenario Exercises</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Task</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Appointments No-Show</td>
+<td>Build a predictive model using patient demographics and prior attendance</td>
+</tr>
+<tr>
+<td>Claims Fraud</td>
+<td>Design an anomaly detection system for claim lines</td>
+</tr>
+<tr>
+<td>Patient Education</td>
+<td>Extract keywords from free-text notes using Cognitive Services</td>
+</tr>
+<tr>
+<td>ED Throughput</td>
+<td>Analyze patient flow by time, disposition, and clinician</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="125-self-assessment-quiz-labs-and-exercises">12.5 Self-Assessment Quiz: Labs and Exercises</h3>
+<p><strong>1. What table layer should you use for model training?</strong>
+a) Bronze
+b) Silver
+c) Gold
+<strong>→ Answer: c</strong></p>
+<p><strong>2. Which Fabric tool enables visual ETL?</strong>
+a) Notebook
+b) Dataflow Gen2
+c) Spark UI
+<strong>→ Answer: b</strong></p>
+<p><strong>3. What should be logged with MLflow?</strong>
+a) SQL queries
+b) Metadata schemas
+c) Metrics, parameters, artifacts
+<strong>→ Answer: c</strong></p>
+<hr>
+<h3 id="126-role-specific-lab-checklist">12.6 Role-Specific Lab Checklist</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Required Labs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Engineer</td>
+<td>All ingestion, modeling, governance, ML</td>
+</tr>
+<tr>
+<td>Analyst</td>
+<td>Power BI dashboards, RLS, DirectLake</td>
+</tr>
+<tr>
+<td>Compliance Officer</td>
+<td>Purview classification, audit trails, RBAC setup</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="127-printable-job-aids-and-instructions">12.7 Printable Job Aids and Instructions</h3>
+<p>Included in Appendix:</p>
+<ul>
+<li>Power BI Publishing Steps (with RLS)</li>
+<li>Notebook Starter Template (with MLflow)</li>
+<li>HIPAA-Compliant Data Logging Checklist</li>
+<li>Ingestion Pipeline Design Template</li>
+<li>Security Configuration Worksheet</li>
+</ul>
+<hr>
+<h3 id="interactive-element-for-section-12">Interactive Element for Section 12</h3>
+<p><a href="./visualizations-html/Section%2012%20-%20Labs%20and%20Exercises.html" target="_blank">Interactive Labs & Exercises Element</a></p>
+<hr>
+<h2 id="%F0%9F%93%98-section-13-assessment-and-certification">📘 Section 13: Assessment and Certification</h2>
+<hr>
+<h3 id="130-overview">13.0 Overview</h3>
+<p>To ensure meaningful skill acquisition and industry readiness, this section presents a <strong>comprehensive certification assessment</strong> covering the entire Fabric for Healthcare training program. The exam is structured to test conceptual understanding, practical application, and governance awareness.</p>
+<p>Successful completion not only demonstrates mastery of Microsoft Fabric but also the ability to apply it responsibly in regulated healthcare environments.</p>
+<hr>
+<h3 id="131-exam-structure">13.1 Exam Structure</h3>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Number of Questions</th>
+<th>Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multiple Choice</td>
+<td>20</td>
+<td>40%</td>
+</tr>
+<tr>
+<td>Scenario-Based</td>
+<td>5</td>
+<td>30%</td>
+</tr>
+<tr>
+<td>Short Answer</td>
+<td>5</td>
+<td>30%</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="132-multiple-choice-questions-sample-set">13.2 Multiple Choice Questions (Sample Set)</h3>
+<p><strong>1. What format does OneLake use to store data?</strong>
+a) JSON
+b) Delta Parquet
+c) XML
+d) Avro
+→ <strong>Answer: b</strong></p>
+<p><strong>2. Which of the following is used to apply row-level permissions in Power BI?</strong>
+a) Audit Policy
+b) Sensitivity Labels
+c) RLS
+d) Power Query
+→ <strong>Answer: c</strong></p>
+<p><strong>3. What Fabric tool is used to create pipelines?</strong>
+a) Notebooks
+b) Dataflows Gen2
+c) Azure Monitor
+d) Data Factory
+→ <strong>Answer: d</strong></p>
+<p><strong>4. Which Azure service enables real-time alerts from data activity?</strong>
+a) Azure Event Grid
+b) Azure Data Lake
+c) Azure DevOps
+d) Azure Files
+→ <strong>Answer: a</strong></p>
+<p><strong>5. What should you always do before using PHI in external AI services?</strong>
+a) Encrypt it
+b) Tokenize or de-identify it
+c) Email it to IT
+d) None of the above
+→ <strong>Answer: b</strong></p>
+<hr>
+<h3 id="133-scenario-based-questions">13.3 Scenario-Based Questions</h3>
+<p><strong>Scenario 1:</strong>
+You're tasked with reducing readmissions in a rural hospital using Microsoft Fabric.</p>
+<p><strong>Questions:</strong></p>
+<ul>
+<li>What Fabric tools would you use to ingest, model, and predict?</li>
+<li>How would you ensure HIPAA compliance during modeling?</li>
+<li>What visualizations would be valuable for nurse managers?</li>
+</ul>
+<p><strong>Scenario 2:</strong>
+A provider dashboard is loading slowly during morning rounds.</p>
+<p><strong>Questions:</strong></p>
+<ul>
+<li>What optimization strategies can improve performance?</li>
+<li>How would you use DAX efficiently?</li>
+</ul>
+<p><strong>Scenario 3:</strong>
+An external research partner needs access to de-identified data.</p>
+<p><strong>Questions:</strong></p>
+<ul>
+<li>Which tools support secure external collaboration?</li>
+<li>What role-based configurations are needed?</li>
+</ul>
+<p><strong>Scenario 4:</strong>
+The compliance officer requests a full lineage of patient medication data from ingestion to reporting.</p>
+<p><strong>Questions:</strong></p>
+<ul>
+<li>What Fabric governance features will you use?</li>
+<li>How will you verify access history?</li>
+</ul>
+<p><strong>Scenario 5:</strong>
+A COVID dashboard must be built and shared with the state health department within 72 hours.</p>
+<p><strong>Questions:</strong></p>
+<ul>
+<li>How would you architect this solution using Fabric?</li>
+<li>What shortcuts and pipelines will help accelerate deployment?</li>
+</ul>
+<hr>
+<h3 id="134-short-answer-prompts">13.4 Short Answer Prompts</h3>
+<ol>
+<li>Describe the medallion architecture (Bronze-Silver-Gold) and its purpose.</li>
+<li>How does Microsoft Purview assist with HIPAA compliance?</li>
+<li>Explain the difference between sensitivity labels and RLS.</li>
+<li>How do notebooks in Fabric support model versioning and collaboration?</li>
+<li>Why is explainability important in healthcare AI?</li>
+</ol>
+<hr>
+<h3 id="135-grading-and-evaluation-criteria">13.5 Grading and Evaluation Criteria</h3>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Max Points</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multiple Choice</td>
+<td>40</td>
+<td>2 pts/question</td>
+</tr>
+<tr>
+<td>Scenario Responses</td>
+<td>30</td>
+<td>Depth, tools used, governance</td>
+</tr>
+<tr>
+<td>Short Answers</td>
+<td>30</td>
+<td>Clarity, terminology, best practices</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Passing Score:</strong> 75% (75 points or above)</p>
+</blockquote>
+<hr>
+<h3 id="136-certificate-of-completion">13.6 Certificate of Completion</h3>
+<p>Upon successful completion, learners will receive a personalized digital certificate containing:</p>
+<ul>
+<li>Learner’s Name</li>
+<li>Course Title: <em>Microsoft Fabric for Healthcare – Data Engineer Track</em></li>
+<li>Completion Date</li>
+<li>Signature line (Instructor/Program Lead)</li>
+<li>Certificate ID</li>
+</ul>
+<blockquote>
+<p>PDF template is available in the Appendix or on the learning portal.</p>
+</blockquote>
+<hr>
+<h3 id="137-feedback-and-next-steps">13.7 Feedback and Next Steps</h3>
+<p>After assessment:</p>
+<ul>
+<li>Complete feedback survey (link optional)</li>
+<li>Optional: Submit case project for instructor review</li>
+<li>Request badge for LinkedIn profile</li>
+</ul>
+<hr>
+<h3 id="138-printable-exam-preparation-checklist">13.8 Printable: Exam Preparation Checklist</h3>
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0">Reviewed all 12 sections</label></li>
+<li><input type="checkbox" id="checkbox1"><label for="checkbox1">Completed all labs</label></li>
+<li><input type="checkbox" id="checkbox2"><label for="checkbox2">Can explain HIPAA controls in Fabric</label></li>
+<li><input type="checkbox" id="checkbox3"><label for="checkbox3">Know how to create pipelines and dashboards</label></li>
+<li><input type="checkbox" id="checkbox4"><label for="checkbox4">Built and deployed a simple ML model</label></li>
+<li><input type="checkbox" id="checkbox5"><label for="checkbox5">Practiced role-based access configuration</label></li>
+<li><input type="checkbox" id="checkbox6"><label for="checkbox6">Understand OneLake architecture and shortcuts</label></li>
+<li><input type="checkbox" id="checkbox7"><label for="checkbox7">Used Purview for classification and audit</label></li>
+</ul>
+<hr>
+<h3 id="interactive-elements-for-section-13">Interactive Elements for Section 13</h3>
+<ul>
+<li><a href="./visualizations-html/Section%2013%20-%20Assessment%20and%20Certification.html" target="_blank">Assessment and Certification Overview</a></li>
+<li><a href="./visualizations-html/Section%2013%20-%20Student%20Assessment%20Test.html" target="_blank">Student Assessment Test 1</a></li>
+<li><a href="./visualizations-html/Section%2013%20-%20Student%20Assessment%20Test%202.html" target="_blank">Student Assessment Test 2</a></li>
+<li><a href="./visualizations-html/microsoft-fabric-interactive-quiz.html" target="_blank">Microsoft Fabric Interactive Quiz</a></li>
+</ul>
+<hr>
+<h2 id="%F0%9F%93%98-section-14-job-aids-and-cheat-sheets">📘 Section 14: Job Aids and Cheat Sheets</h2>
+<hr>
+<h3 id="140-overview">14.0 Overview</h3>
+<p>This section is designed to serve as your <strong>at-a-glance companion</strong> for key Microsoft Fabric tasks. Whether you're deploying pipelines, configuring governance, or building analytical models, these job aids provide <strong>condensed, actionable references</strong>.</p>
+<p>Each cheat sheet or visual guide in this section is printable, and many are structured as one-page summaries for team sharing and field use.</p>
+<hr>
+<h3 id="141-data-lakehouse-architecture-cheat-sheet">14.1 Data Lakehouse Architecture Cheat Sheet</h3>
+<h4 id="%F0%9F%94%81-medallion-layering">🔁 Medallion Layering</h4>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Contents</th>
+<th>Purpose</th>
+<th>Example Table</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bronze</td>
+<td>Raw, unvalidated data</td>
+<td>Ingestion, traceability</td>
+<td>Bronze_FHIRPatient</td>
+</tr>
+<tr>
+<td>Silver</td>
+<td>Cleaned, standardized data</td>
+<td>Analytics model foundation</td>
+<td>Silver_Encounter</td>
+</tr>
+<tr>
+<td>Gold</td>
+<td>Aggregated, curated data</td>
+<td>Dashboards, ML input</td>
+<td>Gold_ReadmissionRisk</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Best Practice:</strong></p>
+<ul>
+<li>Use <code>OPTIMIZE</code> on Silver and Gold</li>
+<li>Use <code>VACUUM</code> on Bronze with retention</li>
+<li>Preserve schema evolution in Silver</li>
+</ul>
+<hr>
+<h3 id="142-fabric-governance-visual-guide">14.2 Fabric Governance Visual Guide</h3>
+<h4 id="%F0%9F%94%90-governance-toolkit">🔐 Governance Toolkit</h4>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Microsoft Purview</td>
+<td>Lineage, classification, sensitivity tagging</td>
+</tr>
+<tr>
+<td>Sensitivity Labels</td>
+<td>HIPAA-HIGH, Confidential, Export Restricted</td>
+</tr>
+<tr>
+<td>Audit Logs</td>
+<td>Access records and data interactions</td>
+</tr>
+<tr>
+<td>Access Reviews</td>
+<td>Quarterly role review via Entra ID</td>
+</tr>
+<tr>
+<td>DLP Policies</td>
+<td>Prevent sharing or downloading PHI</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Visual Prompt (included in .docx):</strong>
+Governance Workflow Diagram → Ingest → Classify → Label → Review → Monitor</p>
+<hr>
+<h3 id="143-power-bi-rls--dlp-setup-instructions">14.3 Power BI RLS + DLP Setup Instructions</h3>
+<h4 id="rls-configuration">RLS Configuration</h4>
+<ol>
+<li>
+<p>Create Security Table:</p>
+<pre class="hljs"><code><div>SecurityMatrix(UserEmail, Department)
+</div></code></pre>
+</li>
+<li>
+<p>In Power BI:</p>
+<ul>
+<li>
+<p>Go to Modeling → Manage Roles</p>
+</li>
+<li>
+<p>Apply DAX Filter:</p>
+<pre class="hljs"><code><div>[Department] = LOOKUPVALUE(SecurityMatrix[Department], SecurityMatrix[UserEmail], USERPRINCIPALNAME())
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Publish → Assign Users to Roles</p>
+</li>
+</ol>
+<h4 id="dlp-actions">DLP Actions</h4>
+<ul>
+<li>Enable in Microsoft Purview → Policy Management</li>
+<li>Assign policy to Fabric item</li>
+<li>Restrict download/export</li>
+<li>Enable alerts for external sharing</li>
+</ul>
+<hr>
+<h3 id="144-notebook--mlflow-commands">14.4 Notebook & MLflow Commands</h3>
+<h4 id="start-mlflow-tracking">Start MLflow Tracking</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> mlflow
+mlflow.start_run()
+mlflow.log_param(<span class="hljs-string">"model"</span>, <span class="hljs-string">"logistic"</span>)
+mlflow.log_metric(<span class="hljs-string">"AUC"</span>, <span class="hljs-number">0.89</span>)
+mlflow.end_run()
+</div></code></pre>
+<h4 id="save-scored-predictions">Save Scored Predictions</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># predictions.write.format("delta").mode("overwrite").save("Tables/Gold_PatientRisk")</span>
+</div></code></pre>
+<hr>
+<h3 id="145-pipeline-build-command-sequence-via-ui-or-api">14.5 Pipeline Build Command Sequence (via UI or API)</h3>
+<h4 id="etl-pipeline-template">ETL Pipeline Template</h4>
+<ul>
+<li>Step 1: Source (SQL, API, S3)</li>
+<li>Step 2: Transformation (Dataflow Gen2 / Notebook)</li>
+<li>Step 3: Sink (Lakehouse / Warehouse)</li>
+</ul>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"source"</span>: <span class="hljs-string">"FHIR Server"</span>,
+  <span class="hljs-attr">"transform"</span>: <span class="hljs-string">"Standardize Encounter"</span>,
+  <span class="hljs-attr">"destination"</span>: <span class="hljs-string">"Silver_Encounter"</span>
+}
+</div></code></pre>
+<blockquote>
+<p>Use tags: <code>Project=EDAnalytics</code>, <code>Sensitivity=HIPAA-HIGH</code></p>
+</blockquote>
+<hr>
+<h3 id="146-quick-commands-reference-sheet">14.6 Quick Commands Reference Sheet</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Command/Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Partition Lakehouse Table</td>
+<td><code>.repartition("field")</code></td>
+</tr>
+<tr>
+<td>Optimize Delta Table</td>
+<td><code>OPTIMIZE TableName</code></td>
+</tr>
+<tr>
+<td>Clean Old Files</td>
+<td><code>VACUUM TableName RETAIN 168 HOURS</code></td>
+</tr>
+<tr>
+<td>Add Sensitivity Label</td>
+<td>Use Purview → "Classify and Label"</td>
+</tr>
+<tr>
+<td>Trigger Pipeline (API)</td>
+<td><code>POST /pipelines/{id}/run</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="147-troubleshooting-tips-table">14.7 Troubleshooting Tips Table</h3>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Slow Power BI load</td>
+<td>Reduce visuals, use DirectLake</td>
+</tr>
+<tr>
+<td>High Lakehouse scan latency</td>
+<td>Add partitioning + OPTIMIZE</td>
+</tr>
+<tr>
+<td>Spark job OOM</td>
+<td>Increase executor memory</td>
+</tr>
+<tr>
+<td>Duplicated patient records</td>
+<td>Enable MPI-based deduplication</td>
+</tr>
+<tr>
+<td>External share blocked</td>
+<td>Check DLP + label configuration</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="148-sop-snapshot-data-engineer">14.8 SOP Snapshot: Data Engineer</h3>
+<h4 id="daily-tasks">Daily Tasks:</h4>
+<ul>
+<li>Monitor pipeline execution</li>
+<li>Review Purview audit logs</li>
+<li>Confirm RLS accuracy on active dashboards</li>
+</ul>
+<h4 id="weekly-tasks">Weekly Tasks:</h4>
+<ul>
+<li>Run OPTIMIZE and VACUUM on Silver and Bronze</li>
+<li>Validate ML model drift metrics</li>
+<li>Update data dictionary and schemas</li>
+</ul>
+<h4 id="monthly-tasks">Monthly Tasks:</h4>
+<ul>
+<li>Review RBAC roles</li>
+<li>Coordinate with compliance officer for Purview review</li>
+<li>Update Git repository with changes</li>
+</ul>
+<hr>
+<h3 id="149-printables-index-appendix-reference">14.9 Printables Index (Appendix Reference)</h3>
+<table>
+<thead>
+<tr>
+<th>Aid Name</th>
+<th>File or Page Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RLS and DLP Setup Instructions</td>
+<td>Appendix A</td>
+</tr>
+<tr>
+<td>Data Engineer SOP Sheet</td>
+<td>Appendix B</td>
+</tr>
+<tr>
+<td>Pipeline Builder Template</td>
+<td>Appendix C</td>
+</tr>
+<tr>
+<td>Notebook MLflow Logging Template</td>
+<td>Appendix D</td>
+</tr>
+<tr>
+<td>Governance Workflow Diagram</td>
+<td>Appendix E</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="interactive-element-for-section-14">Interactive Element for Section 14</h3>
+<p><a href="./visualizations-html/Section%2014%20-%20Job%20Aids%20and%20Cheat%20Sheets.html" target="_blank">Interactive Job Aids & Cheat Sheets</a></p>
+<hr>
+<h2 id="%F0%9F%93%98-section-15-final-notes-and-resources">📘 Section 15: Final Notes and Resources</h2>
+<hr>
+<h3 id="150-overview">15.0 Overview</h3>
+<p>Congratulations on reaching the final section of this comprehensive technical training journey. As you move forward, Microsoft Fabric will continue to evolve—bringing new features, integrations, and standards to the healthcare landscape.</p>
+<p>This section provides a wrap-up of the program’s central themes, shares future certification and learning opportunities, and compiles curated resources to support your growth as a healthcare-focused data engineer.</p>
+<hr>
+<h3 id="151-recap-core-themes--capabilities">15.1 Recap: Core Themes & Capabilities</h3>
+<table>
+<thead>
+<tr>
+<th>Capability Area</th>
+<th>Key Takeaway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Ingestion</td>
+<td>Use pipelines and notebooks for structured, semi-structured, and streaming sources.</td>
+</tr>
+<tr>
+<td>Medallion Modeling</td>
+<td>Employ the Bronze-Silver-Gold pattern for scalable, traceable data flow.</td>
+</tr>
+<tr>
+<td>Security & Compliance</td>
+<td>HIPAA and HITRUST require labeling, logging, encryption, and access control.</td>
+</tr>
+<tr>
+<td>Analytics</td>
+<td>DirectLake and Power BI deliver real-time insights with fine-grained security.</td>
+</tr>
+<tr>
+<td>AI/ML</td>
+<td>Train explainable models using notebooks, log experiments, and deploy responsibly.</td>
+</tr>
+<tr>
+<td>Governance</td>
+<td>Use Microsoft Purview for end-to-end data oversight and auditability.</td>
+</tr>
+<tr>
+<td>Collaboration</td>
+<td>Secure role-based workspaces drive interdisciplinary productivity.</td>
+</tr>
+<tr>
+<td>Customization</td>
+<td>APIs, Git integration, and OneLake shortcuts enable deep system extensibility.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="152-continued-learning-and-certification-paths">15.2 Continued Learning and Certification Paths</h3>
+<p>To remain current and elevate your profile, consider these Microsoft and industry certifications:</p>
+<table>
+<thead>
+<tr>
+<th>Certification</th>
+<th>Provider</th>
+<th>Relevance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Azure Data Engineer Associate</td>
+<td>Microsoft</td>
+<td>Core data services</td>
+</tr>
+<tr>
+<td>Microsoft Certified: Fabric Specialist (in development)</td>
+<td>Microsoft</td>
+<td>Role-specific Fabric use</td>
+</tr>
+<tr>
+<td>Certified Health Data Analyst (CHDA)</td>
+<td>AHIMA</td>
+<td>Healthcare analytics standards</td>
+</tr>
+<tr>
+<td>HITRUST Implementer</td>
+<td>HITRUST Alliance</td>
+<td>Security framework application</td>
+</tr>
+<tr>
+<td>Power BI Data Analyst Associate</td>
+<td>Microsoft</td>
+<td>Advanced reporting and RLS mastery</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="153-microsoft-fabric-ecosystem-tools">15.3 Microsoft Fabric Ecosystem Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool/Portal</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Microsoft Learn</td>
+<td>Free modular Fabric content</td>
+</tr>
+<tr>
+<td>Microsoft Docs</td>
+<td>Technical documentation for APIs and features</td>
+</tr>
+<tr>
+<td>Fabric Feedback Portal</td>
+<td>Submit feature requests</td>
+</tr>
+<tr>
+<td>Azure Architecture Center</td>
+<td>Best practices for cloud-native solutions</td>
+</tr>
+<tr>
+<td>Compliance Manager</td>
+<td>Track HIPAA/HITRUST adherence per workload</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="154-community-and-collaboration-hubs">15.4 Community and Collaboration Hubs</h3>
+<p>Get involved, learn from others, and share what you build:</p>
+<ul>
+<li>
+<p><strong>Microsoft Tech Community – Fabric Forum</strong>
+<a href="https://techcommunity.microsoft.com">https://techcommunity.microsoft.com</a></p>
+</li>
+<li>
+<p><strong>Power BI Community</strong>
+<a href="https://community.powerbi.com">https://community.powerbi.com</a></p>
+</li>
+<li>
+<p><strong>Fabric GitHub Repositories</strong>
+Access public templates and notebook libraries</p>
+</li>
+<li>
+<p><strong>LinkedIn Learning + YouTube</strong>
+Follow the “Microsoft Fabric” tag for tutorial series</p>
+</li>
+</ul>
+<hr>
+<h3 id="155-regulatory-and-standards-references">15.5 Regulatory and Standards References</h3>
+<p>For those working in healthcare analytics and IT compliance:</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HIPAA Security Rule</td>
+<td><a href="https://www.hhs.gov/hipaa">https://www.hhs.gov/hipaa</a></td>
+</tr>
+<tr>
+<td>HITRUST CSF</td>
+<td><a href="https://hitrustalliance.net">https://hitrustalliance.net</a></td>
+</tr>
+<tr>
+<td>HL7 and FHIR</td>
+<td><a href="https://www.hl7.org/fhir">https://www.hl7.org/fhir</a></td>
+</tr>
+<tr>
+<td>FDA AI/ML Policy</td>
+<td><a href="https://www.fda.gov/medical-devices">https://www.fda.gov/medical-devices</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="156-final-notes-for-data-engineers">15.6 Final Notes for Data Engineers</h3>
+<ul>
+<li>Automate responsibly—build pipelines that are observable, secure, and versioned.</li>
+<li>Never compromise on governance. Purview, audit logs, and access reviews are non-negotiable.</li>
+<li>Collaborate deeply with clinical and compliance teams to keep models relevant and ethical.</li>
+<li>Focus on explainability—every prediction should be interpretable and defensible.</li>
+<li>Stay current—Fabric is advancing rapidly. What’s beta today may be essential tomorrow.</li>
+</ul>
+<hr>
+<h3 id="157-program-closure-and-reflection">15.7 Program Closure and Reflection</h3>
+<p>You’ve now completed an intensive, in-depth training designed to prepare you for complex real-world healthcare analytics challenges. With Microsoft Fabric, you are equipped to lead transformational projects that improve patient care, streamline operations, and deliver measurable outcomes.</p>
+<hr>
+<h3 id="158-certificate-claim-optional-step">15.8 Certificate Claim (Optional Step)</h3>
+<p>To finalize your training and obtain a digital certificate:</p>
+<ol>
+<li>Complete the final assessment in Section 13.</li>
+<li>Submit your results to your program administrator or instructor.</li>
+<li>Request a signed certificate using your learner ID or course instance.</li>
+</ol>
+<blockquote>
+<p>Templates are available in the Appendix and can be digitally personalized.</p>
+</blockquote>
+<hr>
+<h3 id="interactive-element-for-section-15">Interactive Element for Section 15</h3>
+<p><a href="./visualizations-html/Section%2015%20-%20Final%20Notes%20and%20Resources.html" target="_blank">Interactive Final Notes & Resources</a></p>
+<hr>
+
+</body>
+</html>
+
+</final_file_content>
+
+IMPORTANT: For any future changes to this file, use the final_file_content shown above as your reference. This content reflects the current state of the file, including any auto-formatting (e.g., if you used single quotes but the formatter converted them to double quotes). Always base your SEARCH/REPLACE operations on this final version to ensure accuracy.
+
+<environment_details>
+# VSCode Visible Files
+1-Complete_Training_Manual-2 Day-full-course-Microsoft Fabric Healthcare Discovery Session Skilling Plan-v2.8-gk.html
+
+# VSCode Open Tabs
+4-Complete_Training_Manual-2 Day-full-course-Microsoft Fabric Healthcare Discovery Session Skilling Plan-v2.8-gk.md
+1-Complete_Training_Manual-2 Day-full-course-Microsoft Fabric Healthcare Discovery Session Skilling Plan-v2.8-gk.html
+
+# Recently Modified Files
+These files have been modified since you last accessed them (file was just edited so you may need to re-read it before editing):
+1-Complete_Training_Manual-2 Day-full-course-Microsoft Fabric Healthcare Discovery Session Skilling Plan-v2.8-gk.html
+
+# Current Time
+5/21/2025, 6:26:49 PM (Africa/Casablanca, UTC+1:00)
+
+# Context Window Usage
+286,733 / 1,048.576K tokens used (27%)
+
+# Current Mode
+ACT MODE
+</environment_details>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Architecture 3D Visualization</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; overflow: hidden; background-color: #f0f0f0; }
+        #container { width: 100vw; height: 100vh; display: block; }
+        #controls { position: absolute; top: 10px; left: 10px; z-index: 1; background: rgba(255,255,255,0.9); padding:10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+        
+        /* Generic button styles - will be partially overridden by specific IDs */
+        button { 
+            margin: 5px; 
+            padding: 8px 12px; 
+            cursor: pointer; 
+            border-radius: 4px; 
+            font-weight: bold;
+        }
+
+        /* Default button style (if any other buttons were to be added) */
+        button:not(#traditionalBtn):not(#fabricBtn) {
+            border: 1px solid #ccc;
+            background-color: #fff;
+            color: #333;
+        }
+        button:not(#traditionalBtn):not(#fabricBtn):hover {
+            background-color: #e8e8e8;
+        }
+
+        #traditionalBtn {
+            background-color: #4285F4; /* Node Blue */
+            color: white;
+            border: 1px solid #3367D6; /* Darker Blue */
+        }
+        #traditionalBtn:hover {
+            background-color: #3367D6;
+        }
+
+        #fabricBtn {
+            background-color: #DB4437; /* Node Red */
+            color: white;
+            border: 1px solid #C5372C; /* Darker Red */
+        }
+        #fabricBtn:hover {
+            background-color: #C5372C;
+        }
+
+        #diagramTitle { margin-top: 10px; font-weight: bold; font-size: 1.2em; text-align: center; color: #333; }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <button id="traditionalBtn">Traditional View</button>
+        <button id="fabricBtn">Fabric Unified View</button>
+        <div id="diagramTitle"></div>
+    </div>
+    <div id="container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+        let scene, camera, renderer, controls;
+        let diagramGroup, nodesMap, arrowsList;
+        let raycaster, mouse;
+        let selectedNodeMesh = null;
+
+        const NODE_WIDTH = 180;
+        const NODE_HEIGHT = 70;
+        const CANVAS_TEX_WIDTH = 256;
+        const CANVAS_TEX_HEIGHT = 128;
+        const NODE_BORDER_COLOR_1 = '#4285F4'; // Blue
+        const NODE_BORDER_COLOR_2 = '#DB4437'; // Red
+        const ARROW_COLOR_DEFAULT = 0x000000;
+        const ARROW_COLOR_HIGHLIGHT = 0x00FF00; // Green
+
+        const traditionalData = {
+            title: 'Traditional Architecture',
+            nodes: [
+                { id: 'EHR', label: 'EHR' },
+                { id: 'Pharmacy', label: 'Pharmacy' },
+                { id: 'RIS', label: 'RIS' },
+                { id: 'LIS', label: 'LIS' },
+                { id: 'ManualReconciliation', label: 'Manual Reconciliation' }
+            ],
+            connections: [
+                { source: 'EHR', target: 'ManualReconciliation' },
+                { source: 'Pharmacy', target: 'ManualReconciliation' },
+                { source: 'RIS', target: 'ManualReconciliation' },
+                { source: 'LIS', target: 'ManualReconciliation' }
+            ],
+            layout: {
+                EHR: { x: -200, y: 150, z: 0 },
+                Pharmacy: { x: -70, y: 150, z: 0 },
+                RIS: { x: 70, y: 150, z: 0 },
+                LIS: { x: 200, y: 150, z: 0 },
+                ManualReconciliation: { x: 0, y: -50, z: 0 }
+            }
+        };
+
+        const fabricUnifiedData = {
+            title: 'Fabric Unified Architecture',
+            nodes: [
+                { id: 'EHR', label: 'EHR' },
+                { id: 'Pharmacy', label: 'Pharmacy' },
+                { id: 'RIS', label: 'RIS' },
+                { id: 'LIS', label: 'LIS' },
+                { id: 'OneLake', label: 'OneLake' },
+                { id: 'AI_Models', label: 'AI_Models' },
+                { id: 'BI_Dashboards', label: 'BI_Dashboards' }
+            ],
+            connections: [
+                { source: 'EHR', target: 'OneLake' },
+                { source: 'Pharmacy', target: 'OneLake' },
+                { source: 'RIS', target: 'OneLake' },
+                { source: 'LIS', target: 'OneLake' },
+                { source: 'OneLake', target: 'AI_Models' },
+                { source: 'OneLake', target: 'BI_Dashboards' }
+            ],
+            layout: {
+                EHR: { x: -300, y: 200, z: 0 },
+                Pharmacy: { x: -100, y: 200, z: 0 },
+                RIS: { x: 100, y: 200, z: 0 },
+                LIS: { x: 300, y: 200, z: 0 },
+                OneLake: { x: 0, y: 0, z: 0 },
+                AI_Models: { x: -150, y: -200, z: 0 },
+                BI_Dashboards: { x: 150, y: -200, z: 0 }
+            }
+        };
+
+        function init() {
+            // Scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xf0f0f0);
+
+            // Camera
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+            camera.position.set(0, 0, 500);
+
+            // Renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('container').appendChild(renderer.domElement);
+
+            // Controls
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.screenSpacePanning = false;
+            controls.minDistance = 100;
+            controls.maxDistance = 1500;
+            controls.maxPolarAngle = Math.PI; 
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+            scene.add(ambientLight);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(5, 10, 7.5);
+            scene.add(directionalLight);
+
+            // Raycaster for mouse picking
+            raycaster = new THREE.Raycaster();
+            mouse = new THREE.Vector2();
+
+            // Diagram group
+            diagramGroup = new THREE.Group();
+            scene.add(diagramGroup);
+
+            // Event Listeners
+            document.getElementById('traditionalBtn').addEventListener('click', () => displayDiagram(traditionalData));
+            document.getElementById('fabricBtn').addEventListener('click', () => displayDiagram(fabricUnifiedData));
+            window.addEventListener('resize', onWindowResize, false);
+            renderer.domElement.addEventListener('click', onCanvasClick, false);
+
+            // Initial display
+            displayDiagram(traditionalData);
+            animate();
+        }
+
+        function createNodeTexture(label) {
+            const canvas = document.createElement('canvas');
+            canvas.width = CANVAS_TEX_WIDTH;
+            canvas.height = CANVAS_TEX_HEIGHT;
+            const ctx = canvas.getContext('2d');
+
+            const borderWidth = 8;
+
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.lineWidth = borderWidth;
+
+            ctx.strokeStyle = NODE_BORDER_COLOR_1; // Blue
+            ctx.beginPath();
+            ctx.moveTo(borderWidth / 2, canvas.height - borderWidth / 2); 
+            ctx.lineTo(borderWidth / 2, borderWidth / 2);                 
+            ctx.lineTo(canvas.width - borderWidth / 2, borderWidth / 2);  
+            ctx.stroke();
+
+            ctx.strokeStyle = NODE_BORDER_COLOR_2; // Red
+            ctx.beginPath();
+            ctx.moveTo(canvas.width - borderWidth / 2, borderWidth / 2); 
+            ctx.lineTo(canvas.width - borderWidth / 2, canvas.height - borderWidth / 2); 
+            ctx.lineTo(borderWidth / 2, canvas.height - borderWidth / 2); 
+            ctx.stroke();
+            
+            ctx.fillStyle = 'black';
+            let fontSize = 24;
+            ctx.font = `bold ${fontSize}px Arial`;
+            
+            let textWidth = ctx.measureText(label).width;
+            const padding = 40; 
+            while (textWidth > canvas.width - padding && fontSize > 10) {
+                fontSize -= 2;
+                ctx.font = `bold ${fontSize}px Arial`;
+                textWidth = ctx.measureText(label).width;
+            }
+
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(label, canvas.width / 2, canvas.height / 2);
+
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        function createNodeMesh(nodeData, position) {
+            const texture = createNodeTexture(nodeData.label);
+            const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
+            const geometry = new THREE.PlaneGeometry(NODE_WIDTH, NODE_HEIGHT);
+            const mesh = new THREE.Mesh(geometry, material);
+            mesh.position.set(position.x, position.y, position.z);
+            mesh.userData = { id: nodeData.id, type: 'node', originalPosition: mesh.position.clone() };
+            return mesh;
+        }
+
+        function createArrow(sourcePos, targetPos, sourceId, targetId) {
+            const dir = new THREE.Vector3().subVectors(targetPos, sourcePos);
+            const length = dir.length() - (NODE_HEIGHT / 1.5); 
+            dir.normalize();
+            
+            const origin = new THREE.Vector3().copy(sourcePos).add(dir.clone().multiplyScalar(NODE_HEIGHT / 2.5));
+
+            const arrowHelper = new THREE.ArrowHelper(dir, origin, length, ARROW_COLOR_DEFAULT, 15, 10);
+            arrowHelper.userData = { type: 'arrow', sourceId: sourceId, targetId: targetId, originalColor: ARROW_COLOR_DEFAULT };
+            return arrowHelper;
+        }
+
+        function displayDiagram(data) {
+            while (diagramGroup.children.length > 0) {
+                const obj = diagramGroup.children[0];
+                diagramGroup.remove(obj);
+                if (obj.geometry) obj.geometry.dispose();
+                if (obj.material) {
+                    if (obj.material.map) obj.material.map.dispose();
+                    obj.material.dispose();
+                }
+            }
+            nodesMap = new Map();
+            arrowsList = [];
+            selectedNodeMesh = null; // Clear selection when changing diagrams
+
+            document.getElementById('diagramTitle').textContent = data.title;
+
+            data.nodes.forEach(nodeData => {
+                const position = data.layout[nodeData.id];
+                const nodeMesh = createNodeMesh(nodeData, position);
+                nodesMap.set(nodeData.id, nodeMesh);
+                diagramGroup.add(nodeMesh);
+            });
+
+            data.connections.forEach(conn => {
+                const sourceNode = nodesMap.get(conn.source);
+                const targetNode = nodesMap.get(conn.target);
+                if (sourceNode && targetNode) {
+                    const arrow = createArrow(sourceNode.position, targetNode.position, conn.source, conn.target);
+                    arrowsList.push(arrow);
+                    diagramGroup.add(arrow);
+                }
+            });
+            resetCameraToFitDiagram();
+        }
+        
+        function resetCameraToFitDiagram() {
+            const boundingBox = new THREE.Box3().setFromObject(diagramGroup);
+            const center = new THREE.Vector3();
+            boundingBox.getCenter(center);
+            const size = new THREE.Vector3();
+            boundingBox.getSize(size);
+
+            const maxDim = Math.max(size.x, size.y, size.z);
+            const fov = camera.fov * (Math.PI / 180);
+            let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+            cameraZ *= 1.5; 
+
+            controls.reset(); 
+            camera.position.set(center.x, center.y, center.z + Math.max(cameraZ, 400)); 
+            controls.target.set(center.x, center.y, center.z);
+            controls.update();
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function onCanvasClick(event) {
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(diagramGroup.children, true); 
+
+            let clickedNodeFound = false;
+            if (intersects.length > 0) {
+                let intersectedObj = intersects[0].object;
+                if (intersectedObj.parent instanceof THREE.ArrowHelper) {
+                    intersectedObj = intersectedObj.parent;
+                }
+                if (intersectedObj.userData && intersectedObj.userData.type === 'node') {
+                    handleNodeClick(intersectedObj);
+                    clickedNodeFound = true;
+                }
+            }
+
+            if (!clickedNodeFound) {
+                clearHighlights();
+            }
+        }
+
+        function handleNodeClick(nodeMesh) {
+            if (selectedNodeMesh === nodeMesh) { 
+                clearHighlights();
+                selectedNodeMesh = null;
+                return;
+            }
+
+            clearHighlights(); 
+            selectedNodeMesh = nodeMesh;
+
+            const nodeId = selectedNodeMesh.userData.id;
+            arrowsList.forEach(arrow => {
+                if (arrow.userData.sourceId === nodeId || arrow.userData.targetId === nodeId) {
+                    arrow.setColor(ARROW_COLOR_HIGHLIGHT);
+                }
+            });
+        }
+
+        function clearHighlights() {
+            arrowsList.forEach(arrow => {
+                arrow.setColor(arrow.userData.originalColor);
+            });
+            selectedNodeMesh = null;
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        init();
+    </script>
+</body>
+</html>
